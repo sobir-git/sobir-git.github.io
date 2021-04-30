@@ -1,56 +1,84 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
+        <title>Raw Blog - misc category</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
-        <title>new blog - misc</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="new blog Atom Feed" />
+
+        <link rel="stylesheet" href="/theme/css/rdark.css" />
+	<link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/" type="application/atom+xml" rel="alternate" title="Raw Blog ATOM Feed" /><!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+<!-- Using MathJax, with the delimiters $ -->
+<!-- Conflict with pygments for the .mo and .mi -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  "HTML-CSS": {
+  styles: {
+  ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+  },
+  tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+  });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">new blog</a></h1>
-                <nav><ul>
-                    <li class="active"><a href="/category/misc.html">misc</a></li>
-                </ul></nav>
+                <h1><a href="/">Raw Blog</a></h1>
         </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li class="active"><a href="/category/misc.html">misc</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content">
+<h2>Articles in the misc category</h2>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/any-title.html">any title</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2021-04-30T00:00:00+03:00">
-                Published: Fri 30 April 2021
-        </abbr>
+<ol id="post-list">
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/test.html" rel="bookmark" title="Permalink to test">test</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-04-30T00:00:00+03:00"> Fri 30 April 2021 </time>
+                    <address class="vcard author">By
+                        <a class="url fn" href="/author/sobir.html">Sobir</a>
+                    </address>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>This is my first post on my new blog. </p>
+<p>Let's write some inline math <span class="math">\(e^x\)</span></p>
+<p>And more math (block)
+</p>
+<div class="math">$$\int_0^{x^t} f(t) dt$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/sobir.html">Sobir</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info --><h1>new blog, new post</h1>
-<p>This is my first post on my new blog. While not super informative it
-should convey my sense of excitement and eagerness to engage with you,
-the reader!</p>                </article>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em …</script> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/what-is-sql.html" rel="bookmark" title="Permalink to WHAT is SQL">WHAT is SQL</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-04-30T00:00:00+03:00"> Fri 30 April 2021 </time>
+                    <address class="vcard author">By
+                        <a class="url fn" href="/author/sobir.html">Sobir</a>
+                    </address>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <h1>The idea of SQL</h1>
+<p>Entities exist. Multiple entities of the same <em>kind</em> exist. Example, many humans.</p>
+<p>All entities of the same kind have a set of attributes. Different entities differ 
+because of attributes. Align those attributes in a <em>row</em>. All entities 
+are now represented by a row. then, A collection …</p> </div><!-- /.entry-content -->
+        </article></li>
+</ol><!-- /#posts-list -->
+</section><!-- /#content -->
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="https://www.python.org/">Python</a>.
                 </address><!-- /#about -->
-
-                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
-
 </body>
 </html>
