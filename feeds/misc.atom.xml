@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>new blog - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-04-30T00:00:00+03:00</updated><entry><title>...</title><link href="/.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir</name></author><id>tag:None,2021-04-30:/.html</id><content type="html">&lt;h1&gt;new blog, new post&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>new blog - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-04-30T00:00:00+03:00</updated><entry><title>any title</title><link href="/any-title.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir</name></author><id>tag:None,2021-04-30:/any-title.html</id><content type="html">&lt;h1&gt;new blog, new post&lt;/h1&gt;
 &lt;p&gt;This is my first post on my new blog. While not super informative it
 should convey my sense of excitement and eagerness to engage with you,
 the reader!&lt;/p&gt;</content><category term="misc"></category></entry></feed>
