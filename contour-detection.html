@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-        <title>Raw Blog - Archives</title>
+          <title>Raw Blog - Contour detection</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Raw Blog Full Atom Feed" />
+        <link href="/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Raw Blog Categories Atom Feed" />
 
         <link rel="stylesheet" href="/theme/css/rdark.css" />
         <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
@@ -32,6 +33,11 @@
 
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
+
+
+
+
+
 </head>
 
 <body id="index" class="home">
@@ -39,18 +45,39 @@
                 <h1><a href="/">Raw Blog</a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-            <li><a href="/category/misc.html">misc</a></li>
+            <li class="active"><a href="/category/misc.html">misc</a></li>
         </ul></nav><!-- /#menu -->
-<h1>Archives for Raw Blog</h1>
-
-<dl>
-    <dt>Fri 30 April 2021</dt>
-    <dd><a href="/contour-detection.html">Contour detection</a></dd>
-    <dt>Fri 30 April 2021</dt>
-    <dd><a href="/test.html">test</a></dd>
-    <dt>Fri 30 April 2021</dt>
-    <dd><a href="/what-is-sql.html">WHAT is SQL</a></dd>
-</dl>
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/contour-detection.html" rel="bookmark"
+         title="Permalink to Contour detection">Contour detection</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-04-30T00:00:00+03:00">
+      Fri 30 April 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/sobir.html">Sobir</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/misc.html">misc</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p><em>Dictionary definition: an outline representing or bounding the shape or form of something.</em></p>
+<p>Separate bright object from dark background. Contours are polygons. Contours are the boundaries of
+objects with the same intensity. </p>
+<p>From OpenCV:</p>
+<blockquote>
+<p>Contours is a Python list of all the contours in the image. Each individual contour is a Numpy array of (x,y) coordinates of boundary points of the object.</p>
+</blockquote>
+<p>In OpenCV, for efficiency purposes, the contours can be <em>appoximated</em>. Without approximation, it
+can return too many boundary points. With approximation, they can be reduced to much smaller number (e.g say 4 points for a rectangular object).</p>
+<p>Contours detected in an image form a <em>hierarchy</em>. One can contain the other, and so on. Remember <em>contour maps</em> from math. However black and white images produce only disjoint contours[I think so].</p>
+  </div><!-- /.entry-content -->
+</section>
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
                 Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
