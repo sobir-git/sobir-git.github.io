@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Raw Blog</title><link>/</link><description></description><lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0300</lastBuildDate><item><title>test</title><link>/test.html</link><description>&lt;p&gt;This is my first post on my new blog. &lt;/p&gt;
+&lt;p&gt;Let's write some inline math &lt;span class="math"&gt;\(e^x\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;And more math (block)
+&lt;/p&gt;
+&lt;div class="math"&gt;$$\int_0^{x^t} f(t) dt$$&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em …&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Sobir</dc:creator><pubDate>Fri, 30 Apr 2021 00:00:00 +0300</pubDate><guid isPermaLink="false">tag:None,2021-04-30:/test.html</guid><category>misc</category></item><item><title>WHAT is SQL</title><link>/what-is-sql.html</link><description>&lt;h1&gt;The idea of SQL&lt;/h1&gt;
+&lt;p&gt;Entities exist. Multiple entities of the same &lt;em&gt;kind&lt;/em&gt; exist. Example, many humans.&lt;/p&gt;
+&lt;p&gt;All entities of the same kind have a set of attributes. Different entities differ 
+because of attributes. Align those attributes in a &lt;em&gt;row&lt;/em&gt;. All entities 
+are now represented by a row. then, A collection …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Sobir</dc:creator><pubDate>Fri, 30 Apr 2021 00:00:00 +0300</pubDate><guid isPermaLink="false">tag:None,2021-04-30:/what-is-sql.html</guid><category>misc</category></item></channel></rss>
