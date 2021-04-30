@@ -1,1 +1,1 @@
-my blog [sobir-git.github.io](sobir-git.github.io)
+my blog [sobir-git.github.io](https://sobir-git.github.io)
