@@ -48,3 +48,7 @@ pre {
   font-size: 75%;
   text-align: center;
 }
+
+#content ol {
+  list-style-type: square;
+}
