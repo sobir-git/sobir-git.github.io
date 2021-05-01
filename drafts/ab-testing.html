@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-        <title>Raw Blog - Authors</title>
+          <title>Raw Blog - A/B testing</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Raw Blog Full Atom Feed" />
+        <link href="/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Raw Blog Categories Atom Feed" />
 
         <link rel="stylesheet" href="/theme/css/rdark.css" />
         <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
@@ -32,6 +33,11 @@
 
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
+
+
+
+
+
 </head>
 
 <body id="index" class="home">
@@ -39,12 +45,35 @@
                 <h1><a href="/">Raw Blog</a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-            <li><a href="/category/misc.html">misc</a></li>
+            <li class="active"><a href="/category/misc.html">misc</a></li>
         </ul></nav><!-- /#menu -->
-    <h1>Authors on Raw Blog</h1>
-    <ul>
-        <li><a href="/author/sobir-bobiev.html">Sobir Bobiev</a> (3)</li>
-    </ul>
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/drafts/ab-testing.html" rel="bookmark"
+         title="Permalink to A/B testing">A/B testing</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-05-01T00:00:00+03:00">
+      Sat 01 May 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/misc.html">misc</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>We have two populations. How to know if they are different? We sample a finite number of examples from
+each. The null hypothesis says they are the same. We always assume the null hypothesis. To make it
+simple we can assume one or more of the following:
+- They are both normal distributions.
+- They have same variance.</p>
+<p>What is the distribution of p-value? - Uniform.</p>
+  </div><!-- /.entry-content -->
+</section>
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
                 Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
