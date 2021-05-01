@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-          <title>Raw Blog - A/B testing</title>
+          <title>Raw Blog - Some statistical terms</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Raw Blog Full Atom Feed" />
@@ -50,8 +50,8 @@
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/drafts/ab-testing.html" rel="bookmark"
-         title="Permalink to A/B testing">A/B testing</a></h2>
+      <a href="/some-statistical-terms.html" rel="bookmark"
+         title="Permalink to Some statistical terms">Some statistical terms</a></h2>
  
   </header>
   <footer class="post-info">
@@ -66,13 +66,16 @@
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>We have two populations. How to know if they are different? We sample a finite number of examples from
-each. The null hypothesis says they are the same. We always assume the null hypothesis. To make it
-simple we can assume one or more of the following:
-- They are both normal distributions.
-- They have same variance.</p>
-<p>What is the distribution of p-value? - Uniform.</p>
-<p>Links: https://www.youtube.com/watch?v=-zps6hm0nX8&amp;list=PLBRXq5Laddfy80vl9G9wpN4FoK9Ey43_M&amp;index=11&amp;ab_channel=Karpov.Courses</p>
+    <h3>Joint probability distribution function</h3>
+<p>It characterizes the probability of a random vector in its domain.
+So, for a random vector $X \in R^n$, it is a function 
+$$f_X: R^n \to [0, \inf) .$$
+Computing the integral over the support region should result in $1$.</p>
+<p>There is another term called <em>joint distribution function</em> which is a synonym to <em>joint cumulative distribution function</em> (also <em>joint cdf</em>). At a given point $x$ it gives the probability that all components of $X$ are smaller than the corresponding component $x$.</p>
+<h3>Marginal distribution function</h3>
+<p>For a random vector, it is the probability of one of its components. 
+So, for a random vector $X \in R^n$ and its component $X_i$, it is a function 
+$$f_{X_i}: R \to [0, \inf) .$$</p>
   </div><!-- /.entry-content -->
 </section>
         <footer id="contentinfo" class="body">

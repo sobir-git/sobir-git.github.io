@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Raw Blog - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-04-30T00:00:00+03:00</updated><entry><title>Contour detection</title><link href="/contour-detection.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-04-30:/contour-detection.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Dictionary definition: an outline representing or bounding the shape or form of something.&lt;/em&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Raw Blog - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-05-01T00:00:00+03:00</updated><entry><title>Hypothesis Testing</title><link href="/hypothesis-testing.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/hypothesis-testing.html</id><summary type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
+&lt;p&gt;First we define what is a &lt;strong&gt;statistical model&lt;/strong&gt;.&lt;/p&gt;
+&lt;h4&gt;Statistical Models&lt;/h4&gt;
+&lt;p&gt;The term didn't catch attention, as if I already knew it. Perhaps true. I know both words in isolation, and I've seen both together. But here follows …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
+&lt;p&gt;First we define what is a &lt;strong&gt;statistical model&lt;/strong&gt;.&lt;/p&gt;
+&lt;h4&gt;Statistical Models&lt;/h4&gt;
+&lt;p&gt;The term didn't catch attention, as if I already knew it. Perhaps true. I know both words in isolation, and I've seen both together. But here follows the formal definition.&lt;/p&gt;
+&lt;p&gt;Given an unknown distribution. Assume we only have some samples from it. Of course we cannot characterize the original distribution just from a finite number of samples. We can only infer some properties of it given particular circumstances. For example we assume that it belongs to a certain class of probability distributions. If we assume it is a normal distribution, then we go further and estimate its mean and variance, or make a probabilistic statements about it. &lt;/p&gt;
+&lt;p&gt;So, the class which we assumed the unknown distributions belongs to is called our &lt;em&gt;statistical model&lt;/em&gt;. We could have modeled it correctly, in which case we say our model is &lt;strong&gt;correctly specified&lt;/strong&gt;. Otherwise, it is &lt;strong&gt;mis-specified&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3&gt;Statistical Inference&lt;/h3&gt;
+&lt;p&gt;A statistical inference is a statement about the population from a given sample. They are based on a given sample and the statistical model. A statistical inference has the form of model restriction. Let the original model be $\Phi$. Then the statistical inference can talk about a subset of model, $\Phi_R$, in one of the following forms: (a) the unknown distribution belongs to $\Phi_X$, or (b) the unknown distribution does not belong to $\Phi_X$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In &lt;strong&gt;hypothesis testing&lt;/strong&gt;, first such a model restriction is proposed, then the choice is made whether to accept the restriction or reject it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In &lt;strong&gt;estimation&lt;/strong&gt;, a restriction is to be chosen with certain level of certainty.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In &lt;strong&gt;Bayesian inference&lt;/strong&gt;, we already have a subjective restriction, and it is updated with the knowledge of the given sample.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What is a &lt;strong&gt;sample&lt;/strong&gt;? A realization of a random vector.&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Some statistical terms</title><link href="/some-statistical-terms.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/some-statistical-terms.html</id><summary type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
+&lt;p&gt;It characterizes the probability of a random vector in its domain.
+So, for a random vector $X \in R^n$, it is a function 
+$$f_X: R^n \to [0, \inf) .$$
+Computing the integral over the support region should result in $1$.&lt;/p&gt;
+&lt;p&gt;There is another term called …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
+&lt;p&gt;It characterizes the probability of a random vector in its domain.
+So, for a random vector $X \in R^n$, it is a function 
+$$f_X: R^n \to [0, \inf) .$$
+Computing the integral over the support region should result in $1$.&lt;/p&gt;
+&lt;p&gt;There is another term called &lt;em&gt;joint distribution function&lt;/em&gt; which is a synonym to &lt;em&gt;joint cumulative distribution function&lt;/em&gt; (also &lt;em&gt;joint cdf&lt;/em&gt;). At a given point $x$ it gives the probability that all components of $X$ are smaller than the corresponding component $x$.&lt;/p&gt;
+&lt;h3&gt;Marginal distribution function&lt;/h3&gt;
+&lt;p&gt;For a random vector, it is the probability of one of its components. 
+So, for a random vector $X \in R^n$ and its component $X_i$, it is a function 
+$$f_{X_i}: R \to [0, \inf) .$$&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Contour detection</title><link href="/contour-detection.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-04-30:/contour-detection.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Dictionary definition: an outline representing or bounding the shape or form of something.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Separate bright object from dark background. Contours are polygons. Contours are the boundaries of
 objects with the same intensity. &lt;/p&gt;
 &lt;p&gt;From OpenCV:&lt;/p&gt;
