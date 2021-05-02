@@ -129,19 +129,21 @@ Yes, it would be great to know the power of your test. So, how? </p>
 $$
 \pi(\theta) = P(\text{sample falls in critical region} | \text{true distribution parameter is } \theta)
 $$</p>
-<p>More on power function <a href="https://www.statlect.com/glossary/power-function">here</a> that has a simple example included.
-Knowing the power function of your test is great. But how can you derive?</p>
-<!-- 
-..graphviz dot
-digraph {
-    A [label="King Arthur"]
-    B [label="Sir Bedevere the Wise"]
-    L [label="Sir Lancelot the Brave"]
-    A -> B
-    A -> L
-    B -> L [constraint=false]
-}
- -->
+<p>More on power function <a href="https://www.statlect.com/glossary/power-function">here</a> that has a simple example included:</p>
+<blockquote>
+<p>Suppose you are testing the null hypothesis that the true parameter is equal to zero:
+$$H_0: \theta = 0$$
+Suppose that the value of the power function at $\theta =1$ is
+$$\pi(1) = 0.5$$
+What does this mean? It means that if the true parameter is equal to 1, then there is a 50% probability that the test will reject the (false) null hypothesis that the parameter is equal to 0.</p>
+</blockquote>
+<p>Q: Knowing the power function of your test is great. But how can you derive it?</p>
+<h4>Size of a test</h4>
+<p>Size of a test is a measure of incorrectly rejecting the null hypothesis. It is defined in terms of the power function:
+$$
+sup_{\theta \in \Theta_R} \pi(\theta)
+$$
+In other words, it is the upper bound probability of incorrectly rejecting the null hypothesis. Ideally, we want the size of the test to be 0.</p>
   </div><!-- /.entry-content -->
 </section>
         <footer id="contentinfo" class="body">
