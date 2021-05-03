@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-          <title>My Notes - test</title>
+          <title>My Notes - Set estimation</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
@@ -50,13 +50,13 @@
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/test.html" rel="bookmark"
-         title="Permalink to test">test</a></h2>
+      <a href="/set-estimation.html" rel="bookmark"
+         title="Permalink to Set estimation">Set estimation</a></h2>
  
   </header>
   <footer class="post-info">
-    <time class="published" datetime="2021-04-30T00:00:00+03:00">
-      Fri 30 April 2021
+    <time class="published" datetime="2021-05-03T00:00:00+03:00">
+      Mon 03 May 2021
     </time>
     <address class="vcard author">
       By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
@@ -66,10 +66,19 @@
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>This is my first post on my new blog. </p>
-<p>Let's write some inline math $e^x$</p>
-<p>And more math (block)
-$$\int_0^{x^t} f(t) dt$$</p>
+    <p>Suppose there's a unknown distribution parametrized by $\theta_0$. Let $\Xi$ be a random vector from that distribution. Suppose we have sample $\xi$ as a realization of random vector $\Xi$. Using this sample we want to estimate $\theta_0$. Suppose we have modeled the distrubution with parameter space $\Theta$. </p>
+<p>So is an estimate? An estimate is as subset of parameter space: 
+$$T \subseteq \Theta$$</p>
+<p>The estimate has a probability of containing the true parameter $\theta_0$, we call it <strong>coverage probability</strong>:
+$$
+C(T, \theta_0) = P_{\theta_0}(\theta_0 \in T[\Xi])
+$$
+Note that in the above equation, the random element is $T[\Xi]$ and $\theta_0$ is fixed. In other words, it is probability that the computed set estimate contains the true parameter, given the randomness of $\Xi$. In other words, for a fixed original distribution, if we run the experiment many times[for which we get different realizations of $\Xi$ each time], then the coverage probability measure the number of times our set estimate will contain the true parameter.</p>
+<p>Often times, the coverage probability is not computable, because we don't know $\theta_0$. Therefore, another measure which is <strong>confidence coefficient</strong> comes handy:
+$$
+c(T) = \inf_{\theta \in \Theta} C(T, \theta)
+$$
+It measures the smallest probability of coverage considering all possible values of true parameter.</p>
   </div><!-- /.entry-content -->
 </section>
         <footer id="contentinfo" class="body">
