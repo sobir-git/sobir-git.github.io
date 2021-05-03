@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Raw Blog - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-05-01T00:00:00+03:00</updated><entry><title>Hypothesis Testing</title><link href="/hypothesis-testing.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/hypothesis-testing.html</id><summary type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Raw Blog - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-05-03T00:00:00+03:00</updated><entry><title>Remembering formula of normal distribution</title><link href="/remembering-formula-of-normal-distribution.html" rel="alternate"></link><published>2021-05-03T00:00:00+03:00</published><updated>2021-05-03T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-03:/remembering-formula-of-normal-distribution.html</id><summary type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
+&lt;p align="center"&gt;
+  &lt;img src="/images/normal_distribution.svg" /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.&lt;/p&gt;
+&lt;p&gt;It breaks down into two parts:
+$$
+\frac{1}{\sigma …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
+&lt;p align="center"&gt;
+  &lt;img src="/images/normal_distribution.svg" /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.&lt;/p&gt;
+&lt;p&gt;It breaks down into two parts:
+$$
+\frac{1}{\sigma\sqrt{2\pi}}
+$$
+and
+$$
+e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
+$$&lt;/p&gt;
+&lt;p&gt;The first part is just a &lt;strong&gt;normalizing constant&lt;/strong&gt; that is worth memorizing.&lt;/p&gt;
+&lt;p&gt;Let's break down the &lt;strong&gt;second part&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Exponent $e$: the normal distribution converges asymptotically to 0 &lt;strong&gt;exponentially&lt;/strong&gt; on both tails, or more accurately &lt;em&gt;quadratic exponentially&lt;/em&gt; (if that's is a term).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Negative sign in the exponent: without which it would diverge on both tails.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The fraction $(\frac{x-\mu}{\sigma})^2$: it this is the part that gives it parametrization of different means and standard deviations. The numerator $x - \mu$ ensures that at it has the peak at $x = \mu$ and the denominator $\sigma$ is used to stretch the x-axis linearly, so that desired standard deviation is obtained. Without the square the distribution wouldn't be symmetric.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The fraction $\frac{1}{2}$: sure, it would look cooler without this fraction, but the standard deviation would be $\sigma / \sqrt{2}$ instead of just $\sigma$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="misc"></category></entry><entry><title>Hypothesis Testing</title><link href="/hypothesis-testing.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/hypothesis-testing.html</id><summary type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
 &lt;p&gt;First we define what is a &lt;strong&gt;statistical model&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3&gt;Statistical Models&lt;/h3&gt;
 &lt;p&gt;The term didn't catch attention, as if I already knew it. Perhaps true. I know both words in isolation, and I've seen both together. But here follows …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
@@ -79,7 +116,7 @@ What does this mean? It means that if the true parameter is equal to 1, then the
 $$
 sup_{\theta \in \Theta_R} \pi(\theta)
 $$
-In other words, it is the upper bound probability of incorrectly rejecting the null hypothesis. Ideally, we want the size of the test to be 0.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Some statistical terms</title><link href="/some-statistical-terms.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/some-statistical-terms.html</id><summary type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
+In other words, it is the upper bound probability of incorrectly rejecting the null hypothesis. Ideally, we want the size of test to be 0.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Some statistical terms</title><link href="/some-statistical-terms.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/some-statistical-terms.html</id><summary type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
 &lt;p&gt;It characterizes the probability of a random vector in its domain.
 So, for a random vector $X \in R^n$, it is a function 
 $$f_X: R^n \to [0, \inf) .$$

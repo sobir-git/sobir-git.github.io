@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+          <title>Raw Blog - Remembering formula of normal distribution</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Raw Blog Full Atom Feed" />
+        <link href="/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Raw Blog Categories Atom Feed" />
+
+        <link rel="stylesheet" href="/theme/css/rdark.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/css/main.css" />
+        <link href="/" type="application/atom+xml" rel="alternate" title="Raw Blog ATOM Feed" /><!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WVZ6PMB17"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-8WVZ6PMB17');
+        </script>
+
+        <!-- Using MathJax, with the delimiters $ -->
+        <!-- Conflict with pygments for the .mo and .mi -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+        </script>
+
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Raw Blog</a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li class="active"><a href="/category/misc.html">misc</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/remembering-formula-of-normal-distribution.html" rel="bookmark"
+         title="Permalink to Remembering formula of normal distribution">Remembering formula of normal distribution</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-05-03T00:00:00+03:00">
+      Mon 03 May 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/misc.html">misc</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>When googled, I got this for the normal distribution:</p>
+<p align="center">
+  <img src="/images/normal_distribution.svg" />
+</p>
+
+<p>You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.</p>
+<p>It breaks down into two parts:
+$$
+\frac{1}{\sigma\sqrt{2\pi}}
+$$
+and
+$$
+e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
+$$</p>
+<p>The first part is just a <strong>normalizing constant</strong> that is worth memorizing.</p>
+<p>Let's break down the <strong>second part</strong>:</p>
+<ol>
+<li>
+<p>Exponent $e$: the normal distribution converges asymptotically to 0 <strong>exponentially</strong> on both tails, or more accurately <em>quadratic exponentially</em> (if that's is a term).</p>
+</li>
+<li>
+<p>Negative sign in the exponent: without which it would diverge on both tails.</p>
+</li>
+<li>
+<p>The fraction $(\frac{x-\mu}{\sigma})^2$: it this is the part that gives it parametrization of different means and standard deviations. The numerator $x - \mu$ ensures that at it has the peak at $x = \mu$ and the denominator $\sigma$ is used to stretch the x-axis linearly, so that desired standard deviation is obtained. Without the square the distribution wouldn't be symmetric.</p>
+</li>
+<li>
+<p>The fraction $\frac{1}{2}$: sure, it would look cooler without this fraction, but the standard deviation would be $\sigma / \sqrt{2}$ instead of just $\sigma$.</p>
+</li>
+</ol>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>
