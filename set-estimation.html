@@ -21,7 +21,7 @@
 
         <!-- Using MathJax, with the delimiters $ -->
         <!-- Conflict with pygments for the .mo and .mi -->
-        <script type="text/x-mathjax-config">
+<!--         <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
           "HTML-CSS": {
           styles: {
@@ -30,7 +30,7 @@
           tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
           });
         </script>
-
+ -->
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
 
@@ -66,19 +66,88 @@
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>Suppose there's a unknown distribution parametrized by $\theta_0$. Let $\Xi$ be a random vector from that distribution. Suppose we have sample $\xi$ as a realization of random vector $\Xi$. Using this sample we want to estimate $\theta_0$. Suppose we have modeled the distrubution with parameter space $\Theta$. </p>
+    <p>Suppose there's a unknown distribution parametrized by <span class="math">\(\theta_0\)</span>. Let <span class="math">\(\Xi\)</span> be a random vector from that distribution. Suppose we have sample <span class="math">\(\xi\)</span> as a realization of random vector <span class="math">\(\Xi\)</span>. Using this sample we want to estimate <span class="math">\(\theta_0\)</span>. Suppose we have modeled the distrubution with parameter space <span class="math">\(\Theta\)</span>. </p>
 <p>So is an estimate? An estimate is as subset of parameter space: 
-$$T \subseteq \Theta$$</p>
-<p>The estimate has a probability of containing the true parameter $\theta_0$, we call it <strong>coverage probability</strong>:
-$$
+</p>
+<div class="math">$$T \subseteq \Theta$$</div>
+<p>The estimate has a probability of containing the true parameter <span class="math">\(\theta_0\)</span>, we call it <strong>coverage probability</strong>:
+</p>
+<div class="math">$$
 C(T, \theta_0) = P_{\theta_0}(\theta_0 \in T[\Xi])
-$$
-Note that in the above equation, the random element is $T[\Xi]$ and $\theta_0$ is fixed. In other words, it is probability that the computed set estimate contains the true parameter, given the randomness of $\Xi$. In other words, for a fixed original distribution, if we run the experiment many times[for which we get different realizations of $\Xi$ each time], then the coverage probability measure the number of times our set estimate will contain the true parameter.</p>
-<p>Often times, the coverage probability is not computable, because we don't know $\theta_0$. Therefore, another measure which is <strong>confidence coefficient</strong> comes handy:
-$$
+$$</div>
+<p>
+Note that in the above equation, the random element is <span class="math">\(T[\Xi]\)</span> and <span class="math">\(\theta_0\)</span> is fixed. In other words, it is probability that the computed set estimate contains the true parameter, given the randomness of <span class="math">\(\Xi\)</span>. In other words, for a fixed original distribution, if we run the experiment many times[for which we get different realizations of <span class="math">\(\Xi\)</span> each time], then the coverage probability measure the number of times our set estimate will contain the true parameter.</p>
+<p>Often times, the coverage probability is not computable, because we don't know <span class="math">\(\theta_0\)</span>. Therefore, another measure which is <strong>confidence coefficient</strong> comes handy:
+</p>
+<div class="math">$$
 c(T) = \inf_{\theta \in \Theta} C(T, \theta)
-$$
+$$</div>
+<p>
 It measures the smallest probability of coverage considering all possible values of true parameter.</p>
+<p><strong>Q:</strong> <span class="math">\(\theta_0\)</span> is always unknown, that's the whole point of set estimation. So in what conditions can coverage probability be computed?</p>
+<p><strong>A:</strong> Sometimes, the coverage probability is same for all possible <span class="math">\(\theta \in \Theta\)</span>, so it will be independent of <span class="math">\(\theta_0\)</span>. Example includes set estimation about the mean when original distribution is assumed to be normal.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div><!-- /.entry-content -->
 </section>
         <footer id="contentinfo" class="body">

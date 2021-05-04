@@ -1,55 +1,318 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My Notes - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-05-03T00:00:00+03:00</updated><entry><title>Remembering formula of normal distribution</title><link href="/remembering-formula-of-normal-distribution.html" rel="alternate"></link><published>2021-05-03T00:00:00+03:00</published><updated>2021-05-03T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-03:/remembering-formula-of-normal-distribution.html</id><summary type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My Notes - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-05-04T00:00:00+03:00</updated><entry><title>Set estimation about the mean</title><link href="/set-estimation-about-the-mean.html" rel="alternate"></link><published>2021-05-04T00:00:00+03:00</published><updated>2021-05-04T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-04:/set-estimation-about-the-mean.html</id><content type="html">&lt;h3&gt;Preliminary&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; What is &lt;strong&gt;variance&lt;/strong&gt;?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; Variance is the &lt;em&gt;expected squared deviation from the mean&lt;/em&gt;. Variance is defined for a &lt;strong&gt;random variable&lt;/strong&gt;. Variance can be estimated from a sample, i.e. a number of realizations of a random variable.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Some probability distributions</title><link href="/some-probability-distributions.html" rel="alternate"></link><published>2021-05-04T00:00:00+03:00</published><updated>2021-05-04T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-04:/some-probability-distributions.html</id><summary type="html">&lt;h2&gt;Chi-square distribution&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let &lt;span class="math"&gt;\(Y_1, Y_2, \ldots, Y_n\)&lt;/span&gt; be i.i.d. standard normal random variables. What is the distribution of 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+X = Y_1^2 + Y_2^2 + \ldots + Y_n^2 ?
+$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Chi-squared&lt;/strong&gt;. With &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom it has the following density function:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+f_X(x) = 
+\begin{cases}
+c x^{(n/2-1 …&lt;/div&gt;</summary><content type="html">&lt;h2&gt;Chi-square distribution&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let &lt;span class="math"&gt;\(Y_1, Y_2, \ldots, Y_n\)&lt;/span&gt; be i.i.d. standard normal random variables. What is the distribution of 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+X = Y_1^2 + Y_2^2 + \ldots + Y_n^2 ?
+$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Chi-squared&lt;/strong&gt;. With &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom it has the following density function:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+f_X(x) = 
+\begin{cases}
+c x^{(n/2-1)} exp(-\frac{1}{2}x)    &amp;amp; \text{if } x \geq 0 \\
+0                               &amp;amp;  \text{otherwise}
+\end{cases}
+$$&lt;/div&gt;
+&lt;p&gt;
+where &lt;span class="math"&gt;\(c\)&lt;/span&gt; is a constant:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+c = \frac{1}{2^{n/2}\Gamma(n/2)}
+$$&lt;/div&gt;
+&lt;p&gt;The &lt;strong&gt;expected value&lt;/strong&gt; and &lt;strong&gt;variance&lt;/strong&gt; of a Chi-square random variable with &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom are:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{align}
+E[X]   &amp;amp;= n     &amp;amp;\qquad \text{(proof is easy)} \\
+Var[X] &amp;amp;= 2n   &amp;amp;\qquad \text{(proof is less easy)}
+\end{align}
+$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; If &lt;span class="math"&gt;\(Y\)&lt;/span&gt; is a standard normal random variable, then what is the distribution of &lt;span class="math"&gt;\(Y^2\)&lt;/span&gt;?&lt;/p&gt;
+&lt;p&gt;More on Chi-square &lt;a href="https://www.statlect.com/probability-distributions/chi-square-distribution"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Gamma distribution&lt;/h2&gt;
+&lt;p&gt;Have you noticed that Chi-squared distribution is a bit restricted? It has no scaling, no freedom to choose degrees of freedom without changing the mean. Gamma distribution is a generalization of Chi-square distribution with freedom to choose degrees of freedom and arbitrary scaling.&lt;/p&gt;
+&lt;p&gt;If &lt;span class="math"&gt;\(Z\)&lt;/span&gt; is a Chi-squared distribution with &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom and &lt;span class="math"&gt;\(h\)&lt;/span&gt; is a strictly positive constant, then
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+X = \frac{h}{n}Z
+$$&lt;/div&gt;
+&lt;p&gt;
+has a Gamma distribution with parameters &lt;span class="math"&gt;\(n\)&lt;/span&gt; and &lt;span class="math"&gt;\(h\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;expected value&lt;/strong&gt; and &lt;strong&gt;variance&lt;/strong&gt; of a Gamma random variable &lt;span class="math"&gt;\(X\)&lt;/span&gt; are:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{align}
+E[X]   &amp;amp;= h     &amp;amp;\qquad \text{(proof is easy)} \\
+Var[X] &amp;amp;= 2\frac{h^2}{n}   &amp;amp;\qquad \text{(proof is less easy)}
+\end{align}
+$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let &lt;span class="math"&gt;\(Y_1, Y_2, \ldots, Y_n\)&lt;/span&gt; be i.i.d. standard normal random variables. What is the distribution of 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+X = h\cdot \frac{Y_1^2 + Y_2^2 + \ldots + Y_n^2}{n} ?
+$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Gamma&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; If &lt;span class="math"&gt;\(Y \sim \mathcal{N}(\mu, \sigma^2)\)&lt;/span&gt;, then what is the distribution of &lt;span class="math"&gt;\(Y^2\)&lt;/span&gt;?&lt;/p&gt;
+&lt;p&gt;More on Gamma &lt;a href="https://www.statlect.com/probability-distributions/gamma-distribution"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="misc"></category></entry><entry><title>Remembering formula of normal distribution</title><link href="/remembering-formula-of-normal-distribution.html" rel="alternate"></link><published>2021-05-03T00:00:00+03:00</published><updated>2021-05-03T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-03:/remembering-formula-of-normal-distribution.html</id><summary type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
 &lt;p align="center"&gt;
   &lt;img src="/images/normal_distribution.svg" /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.&lt;/p&gt;
 &lt;p&gt;It breaks down into two parts:
-$$
-\frac{1}{\sigma …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\frac{1}{\sigma …&lt;/div&gt;</summary><content type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
 &lt;p align="center"&gt;
   &lt;img src="/images/normal_distribution.svg" /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.&lt;/p&gt;
 &lt;p&gt;It breaks down into two parts:
-$$
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
 \frac{1}{\sigma\sqrt{2\pi}}
-$$
+$$&lt;/div&gt;
+&lt;p&gt;
 and
-$$
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
 e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
-$$&lt;/p&gt;
+$$&lt;/div&gt;
 &lt;p&gt;The first part is just a &lt;strong&gt;normalizing constant&lt;/strong&gt; that is worth memorizing.&lt;/p&gt;
 &lt;p&gt;Let's break down the &lt;strong&gt;second part&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Exponent $e$: the normal distribution converges asymptotically to 0 &lt;strong&gt;exponentially&lt;/strong&gt; on both tails, or more accurately &lt;em&gt;quadratic exponentially&lt;/em&gt; (if that's is a term).&lt;/p&gt;
+&lt;p&gt;Exponent &lt;span class="math"&gt;\(e\)&lt;/span&gt;: the normal distribution converges asymptotically to 0 &lt;strong&gt;exponentially&lt;/strong&gt; on both tails, or more accurately &lt;em&gt;quadratic exponentially&lt;/em&gt; (if that's is a term).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Negative sign in the exponent: without which it would diverge on both tails.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;The fraction $(\frac{x-\mu}{\sigma})^2$: it is the part that gives it parametrization of different means and standard deviations. The numerator $x - \mu$ ensures that at it has the peak at $x = \mu$ and the denominator $\sigma$ is used to stretch the x-axis linearly, so that desired standard deviation is obtained. Without the square the distribution wouldn't be symmetric.&lt;/p&gt;
+&lt;p&gt;The fraction &lt;span class="math"&gt;\((\frac{x-\mu}{\sigma})^2\)&lt;/span&gt;: it is the part that gives it parametrization of different means and standard deviations. The numerator &lt;span class="math"&gt;\(x - \mu\)&lt;/span&gt; ensures that at it has the peak at &lt;span class="math"&gt;\(x = \mu\)&lt;/span&gt; and the denominator &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt; is used to stretch the x-axis linearly, so that desired standard deviation is obtained. Without the square the distribution wouldn't be symmetric.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;The fraction $\frac{1}{2}$: sure, it would look cooler without this fraction, but the standard deviation would be $\sigma / \sqrt{2}$ instead of just $\sigma$.&lt;/p&gt;
+&lt;p&gt;The fraction &lt;span class="math"&gt;\(\frac{1}{2}\)&lt;/span&gt;: sure, it would look cooler without this fraction, but the standard deviation would be &lt;span class="math"&gt;\(\sigma / \sqrt{2}\)&lt;/span&gt; instead of just &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</content><category term="misc"></category></entry><entry><title>Set estimation</title><link href="/set-estimation.html" rel="alternate"></link><published>2021-05-03T00:00:00+03:00</published><updated>2021-05-03T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-03:/set-estimation.html</id><summary type="html">&lt;p&gt;Suppose there's a unknown distribution parametrized by $\theta_0$. Let $\Xi$ be a random vector from that distribution. Suppose we have sample $\xi$ as a realization of random vector $\Xi$. Using this sample we want to estimate $\theta_0$. Suppose we have modeled the distrubution with parameter space $\Theta$. &lt;/p&gt;
-&lt;p&gt;So is an …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Suppose there's a unknown distribution parametrized by $\theta_0$. Let $\Xi$ be a random vector from that distribution. Suppose we have sample $\xi$ as a realization of random vector $\Xi$. Using this sample we want to estimate $\theta_0$. Suppose we have modeled the distrubution with parameter space $\Theta$. &lt;/p&gt;
+&lt;/ol&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="misc"></category></entry><entry><title>Set estimation</title><link href="/set-estimation.html" rel="alternate"></link><published>2021-05-03T00:00:00+03:00</published><updated>2021-05-03T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-03:/set-estimation.html</id><summary type="html">&lt;p&gt;Suppose there's a unknown distribution parametrized by &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Let &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt; be a random vector from that distribution. Suppose we have sample &lt;span class="math"&gt;\(\xi\)&lt;/span&gt; as a realization of random vector &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt;. Using this sample we want to estimate &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Suppose we have modeled the distrubution with parameter space &lt;span class="math"&gt;\(\Theta\)&lt;/span&gt;. &lt;/p&gt;
+&lt;p&gt;So is an …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Suppose there's a unknown distribution parametrized by &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Let &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt; be a random vector from that distribution. Suppose we have sample &lt;span class="math"&gt;\(\xi\)&lt;/span&gt; as a realization of random vector &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt;. Using this sample we want to estimate &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Suppose we have modeled the distrubution with parameter space &lt;span class="math"&gt;\(\Theta\)&lt;/span&gt;. &lt;/p&gt;
 &lt;p&gt;So is an estimate? An estimate is as subset of parameter space: 
-$$T \subseteq \Theta$$&lt;/p&gt;
-&lt;p&gt;The estimate has a probability of containing the true parameter $\theta_0$, we call it &lt;strong&gt;coverage probability&lt;/strong&gt;:
-$$
+&lt;/p&gt;
+&lt;div class="math"&gt;$$T \subseteq \Theta$$&lt;/div&gt;
+&lt;p&gt;The estimate has a probability of containing the true parameter &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;, we call it &lt;strong&gt;coverage probability&lt;/strong&gt;:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
 C(T, \theta_0) = P_{\theta_0}(\theta_0 \in T[\Xi])
-$$
-Note that in the above equation, the random element is $T[\Xi]$ and $\theta_0$ is fixed. In other words, it is probability that the computed set estimate contains the true parameter, given the randomness of $\Xi$. In other words, for a fixed original distribution, if we run the experiment many times[for which we get different realizations of $\Xi$ each time], then the coverage probability measure the number of times our set estimate will contain the true parameter.&lt;/p&gt;
-&lt;p&gt;Often times, the coverage probability is not computable, because we don't know $\theta_0$. Therefore, another measure which is &lt;strong&gt;confidence coefficient&lt;/strong&gt; comes handy:
-$$
+$$&lt;/div&gt;
+&lt;p&gt;
+Note that in the above equation, the random element is &lt;span class="math"&gt;\(T[\Xi]\)&lt;/span&gt; and &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt; is fixed. In other words, it is probability that the computed set estimate contains the true parameter, given the randomness of &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt;. In other words, for a fixed original distribution, if we run the experiment many times[for which we get different realizations of &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt; each time], then the coverage probability measure the number of times our set estimate will contain the true parameter.&lt;/p&gt;
+&lt;p&gt;Often times, the coverage probability is not computable, because we don't know &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Therefore, another measure which is &lt;strong&gt;confidence coefficient&lt;/strong&gt; comes handy:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
 c(T) = \inf_{\theta \in \Theta} C(T, \theta)
-$$
-It measures the smallest probability of coverage considering all possible values of true parameter.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Hypothesis Testing</title><link href="/hypothesis-testing.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/hypothesis-testing.html</id><summary type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
+$$&lt;/div&gt;
+&lt;p&gt;
+It measures the smallest probability of coverage considering all possible values of true parameter.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt; is always unknown, that's the whole point of set estimation. So in what conditions can coverage probability be computed?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; Sometimes, the coverage probability is same for all possible &lt;span class="math"&gt;\(\theta \in \Theta\)&lt;/span&gt;, so it will be independent of &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Example includes set estimation about the mean when original distribution is assumed to be normal.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="misc"></category></entry><entry><title>Hypothesis Testing</title><link href="/hypothesis-testing.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/hypothesis-testing.html</id><summary type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
 &lt;p&gt;First we define what is a &lt;strong&gt;statistical model&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3&gt;Statistical Models&lt;/h3&gt;
 &lt;p&gt;The term didn't catch attention, as if I already knew it. Perhaps true. I know both words in isolation, and I've seen both together. But here follows …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
@@ -59,7 +322,7 @@ It measures the smallest probability of coverage considering all possible values
 &lt;p&gt;Given an unknown distribution. Assume we only have some samples from it. Of course we cannot characterize the original distribution just from a finite number of samples. We can only infer some properties of it given particular circumstances. For example we assume that it belongs to a certain class of probability distributions. If we assume it is a normal distribution, then we go further and estimate its mean and variance, or make a probabilistic statements about it. &lt;/p&gt;
 &lt;p&gt;So, the class which we assumed the unknown distributions belongs to is called our &lt;em&gt;statistical model&lt;/em&gt;. We could have modeled it correctly, in which case we say our model is &lt;strong&gt;correctly specified&lt;/strong&gt;. Otherwise, it is &lt;strong&gt;mis-specified&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3&gt;Statistical Inference&lt;/h3&gt;
-&lt;p&gt;A statistical inference is a statement about the population from a given sample. They are based on a given sample and the statistical model. A statistical inference has the form of model restriction. Let the original model be $\Phi$. Then the statistical inference can talk about a subset of model, $\Phi_R$, in one of the following forms: (a) the unknown distribution belongs to $\Phi_X$, or (b) the unknown distribution does not belong to $\Phi_X$.&lt;/p&gt;
+&lt;p&gt;A statistical inference is a statement about the population from a given sample. They are based on a given sample and the statistical model. A statistical inference has the form of model restriction. Let the original model be &lt;span class="math"&gt;\(\Phi\)&lt;/span&gt;. Then the statistical inference can talk about a subset of model, &lt;span class="math"&gt;\(\Phi_R\)&lt;/span&gt;, in one of the following forms: (a) the unknown distribution belongs to &lt;span class="math"&gt;\(\Phi_X\)&lt;/span&gt;, or (b) the unknown distribution does not belong to &lt;span class="math"&gt;\(\Phi_X\)&lt;/span&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;In &lt;strong&gt;hypothesis testing&lt;/strong&gt;, first such a model restriction is proposed, then the choice is made whether to accept the restriction or reject it.&lt;/p&gt;
@@ -77,10 +340,12 @@ It measures the smallest probability of coverage considering all possible values
 &lt;blockquote&gt;
 &lt;p&gt;Hypothesis testing is a method of making statistical inferences by establishing an hypothesis, called null hypothesis, and using some data to decide whether to reject or not to reject the hypothesis.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;For parametric models, let $\Theta \subseteq \mathbb{R}^p$ be the parameter space. Let the true parameter of the unknown distribution be $\theta_0$. Let the chosen parameter restriction be $\Theta_R$. Then the &lt;strong&gt;null hypothesis&lt;/strong&gt; is defined as
-$$H_0: \theta_0 \in \Theta_R$$&lt;/p&gt;
+&lt;p&gt;For parametric models, let &lt;span class="math"&gt;\(\Theta \subseteq \mathbb{R}^p\)&lt;/span&gt; be the parameter space. Let the true parameter of the unknown distribution be &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Let the chosen parameter restriction be &lt;span class="math"&gt;\(\Theta_R\)&lt;/span&gt;. Then the &lt;strong&gt;null hypothesis&lt;/strong&gt; is defined as
+&lt;/p&gt;
+&lt;div class="math"&gt;$$H_0: \theta_0 \in \Theta_R$$&lt;/div&gt;
 &lt;p&gt;And the &lt;strong&gt;alternative hyptothesis&lt;/strong&gt; is defined as
-$$H_1: \theta_0 \in \Theta_R^c$$&lt;/p&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$H_1: \theta_0 \in \Theta_R^c$$&lt;/div&gt;
 &lt;h4&gt;Types of errors&lt;/h4&gt;
 &lt;p&gt;Whether the null hypothesis is accepted or rejected, the decision may be wrong. Two types of errors exist:
 1. Reject the null hypothesis when it is indeed true, called &lt;strong&gt;Type I error&lt;/strong&gt;.
@@ -97,12 +362,14 @@ $$H_1: \theta_0 \in \Theta_R^c$$&lt;/p&gt;
 &lt;p&gt;The critical region is often defined implicitly through a &lt;strong&gt;test statistic&lt;/strong&gt; and a &lt;strong&gt;critical region&lt;/strong&gt; for the test statistic. &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;Test statistic&lt;/h4&gt;
-&lt;p&gt;Is a function of sample (a quantity derived from the sample). Hence, it is a random variable. Its critical region is a subset of $\mathbb{R}$. Once one draws its critical region, it implies a certain critical region for the sample as well. The test will be based on test statistic:
-$$
+&lt;p&gt;Is a function of sample (a quantity derived from the sample). Hence, it is a random variable. Its critical region is a subset of &lt;span class="math"&gt;\(\mathbb{R}\)&lt;/span&gt;. Once one draws its critical region, it implies a certain critical region for the sample as well. The test will be based on test statistic:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
 \text{test statistic is in critical region} \Rightarrow \text{sample is in critical region} \Rightarrow H_0 \text{ is rejected} 
-$$$$
+$$&lt;/div&gt;
+&lt;div class="math"&gt;$$
 \text{test statistic not in critical region} \Rightarrow \text{sample not in critical region} \Rightarrow H_0 \text{ is not rejected}
-$$&lt;/p&gt;
+$$&lt;/div&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Q: Why use test statistic when defining a critical region is enough?&lt;/p&gt;
 &lt;p&gt;I suppose, usually the test statistic is much easier to reason about and define a reasonable critical region. On the other hand, defining a critical region for the sample is impractical as you have multiple samples and each can be vectors.&lt;/p&gt;
@@ -111,39 +378,171 @@ $$&lt;/p&gt;
 &lt;p&gt;Power of a test is the probability of rejecting the null hypothesis when, in fact, it is false. Power is a number between 0 and 1. Thus, the power of 1 indicates that the test is "powerful", i.e. it rejects the null hypothesis whenever it is false. In other terms, it indicates immunity from Type II error. 
 Yes, it would be great to know the power of your test. So, how? &lt;/p&gt;
 &lt;h4&gt;Power function&lt;/h4&gt;
-&lt;p&gt;This is the generalization of the notion of power of test. While power of test is just a quantity, the power function is defined on every possible parameter $\theta$, in case of parametric tests. 
-$$
+&lt;p&gt;This is the generalization of the notion of power of test. While power of test is just a quantity, the power function is defined on every possible parameter &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;, in case of parametric tests. 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
 \pi(\theta) = P(\text{sample falls in critical region} | \text{true distribution parameter is } \theta)
-$$&lt;/p&gt;
+$$&lt;/div&gt;
 &lt;p&gt;More on power function &lt;a href="https://www.statlect.com/glossary/power-function"&gt;here&lt;/a&gt; that has a simple example included:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Suppose you are testing the null hypothesis that the true parameter is equal to zero:
-$$H_0: \theta = 0$$
-Suppose that the value of the power function at $\theta =1$ is
-$$\pi(1) = 0.5$$
+&lt;div class="math"&gt;$$H_0: \theta = 0$$&lt;/div&gt;
+Suppose that the value of the power function at &lt;span class="math"&gt;\(\theta =1\)&lt;/span&gt; is
+&lt;div class="math"&gt;$$\pi(1) = 0.5$$&lt;/div&gt;
 What does this mean? It means that if the true parameter is equal to 1, then there is a 50% probability that the test will reject the (false) null hypothesis that the parameter is equal to 0.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Q: Knowing the power function of your test is great. But how can you derive it?&lt;/p&gt;
 &lt;h4&gt;Size of a test&lt;/h4&gt;
 &lt;p&gt;Size of a test is a measure of incorrectly rejecting the null hypothesis. It is defined in terms of the power function:
-$$
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
 sup_{\theta \in \Theta_R} \pi(\theta)
-$$
-In other words, it is the upper bound probability of incorrectly rejecting the null hypothesis. Ideally, we want the size of test to be 0.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Some statistical terms</title><link href="/some-statistical-terms.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/some-statistical-terms.html</id><summary type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
+$$&lt;/div&gt;
+&lt;p&gt;
+In other words, it is the upper bound probability of incorrectly rejecting the null hypothesis. Ideally, we want the size of test to be 0.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="misc"></category></entry><entry><title>Some statistical terms</title><link href="/some-statistical-terms.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/some-statistical-terms.html</id><summary type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
 &lt;p&gt;It characterizes the probability of a random vector in its domain.
-So, for a random vector $X \in R^n$, it is a function 
-$$f_X: R^n \to [0, \inf) .$$
-Computing the integral over the support region should result in $1$.&lt;/p&gt;
+So, for a random vector &lt;span class="math"&gt;\(X \in R^n\)&lt;/span&gt;, it is a function 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f_X: R^n \to [0, \inf) .$$&lt;/div&gt;
+&lt;p&gt;
+Computing the integral over the support region should result in &lt;span class="math"&gt;\(1\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;There is another term called …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
 &lt;p&gt;It characterizes the probability of a random vector in its domain.
-So, for a random vector $X \in R^n$, it is a function 
-$$f_X: R^n \to [0, \inf) .$$
-Computing the integral over the support region should result in $1$.&lt;/p&gt;
-&lt;p&gt;There is another term called &lt;em&gt;joint distribution function&lt;/em&gt; which is a synonym to &lt;em&gt;joint cumulative distribution function&lt;/em&gt; (also &lt;em&gt;joint cdf&lt;/em&gt;). At a given point $x$ it gives the probability that all components of $X$ are smaller than the corresponding component $x$.&lt;/p&gt;
+So, for a random vector &lt;span class="math"&gt;\(X \in R^n\)&lt;/span&gt;, it is a function 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f_X: R^n \to [0, \inf) .$$&lt;/div&gt;
+&lt;p&gt;
+Computing the integral over the support region should result in &lt;span class="math"&gt;\(1\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;There is another term called &lt;em&gt;joint distribution function&lt;/em&gt; which is a synonym to &lt;em&gt;joint cumulative distribution function&lt;/em&gt; (also &lt;em&gt;joint cdf&lt;/em&gt;). At a given point &lt;span class="math"&gt;\(x\)&lt;/span&gt; it gives the probability that all components of &lt;span class="math"&gt;\(X\)&lt;/span&gt; are smaller than the corresponding component &lt;span class="math"&gt;\(x\)&lt;/span&gt;.&lt;/p&gt;
 &lt;h3&gt;Marginal distribution function&lt;/h3&gt;
 &lt;p&gt;For a random vector, it is the probability of one of its components. 
-So, for a random vector $X \in R^n$ and its component $X_i$, it is a function 
-$$f_{X_i}: R \to [0, \inf) .$$&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Contour detection</title><link href="/contour-detection.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-04-30:/contour-detection.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Dictionary definition: an outline representing or bounding the shape or form of something.&lt;/em&gt;&lt;/p&gt;
+So, for a random vector &lt;span class="math"&gt;\(X \in R^n\)&lt;/span&gt; and its component &lt;span class="math"&gt;\(X_i\)&lt;/span&gt;, it is a function 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$f_{X_i}: R \to [0, \inf) .$$&lt;/div&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="misc"></category></entry><entry><title>Contour detection</title><link href="/contour-detection.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-04-30:/contour-detection.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Dictionary definition: an outline representing or bounding the shape or form of something.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Separate bright object from dark background. Contours are polygons. Contours are the boundaries of
 objects with the same intensity. &lt;/p&gt;
 &lt;p&gt;From OpenCV:&lt;/p&gt;

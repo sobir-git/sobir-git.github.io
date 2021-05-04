@@ -21,7 +21,7 @@
 
         <!-- Using MathJax, with the delimiters $ -->
         <!-- Conflict with pygments for the .mo and .mi -->
-        <script type="text/x-mathjax-config">
+<!--         <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
           "HTML-CSS": {
           styles: {
@@ -30,7 +30,7 @@
           tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
           });
         </script>
-
+ -->
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
 
@@ -73,7 +73,7 @@
 <p>Given an unknown distribution. Assume we only have some samples from it. Of course we cannot characterize the original distribution just from a finite number of samples. We can only infer some properties of it given particular circumstances. For example we assume that it belongs to a certain class of probability distributions. If we assume it is a normal distribution, then we go further and estimate its mean and variance, or make a probabilistic statements about it. </p>
 <p>So, the class which we assumed the unknown distributions belongs to is called our <em>statistical model</em>. We could have modeled it correctly, in which case we say our model is <strong>correctly specified</strong>. Otherwise, it is <strong>mis-specified</strong>.</p>
 <h3>Statistical Inference</h3>
-<p>A statistical inference is a statement about the population from a given sample. They are based on a given sample and the statistical model. A statistical inference has the form of model restriction. Let the original model be $\Phi$. Then the statistical inference can talk about a subset of model, $\Phi_R$, in one of the following forms: (a) the unknown distribution belongs to $\Phi_X$, or (b) the unknown distribution does not belong to $\Phi_X$.</p>
+<p>A statistical inference is a statement about the population from a given sample. They are based on a given sample and the statistical model. A statistical inference has the form of model restriction. Let the original model be <span class="math">\(\Phi\)</span>. Then the statistical inference can talk about a subset of model, <span class="math">\(\Phi_R\)</span>, in one of the following forms: (a) the unknown distribution belongs to <span class="math">\(\Phi_X\)</span>, or (b) the unknown distribution does not belong to <span class="math">\(\Phi_X\)</span>.</p>
 <ul>
 <li>
 <p>In <strong>hypothesis testing</strong>, first such a model restriction is proposed, then the choice is made whether to accept the restriction or reject it.</p>
@@ -91,10 +91,12 @@
 <blockquote>
 <p>Hypothesis testing is a method of making statistical inferences by establishing an hypothesis, called null hypothesis, and using some data to decide whether to reject or not to reject the hypothesis.</p>
 </blockquote>
-<p>For parametric models, let $\Theta \subseteq \mathbb{R}^p$ be the parameter space. Let the true parameter of the unknown distribution be $\theta_0$. Let the chosen parameter restriction be $\Theta_R$. Then the <strong>null hypothesis</strong> is defined as
-$$H_0: \theta_0 \in \Theta_R$$</p>
+<p>For parametric models, let <span class="math">\(\Theta \subseteq \mathbb{R}^p\)</span> be the parameter space. Let the true parameter of the unknown distribution be <span class="math">\(\theta_0\)</span>. Let the chosen parameter restriction be <span class="math">\(\Theta_R\)</span>. Then the <strong>null hypothesis</strong> is defined as
+</p>
+<div class="math">$$H_0: \theta_0 \in \Theta_R$$</div>
 <p>And the <strong>alternative hyptothesis</strong> is defined as
-$$H_1: \theta_0 \in \Theta_R^c$$</p>
+</p>
+<div class="math">$$H_1: \theta_0 \in \Theta_R^c$$</div>
 <h4>Types of errors</h4>
 <p>Whether the null hypothesis is accepted or rejected, the decision may be wrong. Two types of errors exist:
 1. Reject the null hypothesis when it is indeed true, called <strong>Type I error</strong>.
@@ -111,12 +113,14 @@ $$H_1: \theta_0 \in \Theta_R^c$$</p>
 <p>The critical region is often defined implicitly through a <strong>test statistic</strong> and a <strong>critical region</strong> for the test statistic. </p>
 </blockquote>
 <h4>Test statistic</h4>
-<p>Is a function of sample (a quantity derived from the sample). Hence, it is a random variable. Its critical region is a subset of $\mathbb{R}$. Once one draws its critical region, it implies a certain critical region for the sample as well. The test will be based on test statistic:
-$$
+<p>Is a function of sample (a quantity derived from the sample). Hence, it is a random variable. Its critical region is a subset of <span class="math">\(\mathbb{R}\)</span>. Once one draws its critical region, it implies a certain critical region for the sample as well. The test will be based on test statistic:
+</p>
+<div class="math">$$
 \text{test statistic is in critical region} \Rightarrow \text{sample is in critical region} \Rightarrow H_0 \text{ is rejected} 
-$$$$
+$$</div>
+<div class="math">$$
 \text{test statistic not in critical region} \Rightarrow \text{sample not in critical region} \Rightarrow H_0 \text{ is not rejected}
-$$</p>
+$$</div>
 <blockquote>
 <p>Q: Why use test statistic when defining a critical region is enough?</p>
 <p>I suppose, usually the test statistic is much easier to reason about and define a reasonable critical region. On the other hand, defining a critical region for the sample is impractical as you have multiple samples and each can be vectors.</p>
@@ -125,25 +129,90 @@ $$</p>
 <p>Power of a test is the probability of rejecting the null hypothesis when, in fact, it is false. Power is a number between 0 and 1. Thus, the power of 1 indicates that the test is "powerful", i.e. it rejects the null hypothesis whenever it is false. In other terms, it indicates immunity from Type II error. 
 Yes, it would be great to know the power of your test. So, how? </p>
 <h4>Power function</h4>
-<p>This is the generalization of the notion of power of test. While power of test is just a quantity, the power function is defined on every possible parameter $\theta$, in case of parametric tests. 
-$$
+<p>This is the generalization of the notion of power of test. While power of test is just a quantity, the power function is defined on every possible parameter <span class="math">\(\theta\)</span>, in case of parametric tests. 
+</p>
+<div class="math">$$
 \pi(\theta) = P(\text{sample falls in critical region} | \text{true distribution parameter is } \theta)
-$$</p>
+$$</div>
 <p>More on power function <a href="https://www.statlect.com/glossary/power-function">here</a> that has a simple example included:</p>
 <blockquote>
 <p>Suppose you are testing the null hypothesis that the true parameter is equal to zero:
-$$H_0: \theta = 0$$
-Suppose that the value of the power function at $\theta =1$ is
-$$\pi(1) = 0.5$$
+<div class="math">$$H_0: \theta = 0$$</div>
+Suppose that the value of the power function at <span class="math">\(\theta =1\)</span> is
+<div class="math">$$\pi(1) = 0.5$$</div>
 What does this mean? It means that if the true parameter is equal to 1, then there is a 50% probability that the test will reject the (false) null hypothesis that the parameter is equal to 0.</p>
 </blockquote>
 <p>Q: Knowing the power function of your test is great. But how can you derive it?</p>
 <h4>Size of a test</h4>
 <p>Size of a test is a measure of incorrectly rejecting the null hypothesis. It is defined in terms of the power function:
-$$
+</p>
+<div class="math">$$
 sup_{\theta \in \Theta_R} \pi(\theta)
-$$
+$$</div>
+<p>
 In other words, it is the upper bound probability of incorrectly rejecting the null hypothesis. Ideally, we want the size of test to be 0.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div><!-- /.entry-content -->
 </section>
         <footer id="contentinfo" class="body">

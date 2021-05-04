@@ -20,7 +20,7 @@
 
         <!-- Using MathJax, with the delimiters $ -->
         <!-- Conflict with pygments for the .mo and .mi -->
-        <script type="text/x-mathjax-config">
+<!--         <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
           "HTML-CSS": {
           styles: {
@@ -29,7 +29,7 @@
           tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
           });
         </script>
-
+ -->
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
 </head>
@@ -46,6 +46,32 @@
 
 <ol id="post-list">
         <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/set-estimation-about-the-mean.html" rel="bookmark" title="Permalink to Set estimation about the mean">Set estimation about the mean</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-05-04T00:00:00+03:00"> Tue 04 May 2021 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <h3>Preliminary</h3>
+<p><strong>Q:</strong> What is <strong>variance</strong>?</p>
+<p><strong>A:</strong> Variance is the <em>expected squared deviation from the mean</em>. Variance is defined for a <strong>random variable</strong>. Variance can be estimated from a sample, i.e. a number of realizations of a random variable.</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/some-probability-distributions.html" rel="bookmark" title="Permalink to Some probability distributions">Some probability distributions</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-05-04T00:00:00+03:00"> Tue 04 May 2021 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <h2>Chi-square distribution</h2>
+<p><strong>Q:</strong> Let <span class="math">\(Y_1, Y_2, \ldots, Y_n\)</span> be i.i.d. standard normal random variables. What is the distribution of 
+</p>
+<div class="math">$$
+X = Y_1^2 + Y_2^2 + \ldots + Y_n^2 ?
+$$</div>
+<p><strong>A:</strong> <strong>Chi-squared</strong>. With <span class="math">\(n\)</span> degrees of freedom it has the following density function:</p>
+<div class="math">$$
+f_X(x) = 
+\begin{cases}
+c x^{(n/2-1 …</div> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
                 <header> <h2 class="entry-title"><a href="/remembering-formula-of-normal-distribution.html" rel="bookmark" title="Permalink to Remembering formula of normal distribution">Remembering formula of normal distribution</a></h2> </header>
                 <footer class="post-info">
                     <time class="published" datetime="2021-05-03T00:00:00+03:00"> Mon 03 May 2021 </time>
@@ -57,15 +83,16 @@
 
 <p>You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.</p>
 <p>It breaks down into two parts:
-$$
-\frac{1}{\sigma …</p> </div><!-- /.entry-content -->
+</p>
+<div class="math">$$
+\frac{1}{\sigma …</div> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
                 <header> <h2 class="entry-title"><a href="/set-estimation.html" rel="bookmark" title="Permalink to Set estimation">Set estimation</a></h2> </header>
                 <footer class="post-info">
                     <time class="published" datetime="2021-05-03T00:00:00+03:00"> Mon 03 May 2021 </time>
                 </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>Suppose there's a unknown distribution parametrized by $\theta_0$. Let $\Xi$ be a random vector from that distribution. Suppose we have sample $\xi$ as a realization of random vector $\Xi$. Using this sample we want to estimate $\theta_0$. Suppose we have modeled the distrubution with parameter space $\Theta$. </p>
+                <div class="entry-content"> <p>Suppose there's a unknown distribution parametrized by <span class="math">\(\theta_0\)</span>. Let <span class="math">\(\Xi\)</span> be a random vector from that distribution. Suppose we have sample <span class="math">\(\xi\)</span> as a realization of random vector <span class="math">\(\Xi\)</span>. Using this sample we want to estimate <span class="math">\(\theta_0\)</span>. Suppose we have modeled the distrubution with parameter space <span class="math">\(\Theta\)</span>. </p>
 <p>So is an …</p> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
@@ -85,9 +112,11 @@ $$
                 </footer><!-- /.post-info -->
                 <div class="entry-content"> <h3>Joint probability distribution function</h3>
 <p>It characterizes the probability of a random vector in its domain.
-So, for a random vector $X \in R^n$, it is a function 
-$$f_X: R^n \to [0, \inf) .$$
-Computing the integral over the support region should result in $1$.</p>
+So, for a random vector <span class="math">\(X \in R^n\)</span>, it is a function 
+</p>
+<div class="math">$$f_X: R^n \to [0, \inf) .$$</div>
+<p>
+Computing the integral over the support region should result in <span class="math">\(1\)</span>.</p>
 <p>There is another term called …</p> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">

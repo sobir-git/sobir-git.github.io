@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-          <title>My Notes - Remembering formula of normal distribution</title>
+          <title>My Notes - Some probability distributions</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
@@ -50,13 +50,13 @@
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/remembering-formula-of-normal-distribution.html" rel="bookmark"
-         title="Permalink to Remembering formula of normal distribution">Remembering formula of normal distribution</a></h2>
+      <a href="/some-probability-distributions.html" rel="bookmark"
+         title="Permalink to Some probability distributions">Some probability distributions</a></h2>
  
   </header>
   <footer class="post-info">
-    <time class="published" datetime="2021-05-03T00:00:00+03:00">
-      Mon 03 May 2021
+    <time class="published" datetime="2021-05-04T00:00:00+03:00">
+      Tue 04 May 2021
     </time>
     <address class="vcard author">
       By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
@@ -66,39 +66,61 @@
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>When googled, I got this for the normal distribution:</p>
-<p align="center">
-  <img src="/images/normal_distribution.svg" />
-</p>
-
-<p>You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.</p>
-<p>It breaks down into two parts:
+    <h2>Chi-square distribution</h2>
+<p><strong>Q:</strong> Let <span class="math">\(Y_1, Y_2, \ldots, Y_n\)</span> be i.i.d. standard normal random variables. What is the distribution of 
 </p>
 <div class="math">$$
-\frac{1}{\sigma\sqrt{2\pi}}
+X = Y_1^2 + Y_2^2 + \ldots + Y_n^2 ?
+$$</div>
+<p><strong>A:</strong> <strong>Chi-squared</strong>. With <span class="math">\(n\)</span> degrees of freedom it has the following density function:</p>
+<div class="math">$$
+f_X(x) = 
+\begin{cases}
+c x^{(n/2-1)} exp(-\frac{1}{2}x)    &amp; \text{if } x \geq 0 \\
+0                               &amp;  \text{otherwise}
+\end{cases}
 $$</div>
 <p>
-and
+where <span class="math">\(c\)</span> is a constant:
 </p>
 <div class="math">$$
-e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
+c = \frac{1}{2^{n/2}\Gamma(n/2)}
 $$</div>
-<p>The first part is just a <strong>normalizing constant</strong> that is worth memorizing.</p>
-<p>Let's break down the <strong>second part</strong>:</p>
-<ol>
-<li>
-<p>Exponent <span class="math">\(e\)</span>: the normal distribution converges asymptotically to 0 <strong>exponentially</strong> on both tails, or more accurately <em>quadratic exponentially</em> (if that's is a term).</p>
-</li>
-<li>
-<p>Negative sign in the exponent: without which it would diverge on both tails.</p>
-</li>
-<li>
-<p>The fraction <span class="math">\((\frac{x-\mu}{\sigma})^2\)</span>: it is the part that gives it parametrization of different means and standard deviations. The numerator <span class="math">\(x - \mu\)</span> ensures that at it has the peak at <span class="math">\(x = \mu\)</span> and the denominator <span class="math">\(\sigma\)</span> is used to stretch the x-axis linearly, so that desired standard deviation is obtained. Without the square the distribution wouldn't be symmetric.</p>
-</li>
-<li>
-<p>The fraction <span class="math">\(\frac{1}{2}\)</span>: sure, it would look cooler without this fraction, but the standard deviation would be <span class="math">\(\sigma / \sqrt{2}\)</span> instead of just <span class="math">\(\sigma\)</span>.</p>
-</li>
-</ol>
+<p>The <strong>expected value</strong> and <strong>variance</strong> of a Chi-square random variable with <span class="math">\(n\)</span> degrees of freedom are:
+</p>
+<div class="math">$$
+\begin{align}
+E[X]   &amp;= n     &amp;\qquad \text{(proof is easy)} \\
+Var[X] &amp;= 2n   &amp;\qquad \text{(proof is less easy)}
+\end{align}
+$$</div>
+<p><strong>Q:</strong> If <span class="math">\(Y\)</span> is a standard normal random variable, then what is the distribution of <span class="math">\(Y^2\)</span>?</p>
+<p>More on Chi-square <a href="https://www.statlect.com/probability-distributions/chi-square-distribution">here</a>.</p>
+<h2>Gamma distribution</h2>
+<p>Have you noticed that Chi-squared distribution is a bit restricted? It has no scaling, no freedom to choose degrees of freedom without changing the mean. Gamma distribution is a generalization of Chi-square distribution with freedom to choose degrees of freedom and arbitrary scaling.</p>
+<p>If <span class="math">\(Z\)</span> is a Chi-squared distribution with <span class="math">\(n\)</span> degrees of freedom and <span class="math">\(h\)</span> is a strictly positive constant, then
+</p>
+<div class="math">$$
+X = \frac{h}{n}Z
+$$</div>
+<p>
+has a Gamma distribution with parameters <span class="math">\(n\)</span> and <span class="math">\(h\)</span>.</p>
+<p>The <strong>expected value</strong> and <strong>variance</strong> of a Gamma random variable <span class="math">\(X\)</span> are:
+</p>
+<div class="math">$$
+\begin{align}
+E[X]   &amp;= h     &amp;\qquad \text{(proof is easy)} \\
+Var[X] &amp;= 2\frac{h^2}{n}   &amp;\qquad \text{(proof is less easy)}
+\end{align}
+$$</div>
+<p><strong>Q:</strong> Let <span class="math">\(Y_1, Y_2, \ldots, Y_n\)</span> be i.i.d. standard normal random variables. What is the distribution of 
+</p>
+<div class="math">$$
+X = h\cdot \frac{Y_1^2 + Y_2^2 + \ldots + Y_n^2}{n} ?
+$$</div>
+<p><strong>A:</strong> <strong>Gamma</strong>.</p>
+<p><strong>Q:</strong> If <span class="math">\(Y \sim \mathcal{N}(\mu, \sigma^2)\)</span>, then what is the distribution of <span class="math">\(Y^2\)</span>?</p>
+<p>More on Gamma <a href="https://www.statlect.com/probability-distributions/gamma-distribution">here</a>.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

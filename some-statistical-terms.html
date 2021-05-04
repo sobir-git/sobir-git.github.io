@@ -21,7 +21,7 @@
 
         <!-- Using MathJax, with the delimiters $ -->
         <!-- Conflict with pygments for the .mo and .mi -->
-        <script type="text/x-mathjax-config">
+<!--         <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
           "HTML-CSS": {
           styles: {
@@ -30,7 +30,7 @@
           tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
           });
         </script>
-
+ -->
         <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 
 
@@ -68,14 +68,79 @@
   <div class="entry-content">
     <h3>Joint probability distribution function</h3>
 <p>It characterizes the probability of a random vector in its domain.
-So, for a random vector $X \in R^n$, it is a function 
-$$f_X: R^n \to [0, \inf) .$$
-Computing the integral over the support region should result in $1$.</p>
-<p>There is another term called <em>joint distribution function</em> which is a synonym to <em>joint cumulative distribution function</em> (also <em>joint cdf</em>). At a given point $x$ it gives the probability that all components of $X$ are smaller than the corresponding component $x$.</p>
+So, for a random vector <span class="math">\(X \in R^n\)</span>, it is a function 
+</p>
+<div class="math">$$f_X: R^n \to [0, \inf) .$$</div>
+<p>
+Computing the integral over the support region should result in <span class="math">\(1\)</span>.</p>
+<p>There is another term called <em>joint distribution function</em> which is a synonym to <em>joint cumulative distribution function</em> (also <em>joint cdf</em>). At a given point <span class="math">\(x\)</span> it gives the probability that all components of <span class="math">\(X\)</span> are smaller than the corresponding component <span class="math">\(x\)</span>.</p>
 <h3>Marginal distribution function</h3>
 <p>For a random vector, it is the probability of one of its components. 
-So, for a random vector $X \in R^n$ and its component $X_i$, it is a function 
-$$f_{X_i}: R \to [0, \inf) .$$</p>
+So, for a random vector <span class="math">\(X \in R^n\)</span> and its component <span class="math">\(X_i\)</span>, it is a function 
+</p>
+<div class="math">$$f_{X_i}: R \to [0, \inf) .$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
   </div><!-- /.entry-content -->
 </section>
         <footer id="contentinfo" class="body">
