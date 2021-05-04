@@ -8,7 +8,7 @@
 }
 
 #content {
-  font-family: monospace;
+  font-family: sans-serif;
   background-color: white;
   min-width: 400px;
   margin: 5% 10%;
@@ -17,6 +17,15 @@
   border: thin solid gray;
   border-radius: 4px;
   display: block;
+}
+
+#content .entry-title {
+  color: darkred
+}
+
+#content .published {
+  font-style: italic;
+  font-size: 0.75em;
 }
 
 a:link    { color: blue; text-decoration: none;      }
@@ -47,4 +56,8 @@ pre {
 #about {
   font-size: 75%;
   text-align: center;
+}
+
+#content ol {
+  list-style-type: square;
 }

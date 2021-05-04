@@ -2,9 +2,12 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = 'Sobir Bobiev'
-SITENAME = 'Raw Blog'
+SITENAME = 'My Notes'
 SITEURL = ''
 THEME = r'theme/basic'
+CSS_FILE = 'relaunch.css'
+# MATH_JAX = {'responsive': True, 'scale': 100}
+
 
 PATH = 'content'
 
@@ -29,4 +32,3 @@ DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
-GOOGLE_ANALYTICS = "G-8WVZ6PMB17"
