@@ -1,6 +1,5 @@
 title: Contour detection
 date: 30 apr 2021
-author: Sobir
 
 _Dictionary definition: an outline representing or bounding the shape or form of something._
 

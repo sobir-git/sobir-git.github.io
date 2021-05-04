@@ -1,6 +1,5 @@
 title: WHAT is SQL
 date: 30 apr 2021
-author: Sobir
 
 # The idea of SQL
 
