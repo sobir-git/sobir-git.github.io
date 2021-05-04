@@ -24,11 +24,6 @@ body {
   }
 }
 
-main {
-  background: rgba(255, 255, 255, 0.7);
-  padding: 1rem;
-  display: block;
-}
 
 footer ul,
 nav ul {
@@ -88,10 +83,6 @@ iframe {
   h2 {
     font-size: 1.6em;
   }
-
-  main {
-    padding: 2rem;
-  }
 }
 
 .u-vh {
@@ -114,168 +105,6 @@ iframe {
  * Based on the a11y-dark theme: https://github.com/PrismJS/prism-themes/blob/master/themes/prism-a11y-dark.css
  * @author matuzo
  */
-
-code[class*='language-'],
-pre[class*='language-'] {
-  background: none;
-  color: rgb(239, 239, 239);
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  font-size: 1rem;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-  line-height: 1.5;
-  -moz-tab-size: 8;
-  -o-tab-size: 8;
-  tab-size: 8;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-}
-
-/* Code blocks */
-pre[class*='language-'] {
-  border-left: 2rem solid hsl(186, 56%, 48%);
-  margin: 2.25rem 0;
-  overflow: auto;
-  padding: 2rem;
-}
-
-h4 + pre[class*='language-'] {
-  margin-top: 1rem;
-}
-
-pre[class*='language-css'] {
-  border-left-color: rgb(128, 210, 219);
-}
-
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
-  background: rgb(21, 58, 81);
-}
-
-/* Inline code */
-:not(pre) > code[class*='language-'] {
-  padding: 0.1em;
-  border-radius: 0.3em;
-  white-space: normal;
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #d4d0ab;
-}
-
-.token.punctuation {
-  color: rgb(239, 239, 239);
-}
-
-.token.property,
-.token.tag,
-.token.constant,
-.token.symbol,
-.token.deleted {
-  color: rgb(128, 210, 219);
-}
-
-.token.boolean,
-.token.number {
-  color: rgb(128, 210, 219);
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-  color: rgb(247, 132, 145);
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
-  color: rgb(128, 210, 219);
-}
-
-.token.atrule,
-.token.attr-value,
-.token.function {
-  color: #ffd700;
-}
-
-.token.keyword {
-  color: rgb(128, 210, 219);
-}
-
-.token.regex,
-.token.important {
-  color: #ffd700;
-}
-
-.token.important,
-.token.bold {
-  font-weight: bold;
-}
-.token.italic {
-  font-style: italic;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-@media screen and (-ms-high-contrast: active) {
-  code[class*='language-'],
-  pre[class*='language-'] {
-    color: windowText;
-    background: window;
-  }
-
-  :not(pre) > code[class*='language-'],
-  pre[class*='language-'] {
-    background: window;
-  }
-
-  .token.important {
-    background: highlight;
-    color: window;
-    font-weight: normal;
-  }
-
-  .token.atrule,
-  .token.attr-value,
-  .token.function,
-  .token.keyword,
-  .token.operator,
-  .token.selector {
-    font-weight: bold;
-  }
-
-  .token.attr-value,
-  .token.comment,
-  .token.doctype,
-  .token.function,
-  .token.keyword,
-  .token.operator,
-  .token.property,
-  .token.string {
-    color: highlight;
-  }
-
-  .token.attr-value,
-  .token.url {
-    font-weight: normal;
-  }
-}
 
 .video-wrapper {
   height: 0;
@@ -349,16 +178,6 @@ a:hover {
   margin: 0;
 }
 
-.til {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.til > * + * {
-  margin-top: 4rem;
-}
-
 .post * {
   margin: 0;
 }
@@ -387,25 +206,6 @@ a:hover {
   margin-bottom: 0;
 }
 
-.local-nav {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.local-nav > * + * {
-  margin-left: 1rem;
-}
-
-.pagination {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-}
-
 [aria-current='page'] {
   font-weight: bold;
 }
@@ -419,25 +219,101 @@ blockquote {
   font-style: italic;
 }
 
-.quote {
-  padding: 0 1em;
+/* The rest is mine */
+
+pre {
+    margin: 2em 1em 2em 4em;
+    white-space: pre-wrap;
 }
 
-.quote blockquote {
-  font-size: 1.2em;
-  margin-bottom: 0;
+
+#content ol {
+  list-style-type: none;
 }
 
-.quote p {
-  font-size: 0.9em;
+
+#post-list {
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
-blockquote::before {
-  content: open-quote;
-  display: inline;
+
+#content .published {
+  font-style: italic;
+  font-size: 0.75em;
 }
 
-blockquote::after {
-  content: close-quote;
-  display: inline;
+#content {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  display: block;
 }
+
+#post-list .entry-content * {
+  font-size: 100%;
+}
+
+
+#about {
+  font-size: 75%;
+  text-align: center;
+}
+
+
+
+/* CODE*/
+
+code,
+pre {
+  background: none;
+  color: rgb(239, 239, 239);
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1rem;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  line-height: 1.5;
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+}
+
+
+/* Code blocks */
+pre {
+  border-left: 2rem solid hsl(186, 56%, 48%);
+  margin: 2.25rem 0;
+  overflow: auto;
+  padding: 2rem;
+  background: rgb(21, 58, 81, 0.5);
+
+}
+
+/* Inline code */
+:not(pre) > code {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+  background: rgb(21, 58, 81);
+  
+}
+
+@media screen and (-ms-high-contrast: active) {
+  code,
+  pre {
+    color: windowText;
+    background: window;
+  }
+
+  :not(pre) > code,
+  pre {
+    background: window;
+  }
+}
+
