@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+          <title>My Notes - Binary Search once and for all</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
+        <link href="/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/theme/css/rdark.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/css/relaunch.css" /><!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WVZ6PMB17"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-8WVZ6PMB17');
+        </script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">My Notes</a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li class="active"><a href="/category/misc.html">misc</a></li>
+            <li><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/binary-search-once-and-for-all.html" rel="bookmark"
+         title="Permalink to Binary Search once and for all">Binary Search once and for all</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-05-06T00:00:00+03:00">
+      Thu 06 May 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/misc.html">misc</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p><em>This is inspired by the following <a href="https://youtu.be/tgVSkMA8joQ">youtube tutorial</a>.</em></p>
+<p>Binary search is so intuitive but very tricky to code. I consider two main difficulties:
+1. Hard to make it converge, many times it falls into an infinite loop.
+2. Knowing <em>exactly</em> what to search.</p>
+<p>The first issue is arithmetical, you have to make sure each time the search interval is <strong>strictly shortening</strong>.</p>
+<p>The second issue has to do with the way you formulate your <em>search objective</em>. However, all binary search problems can be converted to the following problem:</p>
+<blockquote>
+<p>Consider the binary array with the following property: no <code>true</code> comes before any <code>false</code>: e.g. FFFFFFTTTT, FFFFF, TTT</p>
+<p>Then, the binary search problem is to find the leftmost insertion location for another <code>true</code>.</p>
+</blockquote>
+<p>We end with the following python psuedocode:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">bisect</span><span class="p">(</span><span class="n">arr</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;Find the leftmost insertion location of another True </span>
+<span class="sd">    in the sorted binary array.&#39;&#39;&#39;</span>
+
+    <span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span> <span class="o">+</span> <span class="n">hi</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># arr[mid] is False</span>
+            <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">lo</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">assert</span> <span class="n">bisect</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span>
+<span class="k">assert</span> <span class="n">bisect</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span>
+<span class="k">assert</span> <span class="n">bisect</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span>
+</code></pre></div>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

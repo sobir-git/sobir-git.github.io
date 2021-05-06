@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My Notes - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-04-30T00:00:00+03:00</updated><entry><title>Contour detection</title><link href="/contour-detection.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-04-30:/contour-detection.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Dictionary definition: an outline representing or bounding the shape or form of something.&lt;/em&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My Notes - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2021-05-06T00:00:00+03:00</updated><entry><title>Binary Search once and for all</title><link href="/binary-search-once-and-for-all.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/binary-search-once-and-for-all.html</id><summary type="html">&lt;p&gt;&lt;em&gt;This is inspired by the following &lt;a href="https://youtu.be/tgVSkMA8joQ"&gt;youtube tutorial&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Binary search is so intuitive but very tricky to code. I consider two main difficulties:
+1. Hard to make it converge, many times it falls into an infinite loop.
+2. Knowing &lt;em&gt;exactly&lt;/em&gt; what to search.&lt;/p&gt;
+&lt;p&gt;The first issue is arithmetical, you have …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;This is inspired by the following &lt;a href="https://youtu.be/tgVSkMA8joQ"&gt;youtube tutorial&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Binary search is so intuitive but very tricky to code. I consider two main difficulties:
+1. Hard to make it converge, many times it falls into an infinite loop.
+2. Knowing &lt;em&gt;exactly&lt;/em&gt; what to search.&lt;/p&gt;
+&lt;p&gt;The first issue is arithmetical, you have to make sure each time the search interval is &lt;strong&gt;strictly shortening&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The second issue has to do with the way you formulate your &lt;em&gt;search objective&lt;/em&gt;. However, all binary search problems can be converted to the following problem:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Consider the binary array with the following property: no &lt;code&gt;true&lt;/code&gt; comes before any &lt;code&gt;false&lt;/code&gt;: e.g. FFFFFFTTTT, FFFFF, TTT&lt;/p&gt;
+&lt;p&gt;Then, the binary search problem is to find the leftmost insertion location for another &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We end with the following python psuedocode:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;bisect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;Find the leftmost insertion location of another True &lt;/span&gt;
+&lt;span class="sd"&gt;    in the sorted binary array.&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+
+    &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="c1"&gt;# arr[mid] is False&lt;/span&gt;
+            &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;bisect&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;bisect&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;bisect&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="misc"></category></entry><entry><title>Contour detection</title><link href="/contour-detection.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-04-30:/contour-detection.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Dictionary definition: an outline representing or bounding the shape or form of something.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Separate bright object from dark background. Contours are polygons. Contours are the boundaries of
 objects with the same intensity. &lt;/p&gt;
 &lt;p&gt;From OpenCV:&lt;/p&gt;
