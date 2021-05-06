@@ -56,13 +56,15 @@
   </footer><!-- /.post-info -->
   <div class="entry-content">
     <p><em>This is inspired by the following <a href="https://youtu.be/tgVSkMA8joQ">youtube tutorial</a>.</em></p>
-<p>Binary search is so intuitive but very tricky to code. I consider two main difficulties:
-1. Hard to make it converge, many times it falls into an infinite loop.
-2. Knowing <em>exactly</em> what to search.</p>
+<p>Binary search is so intuitive but very tricky to code. I consider two main difficulties:</p>
+<ol>
+<li>Hard to make it converge, many times it falls into an infinite loop.</li>
+<li>Knowing exactly <em>what</em> to search.</li>
+</ol>
 <p>The first issue is arithmetical, you have to make sure each time the search interval is <strong>strictly shortening</strong>.</p>
 <p>The second issue has to do with the way you formulate your <em>search objective</em>. However, all binary search problems can be converted to the following problem:</p>
 <blockquote>
-<p>Consider the binary array with the following property: no <code>true</code> comes before any <code>false</code>: e.g. FFFFFFTTTT, FFFFF, TTT</p>
+<p>Consider a binary array with the following property: no <code>true</code> comes before any <code>false</code>: e.g. FFFFFFTTTT, FFFFF, TTT</p>
 <p>Then, the binary search problem is to find the leftmost insertion location for another <code>true</code>.</p>
 </blockquote>
 <p>We end with the following python psuedocode:</p>
@@ -91,9 +93,10 @@
 </section>
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                Powered by <a href="https://getpelican.com/">Pelican</a>,
+                Theme adapted from <a href="https://github.com/matuzo/matuzoat/">matuzo</a>.
                 </address><!-- /#about -->
+                <!-- /#about -->
         </footer><!-- /#contentinfo -->
 </body>
 </html>

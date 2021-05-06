@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-          <title>My Notes - Set estimation about the mean</title>
+          <title>My Notes - Set estimation about the variance</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
@@ -39,13 +39,13 @@
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/set-estimation-about-the-mean.html" rel="bookmark"
-         title="Permalink to Set estimation about the mean">Set estimation about the mean</a></h2>
+      <a href="/set-estimation-about-the-variance.html" rel="bookmark"
+         title="Permalink to Set estimation about the variance">Set estimation about the variance</a></h2>
  
   </header>
   <footer class="post-info">
-    <time class="published" datetime="2021-05-04T00:00:00+03:00">
-      Tue 04 May 2021
+    <time class="published" datetime="2021-05-06T00:00:00+03:00">
+      Thu 06 May 2021
     </time>
     <address class="vcard author">
       By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
@@ -60,42 +60,50 @@
 <div class="math">$$
 X_1, X_2, \ldots, X_n
 $$</div>
-<p>Out task is to come up with a good <strong>interval estimate</strong> for mean <span class="math">\(\mu\)</span>. For variance? - Later...</p>
+<p>Out task is to come up with a good <strong>interval estimate</strong> for the variance <span class="math">\(\sigma\)</span>.</p>
 <p>Few things to note ahead. The <strong>point estimate for the mean</strong> is 
 </p>
 <div class="math">$$\overline{X_n} = \frac{1}{n}\sum_{i=1}^n X_i$$</div>
-<p>. </p>
 <p>The <strong>point estimate for the variance</strong>, or the <strong>adjusted sample variance</strong>, if needed, is 
 </p>
 <div class="math">$$s_n^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \overline{X_n})^2$$</div>
-<h2>When variance is "known"</h2>
-<p>Don't pay attention to what is known or not. It's just wording. What matters is the math that follows.</p>
-<p>Let the interval estimate be
+<p>If we know true mean <span class="math">\(\mu\)</span>, we can use that instead and obtain <strong>another estimate of variance</strong>:
+</p>
+<div class="math">$$\hat{\sigma_n^2} = \frac{1}{n}\sum_{i=1}^n (X_i - \mu)^2$$</div>
+<blockquote>
+<p><strong>Theorem 1:</strong> The adjusted sample variance <span class="math">\(s_{n}^{2}\)</span> has a Gamma distribution with parameters <span class="math">\(n-1\)</span> and <span class="math">\(\sigma^2\)</span>.</p>
+<p><strong>Theorem 2:</strong> The variance estimate <span class="math">\(\hat{\sigma_n^2}\)</span> has a Gamma distribution with parameters <span class="math">\(n\)</span> and <span class="math">\(\sigma^2\)</span>.</p>
+</blockquote>
+<h2>When true mean is "known"</h2>
+<p>Then we can use the more accurate variance estimate, which is <span class="math">\(\hat{\sigma_n^2}\)</span>
+Let the interval estimate be
 </p>
 <div class="math">$$
-T_n = \left[ \overline{X_n} - \sqrt{\frac{\sigma^2}{n}}z, \overline{X_n} + \sqrt{\frac{\sigma^2}{n}}z \right]
+T_n = \left[ \frac{n}{z_2}\hat{\sigma_n^2}, \frac{n}{z_1}\hat{\sigma_n^2} \right]
 $$</div>
-<p>where <span class="math">\(z &gt; 0\)</span> and is a constant. Then, what is the <strong>coverage probability</strong> of <span class="math">\(T_n\)</span>?
+<p>where <span class="math">\(0 &lt; z_1 &lt; z_2\)</span> are constants. Then, the <strong>coverage probability</strong> of <span class="math">\(T_n\)</span> is
 </p>
 <div class="math">$$
-C(T_n, \mu) = P(\mu \in T_n) = P(-z &lt; Z &lt; z)
+C(T_n, \sigma) = P(\sigma \in T_n) = P(z_1 &lt; Z_n &lt; z_2)
 $$</div>
 <p>
-where <span class="math">\(Z\)</span> is standard normal random variable. We are done!</p>
+where <span class="math">\(Z_n\)</span> is Chi-square random variable with <span class="math">\(n\)</span> degrees of freedom <span class="math">\(\chi^2(n)\)</span>.</p>
+<p><em>Proof:</em> Can be proved using the fact in Theorem 2.</p>
+<p><strong>Q:</strong> Can you find the <a href="https://www.statlect.com/fundamentals-of-statistics/set-estimation#size">size of the interval estimator</a> <span class="math">\(T_{n}\)</span>? In other words, the expected length of the interval given the randomness of the sample.</p>
+<p><strong>A:</strong> Yes.</p>
 <h2>When variance is "unknown"</h2>
-<p>The point of "knowing" is whether you can use that knowledge in constructing your estimate. So here, we use sample variance <span class="math">\(s_n^2\)</span> instead of <span class="math">\(\sigma\)</span> (population variance).</p>
-<p>Let the interval estimate be
-</p>
+<p>This is very similar with the above. Here we have to use the sample variance <span class="math">\(s_n^2\)</span> instead. Let the interval estimate be</p>
 <div class="math">$$
-T_n = \left[ \overline{X_n} - \sqrt{\frac{s_n^2}{n}}z, \overline{X_n} + \sqrt{\frac{s_n^2}{n}}z \right]
+T_n = \left[ \frac{n-1}{z_2}s_n^2, \frac{n-1}{z_1}s_n^2 \right]
 $$</div>
-<p>where <span class="math">\(z &gt; 0\)</span> and is a constant. Then, what is the <strong>coverage probability</strong> of <span class="math">\(T_n\)</span>?
+<p>where <span class="math">\(0 &lt; z_1 &lt; z_2\)</span> are constants. Then, the <strong>coverage probability</strong> of <span class="math">\(T_n\)</span> is
 </p>
 <div class="math">$$
-C(T_n, \mu) = P(\mu \in T_n) = P(-z &lt; Z_{n-1} &lt; z)
+C(T_n, \sigma) = P(\sigma \in T_n) = P(z_1 &lt; Z_{n-1} &lt; z_2)
 $$</div>
 <p>
-where <span class="math">\(Z_{n-1}\)</span> is a standard Student's t random variable with <span class="math">\(n-1\)</span> degrees of freedom. We are done!</p>
+where <span class="math">\(Z_{n-1}\)</span> is Chi-square random variable with <span class="math">\(n-1\)</span> degrees of freedom <span class="math">\(\chi^2(n-1)\)</span>.</p>
+<p><em>Proof:</em> Can be proved using the fact in Theorem 1.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
