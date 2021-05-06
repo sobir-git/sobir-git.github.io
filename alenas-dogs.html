@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-          <title>My Notes - Set estimation about the variance</title>
+          <title>My Notes - Alena's dogs</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
@@ -39,8 +39,8 @@
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/set-estimation-about-the-variance.html" rel="bookmark"
-         title="Permalink to Set estimation about the variance">Set estimation about the variance</a></h2>
+      <a href="/alenas-dogs.html" rel="bookmark"
+         title="Permalink to Alena's dogs">Alena's dogs</a></h2>
  
   </header>
   <footer class="post-info">
@@ -55,56 +55,26 @@
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>Suppose there's a <strong>normal distribution</strong> with mean <span class="math">\(\mu\)</span> and variance <span class="math">\(\sigma^2\)</span> in Wonderland. No one has seen it. But some samples have been fallen accidentally:
-</p>
-<div class="math">$$
-X_1, X_2, \ldots, X_n
-$$</div>
-<p>Out task is to come up with a good <strong>interval estimate</strong> for the variance <span class="math">\(\sigma\)</span>.</p>
-<p>Few things to note ahead. The <strong>point estimate for the mean</strong> is 
-</p>
-<div class="math">$$\overline{X_n} = \frac{1}{n}\sum_{i=1}^n X_i$$</div>
-<p>The <strong>point estimate for the variance</strong>, or the <strong>adjusted sample variance</strong>, if needed, is 
-</p>
-<div class="math">$$s_n^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \overline{X_n})^2$$</div>
-<p>If we know true mean <span class="math">\(\mu\)</span>, we can use that instead and obtain <strong>another estimate of variance</strong>:
-</p>
-<div class="math">$$\hat{\sigma_n^2} = \frac{1}{n}\sum_{i=1}^n (X_i - \mu)^2$$</div>
+    <p><em>The following is a discussion of problem in hypothesis testing, taken from Khan Academy <a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations">here</a>.</em></p>
+<p>The problem starts like this:</p>
 <blockquote>
-<p><strong>Theorem 1:</strong> The adjusted sample variance <span class="math">\(s_{n}^{2}\)</span> has a Gamma distribution with parameters <span class="math">\(n-1\)</span> and <span class="math">\(\sigma^2\)</span>.</p>
-<p><strong>Theorem 2:</strong> The variance estimate <span class="math">\(\hat{\sigma_n^2}\)</span> has a Gamma distribution with parameters <span class="math">\(n\)</span> and <span class="math">\(\sigma^2\)</span>.</p>
+<p>Alena has a pair of dogs, and she noticed they usually breed more male puppies than females. To check that, she bred them again and obtained 15 puppies, and 13 of them were males.</p>
 </blockquote>
-<h2>When true mean is "known"</h2>
-<p>Then we can use the more accurate variance estimate, which is <span class="math">\(\hat{\sigma_n^2}\)</span>
-Let the interval estimate be
+<p>Now, is that a coincidence that her dogs breed more males than females?</p>
+<p>Let's assume the <strong>null hypothesis</strong>: <span class="math">\(50\%\)</span> of the time her dogs breed males.
+<strong>Alternative hypothesis</strong>: more than <span class="math">\(50\%\)</span> of the time her dogs breed males.</p>
+<p>More formally, let <span class="math">\(p\)</span> be the true probability of her dogs breeding male. Then
 </p>
 <div class="math">$$
-T_n = \left[ \frac{n}{z_2}\hat{\sigma_n^2}, \frac{n}{z_1}\hat{\sigma_n^2} \right]
+\begin{align}
+H_0 &amp;:  p = 0.5 \\
+H_1 &amp;:  p &gt; 0.5
+\end{align}
 $$</div>
-<p>where <span class="math">\(0 &lt; z_1 &lt; z_2\)</span> are constants. Then, the <strong>coverage probability</strong> of <span class="math">\(T_n\)</span> is
-</p>
-<div class="math">$$
-C(T_n, \sigma) = P(\sigma \in T_n) = P(z_1 &lt; Z_n &lt; z_2)
-$$</div>
-<p>
-where <span class="math">\(Z_n\)</span> is Chi-square random variable with <span class="math">\(n\)</span> degrees of freedom <span class="math">\(\chi^2(n)\)</span>.</p>
-<p><em>Proof:</em> Can be proved using the fact in Theorem 2.</p>
-<p><strong>Q:</strong> Can you find the <a href="https://www.statlect.com/fundamentals-of-statistics/set-estimation#size">expected size of the interval estimator</a> <span class="math">\(T_{n}\)</span>? In other words, the expected length of the interval given the randomness of the sample.</p>
-<p><strong>A:</strong> Yes.</p>
-<p><em>W:</em> <em>Wonder why in <a href="/set-estimation-about-the-mean.html">set estimate of mean</a>, the interval was in the form <span class="math">\([x-a, x+a]\)</span> but here it is in the form <span class="math">\([ax, bx]\)</span>?</em></p>
-<h2>When true mean is "unknown"</h2>
-<p>This is very similar with the above. Here we have to use the sample variance <span class="math">\(s_n^2\)</span> instead. Let the interval estimate be</p>
-<div class="math">$$
-T_n = \left[ \frac{n-1}{z_2}s_n^2, \frac{n-1}{z_1}s_n^2 \right]
-$$</div>
-<p>where <span class="math">\(0 &lt; z_1 &lt; z_2\)</span> are constants. Then, the <strong>coverage probability</strong> of <span class="math">\(T_n\)</span> is
-</p>
-<div class="math">$$
-C(T_n, \sigma) = P(\sigma \in T_n) = P(z_1 &lt; Z_{n-1} &lt; z_2)
-$$</div>
-<p>
-where <span class="math">\(Z_{n-1}\)</span> is Chi-square random variable with <span class="math">\(n-1\)</span> degrees of freedom <span class="math">\(\chi^2(n-1)\)</span>.</p>
-<p><em>Proof:</em> Can be proved using the fact in Theorem 1.</p>
+<p>When <span class="math">\(H_0\)</span> assumed, the distribution of the bred male percentage follows the binomial distribution <span class="math">\(B(15, 0.5)\)</span>.</p>
+<p>In fact, as you can see below <span class="math">\(P(X \geq 13) = 0.0037\)</span> which is very low. This is not a coincidence at all!</p>
+<iframe class="h_iframe" src="https://www.geogebra.org/classic/pc9kbrjc?embed" style="height:600px"  allowfullscreen frameborder="0"></iframe>
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

@@ -114,18 +114,44 @@ $$</div>
 <p><strong>Q:</strong> Let <span class="math">\(X_1, X_2, \ldots, X_n\)</span> be i.i.d. normal random variables with mean <span class="math">\(\mu\)</span> and standard deviation <span class="math">\(\sigma\)</span>. What is the distribution of:
 </p>
 <div class="math">$$
-\frac{ \overline{X_n} - \mu}{\sqrt{s_n^2/n}}
+T = \frac{ \overline{X_n} - \mu}{\sqrt{s_n^2/n}}
 $$</div>
 <p>
-<strong>A:</strong> <strong>Student's t-distribution</strong> with <span class="math">\(n-1\)</span> degrees of freedom.</p>
-<p><strong>Q:</strong> Let <span class="math">\(Y\)</span> be a standard normal random variable, and <span class="math">\(Z\)</span> be Gamma random variable with parameters <span class="math">\(n\)</span> (shape) and <span class="math">\(h\)</span> = 1 (scale). What is the distribution of :
+<strong>A:</strong> <strong>Standard Student's t-distribution</strong> with <span class="math">\(n-1\)</span> degrees of freedom.</p>
+<p><strong>Q:</strong> Let <span class="math">\(Y\)</span> be a standard normal random variable, and <span class="math">\(Z\)</span> be Gamma random variable with parameters <span class="math">\(n\)</span> (shape) and <span class="math">\(h\)</span> = 1 (scale). What is the distribution of the ratio:
 </p>
 <div class="math">$$
-\frac{ \overline{X_n} - \mu}{\sqrt{s_n^2/n}}
+T = \frac{Y}{\sqrt{Z}}
 $$</div>
 <p>
-<strong>A:</strong> <strong>Student's t-distribution</strong> with <span class="math">\(n\)</span> degrees of freedom.</p>
-<p>The code below show three different ways of obtaining a <span class="math">\(t\)</span>-distribution with <span class="math">\(N\)</span> degrees of freedom, and compares it with standard normal distribution.</p>
+<strong>A:</strong> <strong>Standard Student's t-distribution</strong> with <span class="math">\(n\)</span> degrees of freedom.</p>
+<p>Standard <span class="math">\(t\)</span>-distribution has the following mean and variance:
+</p>
+<div class="math">$$
+\begin{align}
+E[T] &amp;= 0 \\
+Var[T] &amp;= \frac{n}{n-2}
+\end{align}
+$$</div>
+<h3>Student's t-distribution: General case</h3>
+<p>Let <span class="math">\(T\)</span> be standard t random variable. A linear tranformation applied to <span class="math">\(T\)</span>
+</p>
+<div class="math">$$
+X = \mu + \sigma T
+$$</div>
+<p>
+has <strong>Student's t-distribution with mean <span class="math">\(\mu\)</span> and <em>scale</em> <span class="math">\(\sigma^2\)</span>.</strong></p>
+<p>And it has the following mean and variance:
+</p>
+<div class="math">$$
+\begin{align}
+E[X] &amp;= 0 \\
+Var[X] &amp;= \frac{n}{n-2} \sigma^2
+\end{align}
+$$</div>
+<p><em>Note: A linear transformation to <span class="math">\(t\)</span>-distributed random variable always produces another <span class="math">\(t\)</span>-distribed random variable.</em></p>
+<h3>Plots</h3>
+<p>The code below show three different ways of obtaining a standard <span class="math">\(t\)</span>-distribution with <span class="math">\(N\)</span> degrees of freedom, and compares it with standard normal distribution.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
