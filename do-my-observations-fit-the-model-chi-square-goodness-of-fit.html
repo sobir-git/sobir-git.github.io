@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="english">
 <head>
-          <title>My Notes - Gender and education, hypothesis testing.</title>
+          <title>My Notes - Do my observations fit the model? Chi-square goodness of fit.</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
@@ -39,8 +39,8 @@
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/gender-and-education-hypothesis-testing.html" rel="bookmark"
-         title="Permalink to Gender and education, hypothesis testing.">Gender and education, hypothesis testing.</a></h2>
+      <a href="/do-my-observations-fit-the-model-chi-square-goodness-of-fit.html" rel="bookmark"
+         title="Permalink to Do my observations fit the model? Chi-square goodness of fit.">Do my observations fit the model? Chi-square goodness of fit.</a></h2>
  
   </header>
   <footer class="post-info">
@@ -55,60 +55,38 @@
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p><em>The table below, taken from <a href="https://online.stat.psu.edu/statprogram/reviews/statistical-concepts/chi-square-tests">here</a>, represents a survey result which asked the subjects of their highest level of education.</em></p>
-<div class="highlight"><pre><span></span><code>+--------+-------------+------------+---------+-------+-------+
-|        | High School |  Bachelors | Masters | Ph.d. | Total |
-+--------+-------------+------------+---------+-------+-------+
-| Female |          60 |         54 |      46 |    41 |   201 |
-+--------+-------------+------------+---------+-------+-------+
-| Male   |          40 |         44 |      53 |    57 |   194 |
-+--------+-------------+------------+---------+-------+-------+
-| Total  |         100 |         98 |      99 |    98 |   395 |
-+--------+-------------+------------+---------+-------+-------+
-</code></pre></div>
-
-<p>The question is, <strong>is education level and gender dependent</strong>? </p>
-<p>Of course in the real world, if you believe in things like butterfly effect, everything is dependent on everything else. However, statistically we want to measure how likely is it to obtain this table given when the variables are independent.</p>
-<p>The textbook says it has to do with Chi-square test of independence. Let's assume we haven't studied that, and proceed with basic knowledge. Let's state <strong>the hypotheses</strong>:
+    <p>Let <span class="math">\(X\)</span> be a categorial variable having <span class="math">\(r\)</span> different possible values. Let <span class="math">\(p_1, p_2, \ldots, p_r\)</span> be the probabilities of those categories, satisfying <span class="math">\(\sum_{i=1}^{r} p_i = 1\)</span>. Let <span class="math">\(\xi_n = [x_1, x_2, \ldots, x_n]\)</span> be a set of observations. Let's group the observations by their values: </p>
+<div class="math">$$O = [O_1, O_2, \ldots, O_r], \quad \text{where } \sum_{i=0}^r O_i = n.$$</div>
+<p>For such a value of <span class="math">\(n\)</span>, we can compute the <strong>expected</strong> number of observations in each category:
+</p>
+<div class="math">$$E_i = n p_i \quad \text{for } i = 1..r$$</div>
+<p>Wait, not only we can compute the expected number in each category, we know exactly what distribution it has, namely, for <span class="math">\(i\)</span>-th category it is beta distribution <span class="math">\(B(n, p_i)\)</span>.</p>
+<p>Now consider the expressions <span class="math">\(\frac{(O_i - E_i)^2}{E_i}\)</span>. In a way, they measure the amount of deviations the observations have from their expected values. <a href="https://en.wikipedia.org/wiki/Pearson%27s_chi-squared_test">Pearson</a> has established that the following test-statistic
 </p>
 <div class="math">$$
-\begin{align}
-H_0 &amp;: \text{highest level of education is same regardless of gender}. \\
-H_1 &amp;: H_0 \text{ is false}.
-\end{align}
+\chi^2 = \sum_{i=1}^r \frac{(O_i - E_i)^2}{E_i}
 $$</div>
-<p><strong>Assuming the null hypothesis</strong>, what would be the <strong>expected</strong> table? The expected table is table where the proportions are same for each category. The formula below describes it, i.e. how to compute the expected value for each entry:
+<p>
+approaches Chi-square distribution with <span class="math">\(r-1\)</span> degrees of freedom.</p>
+<p>Let's manipulate the expression a little bit and gain some intuition.
 </p>
-<div class="math">$$E=\frac{\text{row total}\times\text{column total}}{\text{sample size}}$$</div>
-<p>The following table is obtained</p>
-<div class="highlight"><pre><span></span><code>+--------+-------------+------------+---------+--------+-------+
-|        | High School |  Bachelors | Masters | Ph.d.  | Total |
-+--------+-------------+------------+---------+--------+-------+
-| Female |      50.886 |     49.868 |  50.377 | 49.868 |   201 |
-+--------+-------------+------------+---------+--------+-------+
-| Male   |      49.114 |     48.132 |  48.623 | 48.132 |   194 |
-+--------+-------------+------------+---------+--------+-------+
-| Total  |         100 |         98 |      99 |     98 |   395 |
-+--------+-------------+------------+---------+--------+-------+
-</code></pre></div>
-
-<p><em>There's something remarkable about the formula above and the table it produces. First, the formula is <strong>symmetric</strong> in terms of table orientation. Second, the produced table has the following nice property: all row vectors are proportional the column totals vector, and all column vectors are proportional to the row totals vector.</em></p>
-<p>Questions to consider:</p>
-<ol>
-<li>How much is our data deviated from the expected?  This will give us a test statistic.</li>
-<li>What is the distribution of this deviation metric? In other words what is distribution of test statistic?</li>
-<li>Is this deviation a coincidence or a strong evidence against the expected table?</li>
-</ol>
-<p>Pearson has suggested the following test statistic to be computed over all entries in the table
+<div class="math">$$
+\begin{split}
+\chi^2 &amp;= \sum_{i=1}^r \frac{(O_i - E_i)^2}{E_i}
+ = \sum_{i=1}^r \frac{(O_i - n p_i)^2}{n p_i} \\
+&amp;= \sum_{i=1}^r \left(\frac{O_i - n p_i}{\sqrt{n p_i}}\right)^2 
+ = \sum_{i=1}^r \left(\sqrt{1-p_i}\frac{O_i - n p_i}{\sqrt{n p_i (1-p_i)}} \right)^2 \\
+&amp;= \sum_{i=1}^r (1-p_i)\left(\frac{O_i - n p_i}{\sqrt{n p_i (1-p_i)}} \right)^2 \\
+&amp;= \sum_{i=1}^r (1-p_i)\left(\frac{O_i - E_i}{\sigma_i} \right)^2 
+\end{split} \\
+$$</div>
+<p>
+where <span class="math">\(\sigma_i^2\)</span> is the variance of counts in <span class="math">\(i\)</span>-th category (remember the formula for variance of binomial distribution). Note that the expressions under the square approximate a standard normal distribution (using the fact that binomial distribution approximates normal distribution for large enough values of <span class="math">\(n\)</span> and non-extreme values of <span class="math">\(p\)</span>). If we drop the coefficients <span class="math">\((1-p_i)\)</span> we would get something that <strong>approximates Chi-square distribution</strong> with <span class="math">\(n\)</span> degrees of freedom (remember that chi-square random variable arises from summing a number of independent standard normal random variables). Accounting for coefficients as well, which sum up to <span class="math">\(\sum(1-p_i) = r-1\)</span>, it's reasonable to accept that the degrees of freedom must be <span class="math">\(r-1\)</span>. <em>This is not a proof at all, rather a helpful intuitive reasoning.</em> To state it formally, once again
 </p>
-<div class="math">$$\chi^2=\sum(O-E)^2/E$$</div>
-<p>It is a measure of <a href="https://en.wikipedia.org/wiki/Goodness_of_fit">goodness of fit</a>. That is, how much the observation deviates from expectation.
-So, what is its distribution? Hard to make sense of it? In the previous article we have discussed an intuitive grasp of it for one categorical variable, i.e., one row. The difference is that this is a table. The <strong>degrees of freedom</strong> in this case is said to be <span class="math">\((\# rows -1)(\# columns -1)\)</span> <span class="math">\(= (2-1)(4-1) = 3\)</span>.</p>
-<p>We conclude by quoting the solution directly from the <a href="https://online.stat.psu.edu/statprogram/reviews/statistical-concepts/chi-square-tests">source</a>:</p>
-<blockquote>
-<p>So, working this out, <span class="math">\(\chi^2= \dfrac{(60−50.886)^2}{50.886} + \cdots + \dfrac{(57 − 48.132)^2}{48.132} = 8.006\)</span>.</p>
-<p>The critical value of <span class="math">\(\chi^2\)</span> with 3 degree of freedom is 7.815. Since 8.006 &gt; 7.815, we reject the null hypothesis and conclude that the education level depends on gender at a 5% level of significance.</p>
-</blockquote>
+<div class="math">$$
+\sum_{i=1}^r \frac{(O_i - E_i)^2}{E_i} \sim \chi^2(r-1)
+$$</div>
+<p>Back to our problem, now we have at least an establish test statistic that can help us know how much our observations differ from the mean. This test is famously known as <a href="https://en.wikipedia.org/wiki/Goodness_of_fit#Pearson's_chi-squared_test">Pearson's chi-squared test</a>.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
