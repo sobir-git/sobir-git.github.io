@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="english">
+<html lang="en" id="top">
 <head>
           <title>My Notes - Gender and education, hypothesis testing.</title>
         <meta charset="utf-8" />
@@ -72,10 +72,10 @@
 <p>The textbook says it has to do with Chi-square test of independence. Let's assume we haven't studied that, and proceed with basic knowledge. Let's state <strong>the hypotheses</strong>:
 </p>
 <div class="math">$$
-\begin{align}
+\begin{split}
 H_0 &amp;: \text{highest level of education is same regardless of gender}. \\
 H_1 &amp;: H_0 \text{ is false}.
-\end{align}
+\end{split}
 $$</div>
 <p><strong>Assuming the null hypothesis</strong>, what would be the <strong>expected</strong> table? The expected table is table where the proportions are same for each category. The formula below describes it, i.e. how to compute the expected value for each entry:
 </p>
@@ -109,6 +109,8 @@ So, what is its distribution? Hard to make sense of it? In the previous article 
 <p>So, working this out, <span class="math">\(\chi^2= \dfrac{(60−50.886)^2}{50.886} + \cdots + \dfrac{(57 − 48.132)^2}{48.132} = 8.006\)</span>.</p>
 <p>The critical value of <span class="math">\(\chi^2\)</span> with 3 degree of freedom is 7.815. Since 8.006 &gt; 7.815, we reject the null hypothesis and conclude that the education level depends on gender at a 5% level of significance.</p>
 </blockquote>
+<p>I hope that from now on we able to perform test of indepence using Pearson's chi-squared test-statistic.</p>
+<p>To learn more about Chi-squared goodness of fit tests, read <a href="https://online.stat.psu.edu/stat415/">this excellent resource</a>, chapters 16 and 17.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -173,12 +175,13 @@ So, what is its distribution? Hard to make sense of it? In the previous article 
 </script>
   </div><!-- /.entry-content -->
 </section>
+        <a href="#top" class="js-scroll-top"> top </a> 
         <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Powered by <a href="https://getpelican.com/">Pelican</a>,
-                Theme adapted from <a href="https://github.com/matuzo/matuzoat/">matuzo</a>.
-                </address><!-- /#about -->
-                <!-- /#about -->
+            <address id="about" class="vcard body">
+            Powered by <a href="https://getpelican.com/">Pelican</a>,
+            Theme adapted from <a href="https://github.com/matuzo/matuzoat/">matuzo</a>.
+            </address><!-- /#about -->
+            <!-- /#about -->
         </footer><!-- /#contentinfo -->
 </body>
 </html>

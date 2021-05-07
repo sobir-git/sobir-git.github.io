@@ -122,10 +122,10 @@ $$&lt;/div&gt;
 &lt;p&gt;The textbook says it has to do with Chi-square test of independence. Let's assume we haven't studied that, and proceed with basic knowledge. Let's state &lt;strong&gt;the hypotheses&lt;/strong&gt;:
 &lt;/p&gt;
 &lt;div class="math"&gt;$$
-\begin{align}
+\begin{split}
 H_0 &amp;amp;: \text{highest level of education is same regardless of gender}. \\
 H_1 &amp;amp;: H_0 \text{ is false}.
-\end{align}
+\end{split}
 $$&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Assuming the null hypothesis&lt;/strong&gt;, what would be the &lt;strong&gt;expected&lt;/strong&gt; table? The expected table is table where the proportions are same for each category. The formula below describes it, i.e. how to compute the expected value for each entry:
 &lt;/p&gt;
@@ -159,6 +159,8 @@ So, what is its distribution? Hard to make sense of it? In the previous article 
 &lt;p&gt;So, working this out, &lt;span class="math"&gt;\(\chi^2= \dfrac{(60−50.886)^2}{50.886} + \cdots + \dfrac{(57 − 48.132)^2}{48.132} = 8.006\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;The critical value of &lt;span class="math"&gt;\(\chi^2\)&lt;/span&gt; with 3 degree of freedom is 7.815. Since 8.006 &amp;gt; 7.815, we reject the null hypothesis and conclude that the education level depends on gender at a 5% level of significance.&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;I hope that from now on we able to perform test of indepence using Pearson's chi-squared test-statistic.&lt;/p&gt;
+&lt;p&gt;To learn more about Chi-squared goodness of fit tests, read &lt;a href="https://online.stat.psu.edu/stat415/"&gt;this excellent resource&lt;/a&gt;, chapters 16 and 17.&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -220,11 +222,11 @@ So, what is its distribution? Hard to make sense of it? In the previous article 
     (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Alena's dogs</title><link href="/alenas-dogs.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/alenas-dogs.html</id><summary type="html">&lt;p&gt;&lt;em&gt;The following is a discussion of problem in hypothesis testing, taken from Khan Academy &lt;a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations"&gt;here&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The problem starts like this:&lt;/p&gt;
+&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Alena's dogs</title><link href="/alenas-dogs.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/alenas-dogs.html</id><summary type="html">&lt;p&gt;&lt;em&gt;The following is a discussion of a problem in hypothesis testing, presented in Khan Academy &lt;a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations"&gt;here&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The problem description starts like this:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Alena has a pair of dogs, and she noticed they usually breed more male puppies than females. To check that, she bred them again and obtained 15 puppies, and 13 …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;The following is a discussion of problem in hypothesis testing, taken from Khan Academy &lt;a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations"&gt;here&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The problem starts like this:&lt;/p&gt;
+&lt;p&gt;Alena has a pair of dogs, and she noticed they usually breed more male puppies than females. To check that, she bred them again and obtained 15 puppies …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;The following is a discussion of a problem in hypothesis testing, presented in Khan Academy &lt;a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations"&gt;here&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The problem description starts like this:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Alena has a pair of dogs, and she noticed they usually breed more male puppies than females. To check that, she bred them again and obtained 15 puppies, and 13 of them were males.&lt;/p&gt;
 &lt;/blockquote&gt;
