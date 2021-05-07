@@ -1,5 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My Notes - probability and statistics</title><link href="/" rel="alternate"></link><link href="/feeds/probability-and-statistics.atom.xml" rel="self"></link><id>/</id><updated>2021-05-06T00:00:00+03:00</updated><entry><title>Alena's dogs</title><link href="/alenas-dogs.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/alenas-dogs.html</id><summary type="html">&lt;p&gt;&lt;em&gt;The following is a discussion of problem in hypothesis testing, taken from Khan Academy &lt;a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations"&gt;here&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My Notes - probability and statistics</title><link href="/" rel="alternate"></link><link href="/feeds/probability-and-statistics.atom.xml" rel="self"></link><id>/</id><updated>2021-05-07T00:00:00+03:00</updated><entry><title>Gender and education, hypothesis testing.</title><link href="/gender-and-education-hypothesis-testing.html" rel="alternate"></link><published>2021-05-07T00:00:00+03:00</published><updated>2021-05-07T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-07:/gender-and-education-hypothesis-testing.html</id><summary type="html">&lt;p&gt;&lt;em&gt;The table below, taken from here, represents a survey result which asked the subjects of their highest level of education.&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;+--------+-------------+------------+---------+-------+-------+
+|        | High School |  Bachelors | Masters | Ph.d. | Total |
++--------+-------------+------------+---------+-------+-------+
+| Female |          60 |         54 |      46 |    41 |   201 |
++--------+-------------+------------+---------+-------+-------+
+| Male   |          40 |         44 |      53 |    57 |   194 |
++--------+-------------+------------+---------+-------+-------+
+| Total  |         100 |         98 |      99 |    98 |   395 |
++--------+-------------+------------+---------+-------+-------+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The question is, &lt;strong&gt;is education …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;The table below, taken from here, represents a survey result which asked the subjects of their highest level of education.&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;+--------+-------------+------------+---------+-------+-------+
+|        | High School |  Bachelors | Masters | Ph.d. | Total |
++--------+-------------+------------+---------+-------+-------+
+| Female |          60 |         54 |      46 |    41 |   201 |
++--------+-------------+------------+---------+-------+-------+
+| Male   |          40 |         44 |      53 |    57 |   194 |
++--------+-------------+------------+---------+-------+-------+
+| Total  |         100 |         98 |      99 |    98 |   395 |
++--------+-------------+------------+---------+-------+-------+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The question is, &lt;strong&gt;is education level and gender dependent&lt;/strong&gt;? &lt;/p&gt;
+&lt;p&gt;Of course in the real world, if you believe in butterfly effect, everything is dependent on everything else. However, statistically we want to measure how likely is it to obtain this table given when the variables are independent.&lt;/p&gt;
+&lt;p&gt;The textbook says it has to do with Chi-square test of independence. Let's assume we haven't studied that, and proceed with basic knowledge. Let's state &lt;strong&gt;the hypotheses&lt;/strong&gt;:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{align}
+H_0 &amp;amp;: \text{highest level of education is same regardless of gender}. \\
+H_1 &amp;amp;: H_0 \text{ is false}.
+\end{align}
+$$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Assuming the null hypothesis&lt;/strong&gt;, what would be the &lt;strong&gt;expected&lt;/strong&gt; table? The expected table is table where the proportions are same for each category. The formula below describes it, i.e. how to compute the expected value for each entry:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$E=\frac{\text{row total}\times\text{column total}}{\text{sample size}}$$&lt;/div&gt;
+&lt;p&gt;The following table is obtained&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;+--------+-------------+------------+---------+--------+-------+
+|        | High School |  Bachelors | Masters | Ph.d.  | Total |
++--------+-------------+------------+---------+--------+-------+
+| Female |      50.886 |     49.868 |  50.377 | 49.868 |   201 |
++--------+-------------+------------+---------+--------+-------+
+| Male   |      49.114 |     48.132 |  48.623 | 48.132 |   194 |
++--------+-------------+------------+---------+--------+-------+
+| Total  |         100 |         98 |      99 |     98 |   395 |
++--------+-------------+------------+---------+--------+-------+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Questions to consider:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;How much is our data deviated?  This will give us a test statistic.&lt;/li&gt;
+&lt;li&gt;What is the distribution of this deviation metric? In other words what is distribution of test statistic?&lt;/li&gt;
+&lt;li&gt;Is this deviation a concidence or a strong evidence against the expected table?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Alena's dogs</title><link href="/alenas-dogs.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/alenas-dogs.html</id><summary type="html">&lt;p&gt;&lt;em&gt;The following is a discussion of problem in hypothesis testing, taken from Khan Academy &lt;a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations"&gt;here&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The problem starts like this:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Alena has a pair of dogs, and she noticed they usually breed more male puppies than females. To check that, she bred them again and obtained 15 puppies, and 13 …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;The following is a discussion of problem in hypothesis testing, taken from Khan Academy &lt;a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations"&gt;here&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
@@ -22,6 +138,89 @@ $$&lt;/div&gt;
 &lt;p&gt;In fact, as you can see below &lt;span class="math"&gt;\(P(X \geq 13) = 0.0037\)&lt;/span&gt; which is very low. This is not a coincidence at all!&lt;/p&gt;
 &lt;iframe class="h_iframe" src="https://www.geogebra.org/classic/pc9kbrjc?embed" style="height:600px"  allowfullscreen frameborder="0"&gt;&lt;/iframe&gt;
 
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Can dogs detect cancer? A hypothesis testing case.</title><link href="/can-dogs-detect-cancer-a-hypothesis-testing-case.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/can-dogs-detect-cancer-a-hypothesis-testing-case.html</id><summary type="html">&lt;p&gt;&lt;em&gt;The following problem was presented in this &lt;a href="http://awarnach.mathstat.dal.ca/~joeb/Stats1060_Webcasts/screencasts/part1/P1S01/index.html"&gt;lecture&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Cancer detecting dogs.&lt;/strong&gt; Dogs were trained to detect bladder cancer according to the scent of a patients urine. After training the dogs were tested on seven urine samples, where only one was from a cancer patient. The experiment was repeated on 89 …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;The following problem was presented in this &lt;a href="http://awarnach.mathstat.dal.ca/~joeb/Stats1060_Webcasts/screencasts/part1/P1S01/index.html"&gt;lecture&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Cancer detecting dogs.&lt;/strong&gt; Dogs were trained to detect bladder cancer according to the scent of a patients urine. After training the dogs were tested on seven urine samples, where only one was from a cancer patient. The experiment was repeated on 89 different dogs. The dogs correctly identified the cancer 35 times.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now, the question is, &lt;strong&gt;are dogs doing better than random&lt;/strong&gt;?&lt;/p&gt;
+&lt;p&gt;What is &lt;em&gt;random&lt;/em&gt;? If dogs decided randomly, then the probability of detecting the cancer would be &lt;span class="math"&gt;\(p=1/7\)&lt;/span&gt; and the expected number of correct detection would be &lt;span class="math"&gt;\(89 \cdot \frac{1}{7} = 12.714\)&lt;/span&gt;. In our case this number, which is &lt;span class="math"&gt;\(35\)&lt;/span&gt;, seems to be a little high. Randomness exists, sure, but how much? Depends on the standard deviation.&lt;/p&gt;
+&lt;p&gt;Ok, let's state the hypotheses now:
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{align}
+H_0 &amp;amp;: p = 1/7 \\ 
+H_1 &amp;amp;: p &amp;gt; 1/7
+\end{align}
+$$&lt;/div&gt;
+&lt;p&gt;Assuming the null hypotheses, the distribution of number of times dogs correctly detect cancer is binomial &lt;span class="math"&gt;\(B(89, 1/7)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Let's plot this and see where our sample lies:&lt;/p&gt;
+&lt;iframe class="h_iframe" src="https://www.geogebra.org/classic/dqexqb4a?embed" style="height:600px"  allowfullscreen frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Yes, the probability of getting 35 or more correct detections under the null hypothesis is almost zero! Dogs are great at sniffing!&lt;/p&gt;
+&lt;p&gt;Note that binomial distribution for large enough values of &lt;span class="math"&gt;\(n\)&lt;/span&gt; (&lt;span class="math"&gt;\(&amp;gt;20\)&lt;/span&gt;) is very close to normal distribution. In other words, we could use normal distribution instead.&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

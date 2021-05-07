@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+          <title>My Notes - Gender and education, hypothesis testing.</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
+        <link href="/feeds/probability-and-statistics.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/theme/css/rdark.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/css/relaunch.css" /><!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WVZ6PMB17"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-8WVZ6PMB17');
+        </script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">My Notes</a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li><a href="/category/misc.html">misc</a></li>
+            <li class="active"><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/gender-and-education-hypothesis-testing.html" rel="bookmark"
+         title="Permalink to Gender and education, hypothesis testing.">Gender and education, hypothesis testing.</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-05-07T00:00:00+03:00">
+      Fri 07 May 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/probability-and-statistics.html">probability and statistics</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p><em>The table below, taken from here, represents a survey result which asked the subjects of their highest level of education.</em></p>
+<div class="highlight"><pre><span></span><code>+--------+-------------+------------+---------+-------+-------+
+|        | High School |  Bachelors | Masters | Ph.d. | Total |
++--------+-------------+------------+---------+-------+-------+
+| Female |          60 |         54 |      46 |    41 |   201 |
++--------+-------------+------------+---------+-------+-------+
+| Male   |          40 |         44 |      53 |    57 |   194 |
++--------+-------------+------------+---------+-------+-------+
+| Total  |         100 |         98 |      99 |    98 |   395 |
++--------+-------------+------------+---------+-------+-------+
+</code></pre></div>
+
+<p>The question is, <strong>is education level and gender dependent</strong>? </p>
+<p>Of course in the real world, if you believe in butterfly effect, everything is dependent on everything else. However, statistically we want to measure how likely is it to obtain this table given when the variables are independent.</p>
+<p>The textbook says it has to do with Chi-square test of independence. Let's assume we haven't studied that, and proceed with basic knowledge. Let's state <strong>the hypotheses</strong>:
+</p>
+<div class="math">$$
+\begin{align}
+H_0 &amp;: \text{highest level of education is same regardless of gender}. \\
+H_1 &amp;: H_0 \text{ is false}.
+\end{align}
+$$</div>
+<p><strong>Assuming the null hypothesis</strong>, what would be the <strong>expected</strong> table? The expected table is table where the proportions are same for each category. The formula below describes it, i.e. how to compute the expected value for each entry:
+</p>
+<div class="math">$$E=\frac{\text{row total}\times\text{column total}}{\text{sample size}}$$</div>
+<p>The following table is obtained</p>
+<div class="highlight"><pre><span></span><code>+--------+-------------+------------+---------+--------+-------+
+|        | High School |  Bachelors | Masters | Ph.d.  | Total |
++--------+-------------+------------+---------+--------+-------+
+| Female |      50.886 |     49.868 |  50.377 | 49.868 |   201 |
++--------+-------------+------------+---------+--------+-------+
+| Male   |      49.114 |     48.132 |  48.623 | 48.132 |   194 |
++--------+-------------+------------+---------+--------+-------+
+| Total  |         100 |         98 |      99 |     98 |   395 |
++--------+-------------+------------+---------+--------+-------+
+</code></pre></div>
+
+<p>Questions to consider:</p>
+<ol>
+<li>How much is our data deviated?  This will give us a test statistic.</li>
+<li>What is the distribution of this deviation metric? In other words what is distribution of test statistic?</li>
+<li>Is this deviation a concidence or a strong evidence against the expected table?</li>
+</ol>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Powered by <a href="https://getpelican.com/">Pelican</a>,
+                Theme adapted from <a href="https://github.com/matuzo/matuzoat/">matuzo</a>.
+                </address><!-- /#about -->
+                <!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

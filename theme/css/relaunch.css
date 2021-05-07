@@ -60,7 +60,8 @@ h2 {
 }
 
 li code,
-p code {
+/*p code */
+{
   background: rgb(28, 78, 108);
   border-radius: 3px;
   color: rgb(255, 255, 255);
@@ -252,17 +253,15 @@ pre {
   margin: 1em 0;
   overflow: auto;
   padding: 1.5em;
-  background: rgb(21, 58, 81, 0.5);
-
+  background: rgb(18, 44, 81, 0.4);
 }
 
 /* Inline code */
 :not(pre) > code {
-  padding: 0.1em;
-  border-radius: 0.3em;
+  padding: 0.2em;
+  border-radius: 0.2em;
   white-space: normal;
   background: rgb(21, 58, 81);
-  
 }
 
 @media screen and (-ms-high-contrast: active) {
@@ -287,11 +286,6 @@ pre {
 
 
 /* More */
-
-pre {
-    margin: 2em 1em 2em 4em;
-    white-space: pre-wrap;
-}
 
 
 #post-list {
@@ -331,6 +325,6 @@ pre {
 .h_iframe iframe, .h_iframe {
     height: 100%;
     width:100%;
-    overflow:hidden;
+    overflow: scroll;
     
 }

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+          <title>My Notes - Can dogs detect cancer? A hypothesis testing case.</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
+        <link href="/feeds/probability-and-statistics.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/theme/css/rdark.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/css/relaunch.css" /><!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WVZ6PMB17"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-8WVZ6PMB17');
+        </script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">My Notes</a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li><a href="/category/misc.html">misc</a></li>
+            <li class="active"><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/can-dogs-detect-cancer-a-hypothesis-testing-case.html" rel="bookmark"
+         title="Permalink to Can dogs detect cancer? A hypothesis testing case.">Can dogs detect cancer? A hypothesis testing case.</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-05-06T00:00:00+03:00">
+      Thu 06 May 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/probability-and-statistics.html">probability and statistics</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p><em>The following problem was presented in this <a href="http://awarnach.mathstat.dal.ca/~joeb/Stats1060_Webcasts/screencasts/part1/P1S01/index.html">lecture</a></em>.</p>
+<blockquote>
+<p><strong>Cancer detecting dogs.</strong> Dogs were trained to detect bladder cancer according to the scent of a patients urine. After training the dogs were tested on seven urine samples, where only one was from a cancer patient. The experiment was repeated on 89 different dogs. The dogs correctly identified the cancer 35 times.</p>
+</blockquote>
+<p>Now, the question is, <strong>are dogs doing better than random</strong>?</p>
+<p>What is <em>random</em>? If dogs decided randomly, then the probability of detecting the cancer would be <span class="math">\(p=1/7\)</span> and the expected number of correct detection would be <span class="math">\(89 \cdot \frac{1}{7} = 12.714\)</span>. In our case this number, which is <span class="math">\(35\)</span>, seems to be a little high. Randomness exists, sure, but how much? Depends on the standard deviation.</p>
+<p>Ok, let's state the hypotheses now:
+</p>
+<div class="math">$$
+\begin{align}
+H_0 &amp;: p = 1/7 \\ 
+H_1 &amp;: p &gt; 1/7
+\end{align}
+$$</div>
+<p>Assuming the null hypotheses, the distribution of number of times dogs correctly detect cancer is binomial <span class="math">\(B(89, 1/7)\)</span>.</p>
+<p>Let's plot this and see where our sample lies:</p>
+<iframe class="h_iframe" src="https://www.geogebra.org/classic/dqexqb4a?embed" style="height:600px"  allowfullscreen frameborder="0"></iframe>
+
+<p>Yes, the probability of getting 35 or more correct detections under the null hypothesis is almost zero! Dogs are great at sniffing!</p>
+<p>Note that binomial distribution for large enough values of <span class="math">\(n\)</span> (<span class="math">\(&gt;20\)</span>) is very close to normal distribution. In other words, we could use normal distribution instead.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Powered by <a href="https://getpelican.com/">Pelican</a>,
+                Theme adapted from <a href="https://github.com/matuzo/matuzoat/">matuzo</a>.
+                </address><!-- /#about -->
+                <!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>
