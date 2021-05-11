@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" id="top">
 <head>
-          <title>My Notes - Some statistical terms</title>
+          <title>My Notes - Sorting</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
-        <link href="/feeds/probability-and-statistics.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
+        <link href="/feeds/data-structures-algorithms.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/theme/css/rdark.css" />
@@ -33,42 +33,89 @@
                 <h1><a href="/">My Notes</a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-            <li><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
+            <li class="active"><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
             <li><a href="/category/misc.html">misc</a></li>
-            <li class="active"><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
+            <li><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
         </ul></nav><!-- /#menu -->
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/some-statistical-terms.html" rel="bookmark"
-         title="Permalink to Some statistical terms">Some statistical terms</a></h2>
+      <a href="/sorting.html" rel="bookmark"
+         title="Permalink to Sorting">Sorting</a></h2>
  
   </header>
   <footer class="post-info">
-    <time class="published" datetime="2021-05-01T00:00:00+03:00">
-      Sat 01 May 2021
+    <time class="published" datetime="2021-05-10T00:00:00+03:00">
+      Mon 10 May 2021
     </time>
     <address class="vcard author">
       By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
     </address>
     <div class="category">
-        Category: <a href="/category/probability-and-statistics.html">probability and statistics</a>
+        Category: <a href="/category/data-structures-algorithms.html">data structures & algorithms</a>
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <h3>Joint probability distribution function</h3>
-<p>It characterizes the probability of a random vector in its domain.
-So, for a random vector <span class="math">\(X \in R^n\)</span>, it is a function 
-</p>
-<div class="math">$$f_X: R^n \to [0, \inf) .$$</div>
-<p>
-Computing the integral over the support region should result in <span class="math">\(1\)</span>.</p>
-<p>There is another term called <em>joint distribution function</em> which is a synonym to <em>joint cumulative distribution function</em> (also <em>joint cdf</em>). At a given point <span class="math">\(x\)</span> it gives the probability that all components of <span class="math">\(X\)</span> are smaller than the corresponding component <span class="math">\(x\)</span>.</p>
-<h3>Marginal distribution function</h3>
-<p>For a random vector, it is the probability of one of its components. 
-So, for a random vector <span class="math">\(X \in R^n\)</span> and its component <span class="math">\(X_i\)</span>, it is a function 
-</p>
-<div class="math">$$f_{X_i}: R \to [0, \inf) .$$</div>
+    <h2>Quicksort 0</h2>
+<p>As an inspiration, this is a very beatiful implementation of quicksort. However not so efficient.</p>
+<p><code>partition</code> procedure maintains a pointer <code>i</code> for which all elements <code>A[0 .. i - 1] &lt; pivot</code>.
+At the end, it correctly places <code>pivot</code> in position <code>A[i]</code> by swapping.</p>
+<div class="highlight"><pre><span></span><code>algorithm quicksort(A, lo, hi) is
+    if lo &lt; hi then
+        p := partition(A, lo, hi)
+        quicksort(A, lo, p - 1)
+        quicksort(A, p + 1, hi)
+
+algorithm partition(A, lo, hi) is
+    pivot := A[hi]
+    i := lo
+    for j := lo to hi do
+        if A[j] &lt; pivot then
+            swap A[i] with A[j]
+            i := i + 1
+    swap A[i] with A[hi]
+    return i
+</code></pre></div>
+
+<h2>Quicksort 1</h2>
+<p>This is the original implementation by Hoare</p>
+<div class="highlight"><pre><span></span><code>algorithm quicksort(A, lo, hi) is
+    if lo &lt; hi then
+        p := partition(A, lo, hi)
+        quicksort(A, lo, p)
+        quicksort(A, p + 1, hi)
+
+algorithm partition(A, lo, hi) is
+    pivot := A[ floor((hi + lo) / 2) ]
+    i := lo - 1
+    j := hi + 1
+    loop forever
+        do
+            i := i + 1
+        while A[i] &lt; pivot
+        do
+            j := j - 1
+        while A[j] &gt; pivot
+        if i ≥ j then
+            return j
+        swap A[i] with A[j]
+</code></pre></div>
+
+<p>compared to previous implementation this does less swap operations.</p>
+<h2>Partition schemes</h2>
+<p>As you have noticed different implementations differ by their partition schemes, that is how they partition the array into two subarrays where all elements in the first subarray are no greater than the elements in the second subarray. The algorithm proceeds recursively to sort each of the subarrays. What stands between the subarrays is <em>pivot</em>. Some implementations choose pivot as the first or last or middle or median element of the array. </p>
+<p><strong>Choices of pivot:</strong></p>
+<ul>
+<li>The best pivot is <strong>median</strong>, but it's often inefficient to compute.</li>
+<li>Pivot as <strong>first or last element</strong> produces worst case <span class="math">\(O(n^2)\)</span> runtime when the array is already sorted. </li>
+<li><strong>Random pivots</strong> are a good choice.</li>
+<li>Pivot as the <strong>median of the first, middle and last element</strong> not only eliminates worst case runtime for already sorted arrays but turns them into best cases.</li>
+</ul>
+<p><strong>Questions to consider:</strong></p>
+<ul>
+<li>What happens when all elements are equal?</li>
+<li>What happens when multiple elements are equal to the pivot?</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

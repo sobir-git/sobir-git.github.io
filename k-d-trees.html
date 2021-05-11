@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+          <title>My Notes - K-d trees</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
+        <link href="/feeds/data-structures-algorithms.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/theme/css/rdark.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/css/relaunch.css" /><!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WVZ6PMB17"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-8WVZ6PMB17');
+        </script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">My Notes</a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li class="active"><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
+            <li><a href="/category/misc.html">misc</a></li>
+            <li><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/k-d-trees.html" rel="bookmark"
+         title="Permalink to K-d trees">K-d trees</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-05-09T00:00:00+03:00">
+      Sun 09 May 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/data-structures-algorithms.html">data structures & algorithms</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Suppose we have a set of vectors. We need a data structure for querying nearest neighbor and range searches. kd-tree is a tree where at each level the points are split by a hyperplance according to a coordinate.</p>
+<h2>Construction</h2>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kdtree</span><span class="p">(</span><span class="n">point_list</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">point_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">point_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># assumes all points have the same dimension</span>
+    <span class="c1"># Select axis based on depth so that axis cycles through all valid values</span>
+    <span class="n">axis</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">%</span> <span class="n">k</span>
+
+    <span class="c1"># Sort point list by axis and choose median as pivot element</span>
+    <span class="n">point_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="n">axis</span><span class="p">))</span>  <span class="c1"># can be found in O(n), see &quot;Selection algorithms&quot;</span>
+    <span class="n">median</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">point_list</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="c1"># Create node and construct subtrees</span>
+    <span class="k">return</span> <span class="n">Node</span><span class="p">(</span>
+        <span class="n">location</span><span class="o">=</span><span class="n">point_list</span><span class="p">[</span><span class="n">median</span><span class="p">],</span>
+        <span class="n">left_child</span><span class="o">=</span><span class="n">kdtree</span><span class="p">(</span><span class="n">point_list</span><span class="p">[:</span><span class="n">median</span><span class="p">],</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">right_child</span><span class="o">=</span><span class="n">kdtree</span><span class="p">(</span><span class="n">point_list</span><span class="p">[</span><span class="n">median</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:],</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+<p>Complexity: <span class="math">\(O(n \log n)\)</span> if median is found using an algorithm of <span class="math">\(O(n)\)</span> complexity.</p>
+<h2>Adding elements</h2>
+<p>To add an element, traverse the tree until you reach a leaf node. Add the point either as the left or right child node, according to how the space must be split.</p>
+<p>Complexity: <span class="math">\(O(\log n)\)</span>.</p>
+<h2>Removing elements</h2>
+<p>To remove a point first we locate the node containing the target point. An obvious way to remove the point is to retrieve all points in subtrees of the node and recreate that part of the tree. However this can be costly if the point to be removed is located high in the tree.</p>
+<p>Another way is to replace the target point with another point, say p, in the tree. Then recursively remove the point p from the tree. How to find the suitable replacement point that does not invalidate the properties of the tree? The answer is to look at the right subtree and get the point with the maximum coordinate. If right subtree is empty, do similar with the left subtree, find a point with the minimum coordinate.</p>
+<p>Complexity: <span class="math">\(O(\log n)\)</span>.</p>
+<h2>Nearest neighbor search</h2>
+<p>To find the nearest neighbor to a given input point we traverse the tree once. As we visit nodes, we keep record of the <em>current best</em>, that is nearest point found so far. At each node we proceed by choosing the subspace that the input point fall into. However, the nearest neighbor could be located on the other subspace. To solve this we consider a hypersphere around the input point with radius equal to the distance to the current nearest point. If the hypersphere crosses the hyperplane we recursively search both subspaces. Otherwise we only search the current subspace.</p>
+<p>Complexity: <span class="math">\(O(n \log n)\)</span>.</p>
+<h2>Range search</h2>
+<p><img alt="range search with kd-tree" src="/images/kd-tree-range-search.png"></p>
+<p>Complexity: <span class="math">\(O(n^{1 - 1/k} + a)\)</span> where <span class="math">\(a\)</span> is the result size.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div><!-- /.entry-content -->
+</section>
+        <a href="#top" class="js-scroll-top"> top </a> 
+        <footer id="contentinfo" class="body">
+            <address id="about" class="vcard body">
+            Powered by <a href="https://getpelican.com/">Pelican</a>,
+            Theme adapted from <a href="https://github.com/matuzo/matuzoat/">matuzo</a>.
+            </address><!-- /#about -->
+            <!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

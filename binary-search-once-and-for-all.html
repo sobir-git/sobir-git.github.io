@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
-        <link href="/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
+        <link href="/feeds/data-structures-algorithms.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/theme/css/rdark.css" />
@@ -33,7 +33,8 @@
                 <h1><a href="/">My Notes</a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-            <li class="active"><a href="/category/misc.html">misc</a></li>
+            <li class="active"><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
+            <li><a href="/category/misc.html">misc</a></li>
             <li><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
         </ul></nav><!-- /#menu -->
 <section id="content" class="body">
@@ -51,14 +52,14 @@
       By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
     </address>
     <div class="category">
-        Category: <a href="/category/misc.html">misc</a>
+        Category: <a href="/category/data-structures-algorithms.html">data structures & algorithms</a>
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
     <p><em>This is inspired by the following <a href="https://youtu.be/tgVSkMA8joQ">youtube tutorial</a>.</em></p>
 <p>Binary search is so intuitive but very tricky to code. I consider two main difficulties:</p>
 <ol>
-<li>Hard to make it converge, many times it falls into an infinite loop.</li>
+<li>Tricky to ensure termination, many times it falls into an infinite loop.</li>
 <li>Knowing exactly <em>what</em> to search.</li>
 </ol>
 <p>The first issue is arithmetical, you have to make sure each time the search interval is <strong>strictly shortening</strong>.</p>

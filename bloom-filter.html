@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" id="top">
 <head>
-          <title>My Notes - Some statistical terms</title>
+          <title>My Notes - Bloom filter</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
-        <link href="/feeds/probability-and-statistics.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
+        <link href="/feeds/data-structures-algorithms.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/theme/css/rdark.css" />
@@ -33,42 +33,58 @@
                 <h1><a href="/">My Notes</a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-            <li><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
+            <li class="active"><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
             <li><a href="/category/misc.html">misc</a></li>
-            <li class="active"><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
+            <li><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
         </ul></nav><!-- /#menu -->
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/some-statistical-terms.html" rel="bookmark"
-         title="Permalink to Some statistical terms">Some statistical terms</a></h2>
+      <a href="/bloom-filter.html" rel="bookmark"
+         title="Permalink to Bloom filter">Bloom filter</a></h2>
  
   </header>
   <footer class="post-info">
-    <time class="published" datetime="2021-05-01T00:00:00+03:00">
-      Sat 01 May 2021
+    <time class="published" datetime="2021-05-09T00:00:00+03:00">
+      Sun 09 May 2021
     </time>
     <address class="vcard author">
       By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
     </address>
     <div class="category">
-        Category: <a href="/category/probability-and-statistics.html">probability and statistics</a>
+        Category: <a href="/category/data-structures-algorithms.html">data structures & algorithms</a>
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <h3>Joint probability distribution function</h3>
-<p>It characterizes the probability of a random vector in its domain.
-So, for a random vector <span class="math">\(X \in R^n\)</span>, it is a function 
+    <h2>Idea</h2>
+<p>How sets are implemented? They are usually implemented using hash tables with dummy values. An important function of a set is know whether an element is present or not. From computational perspective this includes comparison operation between the query element and the value stored. However, when the number of elements is too large, it may not be stored in memory, but only in disk which is costly to read. It is very beneficial if we could early on tell if an does not exist in the set, and avoid disk access. This is the idea of Bloom filters: sometimes they can tell you exactly when an element does not exist. This is a probabilistic data structure.</p>
+<h2>Algorithm</h2>
+<h3>Start simple, <span class="math">\(k = 1\)</span></h3>
+<p>Let's start with a basic idea. What if we use a hash function maps the set element to integer indices in range <span class="math">\(1..m\)</span>? Then, we could maintain a bit-array of size <span class="math">\(m\)</span> so that for each element in the set the corresponding position in the bit-array is marked as 1. Collisions can happen: two or more elements can be mapped to the same position by the hash function. However, for values that are not elements of the set, their hashes may correspond to 0-valued positions in the bit-array, thus, letting us know early on that they don't belong to set. In other words, we would have no false negatives. False positives are still possible, when the hash of a non-element value collides with some elements in the set. In this case we have to go the usual way of set operations are done. </p>
+<h3>Going further, <span class="math">\(k &gt; 1\)</span></h3>
+<p>The idea is still valid, and more powerful if we let <span class="math">\(k &gt; 1\)</span>. In other words we use <span class="math">\(k\)</span> different hash functions. On one side, they increase saturation of bit-array. On the other hand, for a non-element value they can increase the probability that one of the hash values maps to 0-valued position in the bit-array, which tells us that the element does not exist in the set. </p>
+<p><img alt="bloom filter" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Bloom_filter.svg"></p>
+<h3>Some math and optimal <span class="math">\(k\)</span></h3>
+<p>The <a href="https://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives">wikipedia article</a> presents the <strong>probability of false positives</strong>:
 </p>
-<div class="math">$$f_X: R^n \to [0, \inf) .$$</div>
-<p>
-Computing the integral over the support region should result in <span class="math">\(1\)</span>.</p>
-<p>There is another term called <em>joint distribution function</em> which is a synonym to <em>joint cumulative distribution function</em> (also <em>joint cdf</em>). At a given point <span class="math">\(x\)</span> it gives the probability that all components of <span class="math">\(X\)</span> are smaller than the corresponding component <span class="math">\(x\)</span>.</p>
-<h3>Marginal distribution function</h3>
-<p>For a random vector, it is the probability of one of its components. 
-So, for a random vector <span class="math">\(X \in R^n\)</span> and its component <span class="math">\(X_i\)</span>, it is a function 
+<div class="math">$$
+\epsilon =\left(1-\left[1-{\frac {1}{m}}\right]^{kn}\right)^{k}
+\approx \left(1-e^{-kn/m}\right)^{k}
+$$</div>
+<p>where <span class="math">\(n\)</span> is the number of elements in the set.</p>
+<p>The <strong>optimal number of hash functions</strong>, <span class="math">\(k\)</span>, for fixed values of <span class="math">\(n\)</span> and <span class="math">\(m\)</span> is given as
 </p>
-<div class="math">$$f_{X_i}: R \to [0, \inf) .$$</div>
+<div class="math">$$
+k = \frac{m}{n}\ln 2
+$$</div>
+<h2>Pros and cons:</h2>
+<ul>
+<li>Space efficient. The memory it takes is constant irrespective of the number of elements in the set. However false positive rate increases with the number of elements.</li>
+<li>It does not support removing of elements.</li>
+<li>The union operation is fast, consists of bitwise OR operation. Also it is looseless, meaning that the filter produced will be as if it were created from scratch using all elements.</li>
+<li>The intersection operation is also fast, and is done with bitwise AND operation. However, it is loosy, the produced filter has higher false positive rate than if were created from scratch.</li>
+<li>Fast approximation formulas of the size of intersection or union of two sets.</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

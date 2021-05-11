@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" id="top">
 <head>
-          <title>My Notes - Some statistical terms</title>
+          <title>My Notes - Hash tables</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
-        <link href="/feeds/probability-and-statistics.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
+        <link href="/feeds/data-structures-algorithms.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/theme/css/rdark.css" />
@@ -33,42 +33,40 @@
                 <h1><a href="/">My Notes</a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-            <li><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
+            <li class="active"><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
             <li><a href="/category/misc.html">misc</a></li>
-            <li class="active"><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
+            <li><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
         </ul></nav><!-- /#menu -->
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/some-statistical-terms.html" rel="bookmark"
-         title="Permalink to Some statistical terms">Some statistical terms</a></h2>
+      <a href="/hash-tables.html" rel="bookmark"
+         title="Permalink to Hash tables">Hash tables</a></h2>
  
   </header>
   <footer class="post-info">
-    <time class="published" datetime="2021-05-01T00:00:00+03:00">
-      Sat 01 May 2021
+    <time class="published" datetime="2021-05-09T00:00:00+03:00">
+      Sun 09 May 2021
     </time>
     <address class="vcard author">
       By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
     </address>
     <div class="category">
-        Category: <a href="/category/probability-and-statistics.html">probability and statistics</a>
+        Category: <a href="/category/data-structures-algorithms.html">data structures & algorithms</a>
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <h3>Joint probability distribution function</h3>
-<p>It characterizes the probability of a random vector in its domain.
-So, for a random vector <span class="math">\(X \in R^n\)</span>, it is a function 
-</p>
-<div class="math">$$f_X: R^n \to [0, \inf) .$$</div>
-<p>
-Computing the integral over the support region should result in <span class="math">\(1\)</span>.</p>
-<p>There is another term called <em>joint distribution function</em> which is a synonym to <em>joint cumulative distribution function</em> (also <em>joint cdf</em>). At a given point <span class="math">\(x\)</span> it gives the probability that all components of <span class="math">\(X\)</span> are smaller than the corresponding component <span class="math">\(x\)</span>.</p>
-<h3>Marginal distribution function</h3>
-<p>For a random vector, it is the probability of one of its components. 
-So, for a random vector <span class="math">\(X \in R^n\)</span> and its component <span class="math">\(X_i\)</span>, it is a function 
-</p>
-<div class="math">$$f_{X_i}: R \to [0, \inf) .$$</div>
+    <p>Hash tables are there to implement <strong>dictionary (map) data structure</strong>, mapping keys to values.</p>
+<p>For computers the more native structure is array. Locating elements are easy because they have integer indices that can be mapped to precise memory locations.</p>
+<p>But in order to create artibrary mapping with any type of key one must decide how those keys should be mapped to integer values. One has to decide the maximum size of index. A hash function is a function that maps key to integer index:</p>
+<div class="highlight"><pre><span></span><code>index = f(key, array_size)
+</code></pre></div>
+
+<p>Hash functions generally output very large numbers, and their output is reduced to something no more that array_size by module operation.</p>
+<p>Good hash functions are those that produce uniform outputs. The less uniform their outputs are, the more collisions occur.</p>
+<p><strong>Load factor</strong> is very important metric: <span class="math">\(n / k\)</span>, where <span class="math">\(n\)</span> is the number of occupied entries and <span class="math">\(k\)</span> is the bucket size. The larger the bucket size, the less collisions there be, but the more space is required. Another important statistic is variance of number of entries per bucket. Of cource less variance is better, and an optimal case is where all buckets contains at most one entry. As the load factor increases, the hash tables becomes slow. </p>
+<p>So, how <strong>collisions are resolved</strong>? Two or more keys can be mapped to the same bucket. Therefore it is inevitable to store multiple key, value pairs in each bucket. Often a simple data structure like <strong>linked list</strong> is used to solve this. However, there are tons of other methods that are good in particular situations depending on the number of entries and buckets, and in terms of space or performance.</p>
+<p><strong>Can the number of buckets be increased?</strong> It's called <strong>dynamic resizing</strong>. Yes it can be increased but it requires to move existing entries around, <em>rehashing</em>. Resizing is sometimes triggered automatically when the load factor exceed some threshold. Shrinking is also possible for the purpose of reducing wasted space by empty buckets. </p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

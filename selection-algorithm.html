@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" id="top">
 <head>
-          <title>My Notes - Some statistical terms</title>
+          <title>My Notes - Selection algorithm</title>
         <meta charset="utf-8" />
         <meta name="generator" content="Pelican" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Full Atom Feed" />
-        <link href="/feeds/probability-and-statistics.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
+        <link href="/feeds/data-structures-algorithms.atom.xml" type="application/atom+xml" rel="alternate" title="My Notes Categories Atom Feed" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/theme/css/rdark.css" />
@@ -33,42 +33,40 @@
                 <h1><a href="/">My Notes</a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-            <li><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
+            <li class="active"><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
             <li><a href="/category/misc.html">misc</a></li>
-            <li class="active"><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
+            <li><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
         </ul></nav><!-- /#menu -->
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/some-statistical-terms.html" rel="bookmark"
-         title="Permalink to Some statistical terms">Some statistical terms</a></h2>
+      <a href="/selection-algorithm.html" rel="bookmark"
+         title="Permalink to Selection algorithm">Selection algorithm</a></h2>
  
   </header>
   <footer class="post-info">
-    <time class="published" datetime="2021-05-01T00:00:00+03:00">
-      Sat 01 May 2021
+    <time class="published" datetime="2021-05-10T00:00:00+03:00">
+      Mon 10 May 2021
     </time>
     <address class="vcard author">
       By           <a class="url fn" href="/author/sobir-bobiev.html">Sobir Bobiev</a>
     </address>
     <div class="category">
-        Category: <a href="/category/probability-and-statistics.html">probability and statistics</a>
+        Category: <a href="/category/data-structures-algorithms.html">data structures & algorithms</a>
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <h3>Joint probability distribution function</h3>
-<p>It characterizes the probability of a random vector in its domain.
-So, for a random vector <span class="math">\(X \in R^n\)</span>, it is a function 
+    <p><strong>Selection algorithm is an algorithm for finding k-th smallest element in an array.</strong> An inefficient implementation is to sort the array and return the k-th element, which has <span class="math">\(O(n \log n)\)</span> time complexity. However, there exists selection algorithms with O(n) worst-case complexity. </p>
+<h2>Quickselect</h2>
+<p>The best known selection algorithm is known as <strong>Quickselect</strong>. It works like quicksort, using divide and conquer method. Its complexity is on average linear but worst case is quadratic, which depends on the pivot selecting strategy. Good pivots are those that divide the array into approximately equal parts, such as median, however this they can not be efficiently computed. </p>
+<h2>Median of medians</h2>
+<p>One famous algorithm for finding <em>aproximate median</em> is called <strong>median of medians</strong>. It partitions the array into parts having at most 5 elements, and computes the median of each partition. It then recurses with <span class="math">\(n/5\)</span> medians. It has <strong>linear time complexity</strong> as such: 
 </p>
-<div class="math">$$f_X: R^n \to [0, \inf) .$$</div>
+<div class="math">$$
+n + n/5 + n/5^2 + \ldots = cn
+$$</div>
 <p>
-Computing the integral over the support region should result in <span class="math">\(1\)</span>.</p>
-<p>There is another term called <em>joint distribution function</em> which is a synonym to <em>joint cumulative distribution function</em> (also <em>joint cdf</em>). At a given point <span class="math">\(x\)</span> it gives the probability that all components of <span class="math">\(X\)</span> are smaller than the corresponding component <span class="math">\(x\)</span>.</p>
-<h3>Marginal distribution function</h3>
-<p>For a random vector, it is the probability of one of its components. 
-So, for a random vector <span class="math">\(X \in R^n\)</span> and its component <span class="math">\(X_i\)</span>, it is a function 
-</p>
-<div class="math">$$f_{X_i}: R \to [0, \inf) .$$</div>
+for some constant <span class="math">\(c\)</span>.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
