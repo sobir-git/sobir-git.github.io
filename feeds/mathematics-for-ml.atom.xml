@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My Notes - mathematics-for-ML</title><link href="/" rel="alternate"></link><link href="/feeds/mathematics-for-ml.atom.xml" rel="self"></link><id>/</id><updated>2023-01-28T00:00:00+03:00</updated><entry><title>Mathematics for Machine Learning</title><link href="/mathematics-for-machine-learning.html" rel="alternate"></link><published>2023-01-28T00:00:00+03:00</published><updated>2023-01-28T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2023-01-28:/mathematics-for-machine-learning.html</id><content type="html">&lt;!-- status: draft --&gt;
+
+&lt;p&gt;I am starting this series as I  want to work on my maths skills for machine learning.&lt;/p&gt;</content><category term="mathematics-for-ML"></category></entry></feed>

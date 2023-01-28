@@ -60,8 +60,7 @@ h2 {
 }
 
 li code,
-/*p code */
-{
+p code {
   background: rgb(28, 78, 108);
   border-radius: 3px;
   color: rgb(255, 255, 255);
@@ -222,6 +221,46 @@ blockquote {
 
 /* The rest is mine */
 
+pre {
+    margin: 2em 1em 2em 4em;
+    white-space: pre-wrap;
+}
+
+
+#content ol {
+  list-style-type: none;
+}
+
+
+#post-list {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding-left: 0px;
+}
+
+
+#content .published {
+  font-style: italic;
+  font-size: 0.75em;
+}
+
+#content {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  display: block;
+}
+
+#post-list .entry-content * {
+  font-size: 100%;
+}
+
+
+#about {
+  font-size: 75%;
+  text-align: center;
+}
+
+
 
 /* CODE*/
 
@@ -250,18 +289,20 @@ pre {
 /* Code blocks */
 pre {
   border-left: 2rem solid hsl(186, 56%, 48%);
-  margin: 1em 0;
+  margin: 2.25rem 0;
   overflow: auto;
-  padding: 1.5em;
-  background: rgb(18, 44, 81, 0.4);
+  padding: 2rem;
+  background: rgb(21, 58, 81, 0.5);
+
 }
 
 /* Inline code */
 :not(pre) > code {
-  padding: 0.2em;
-  border-radius: 0.2em;
+  padding: 0.1em;
+  border-radius: 0.3em;
   white-space: normal;
   background: rgb(21, 58, 81);
+  
 }
 
 @media screen and (-ms-high-contrast: active) {
@@ -277,54 +318,3 @@ pre {
   }
 }
 
-
-@media (max-width:768px){
-  pre {
-    border: 0;
-  }
-}
-
-
-/* More */
-
-
-#post-list {
-    margin-bottom: 1em;
-    margin-top: 1em;
-    padding-left: 0px;
-    list-style-type: none;
-}
-
-
-#content .published {
-  font-style: italic;
-  font-size: 0.75em;
-}
-
-#content {
-  background: rgba(255, 255, 255, 0.7);
-  padding: 1rem;
-  display: block;
-}
-
-#post-list .entry-content * {
-  font-size: 100%;
-}
-
-#about {
-  font-size: 75%;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  #content {
-      padding: 2rem;
-  }
-}
-
-.h_iframe iframe, .h_iframe {
-    height: 100%;
-    width:100%;
-    overflow: scroll;
-    
-}

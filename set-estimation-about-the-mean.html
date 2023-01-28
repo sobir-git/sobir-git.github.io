@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="top">
+<html lang="english">
 <head>
           <title>My Notes - Set estimation about the mean</title>
         <meta charset="utf-8" />
@@ -33,7 +33,7 @@
                 <h1><a href="/">My Notes</a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-            <li><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
+            <li><a href="/category/mathematics-for-ml.html">mathematics-for-ML</a></li>
             <li><a href="/category/misc.html">misc</a></li>
             <li class="active"><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
         </ul></nav><!-- /#menu -->
@@ -56,118 +56,44 @@
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>Suppose there's a <strong>normal distribution</strong> with mean <span class="math">\(\mu\)</span> and variance <span class="math">\(\sigma^2\)</span> in Wonderland. No one has seen it. But some samples have been fallen accidentally:
-</p>
-<div class="math">$$
+    <p>Suppose there's a <strong>normal distribution</strong> with mean $\mu$ and variance $\sigma^2$ in Wonderland. No one has seen it. But some samples have been fallen accidentally:
+$$
 X_1, X_2, \ldots, X_n
-$$</div>
-<p>Out task is to come up with a good <strong>interval estimate</strong> for mean <span class="math">\(\mu\)</span>. For variance? - Later...</p>
+$$</p>
+<p>Out task is to come up with a good <strong>interval estimate</strong> for mean $\mu$. For variance? - Later...</p>
 <p>Few things to note ahead. The <strong>point estimate for the mean</strong> is 
-</p>
-<div class="math">$$\overline{X_n} = \frac{1}{n}\sum_{i=1}^n X_i$$</div>
-<p>. </p>
+$$\overline{X_n} = \frac{1}{n}\sum_{i=1}^n X_i$$. </p>
 <p>The <strong>point estimate for the variance</strong>, or the <strong>adjusted sample variance</strong>, if needed, is 
-</p>
-<div class="math">$$s_n^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \overline{X_n})^2$$</div>
+$$s_n = \frac{1}{n-1}\sum_{i=1}^n (X_i - \overline{X_n})^2$$</p>
 <h2>When variance is "known"</h2>
 <p>Don't pay attention to what is known or not. It's just wording. What matters is the math that follows.</p>
 <p>Let the interval estimate be
-</p>
-<div class="math">$$
+$$
 T_n = \left[ \overline{X_n} - \sqrt{\frac{\sigma^2}{n}}z, \overline{X_n} + \sqrt{\frac{\sigma^2}{n}}z \right]
-$$</div>
-<p>where <span class="math">\(z &gt; 0\)</span> and is a constant. Then, what is the <strong>coverage probability</strong> of <span class="math">\(T_n\)</span>?
-</p>
-<div class="math">$$
+$$</p>
+<p>where $z &gt; 0$ and is a constant. Then, what is the <strong>coverage probability</strong> of $T_n$?
+$$
 C(T_n, \mu) = P(\mu \in T_n) = P(-z &lt; Z &lt; z)
-$$</div>
-<p>
-where <span class="math">\(Z\)</span> is standard normal random variable. We are done!</p>
+$$
+where $Z$ is standard normal random variable. We are done!</p>
 <h2>When variance is "unknown"</h2>
-<p>The point of "knowing" is whether you can use that knowledge in constructing your estimate. So here, we use sample variance <span class="math">\(s_n^2\)</span> instead of <span class="math">\(\sigma\)</span> (population variance).</p>
+<p>The point of "knowing" is whether you can use that knowledge in constructing your estimate. So here, we use sample variance $s_n^2$ instead of $\sigma$ (population variance).</p>
 <p>Let the interval estimate be
-</p>
-<div class="math">$$
+$$
 T_n = \left[ \overline{X_n} - \sqrt{\frac{s_n^2}{n}}z, \overline{X_n} + \sqrt{\frac{s_n^2}{n}}z \right]
-$$</div>
-<p>where <span class="math">\(z &gt; 0\)</span> and is a constant. Then, what is the <strong>coverage probability</strong> of <span class="math">\(T_n\)</span>?
-</p>
-<div class="math">$$
+$$</p>
+<p>where $z &gt; 0$ and is a constant. Then, what is the <strong>coverage probability</strong> of $T_n$?
+$$
 C(T_n, \mu) = P(\mu \in T_n) = P(-z &lt; Z_{n-1} &lt; z)
-$$</div>
-<p>
-where <span class="math">\(Z_{n-1}\)</span> is a standard Student's t random variable with <span class="math">\(n-1\)</span> degrees of freedom. We are done!</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
+$$
+where $Z_{n-1}$ is a standard Student's t random variable with $n-1$ degrees of freedom. We are done!</p>
   </div><!-- /.entry-content -->
 </section>
-        <a href="#top" class="js-scroll-top"> top </a> 
         <footer id="contentinfo" class="body">
-            <address id="about" class="vcard body">
-            Powered by <a href="https://getpelican.com/">Pelican</a>,
-            Theme adapted from <a href="https://github.com/matuzo/matuzoat/">matuzo</a>.
-            </address><!-- /#about -->
-            <!-- /#about -->
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
         </footer><!-- /#contentinfo -->
 </body>
 </html>

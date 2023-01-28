@@ -1,1218 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>My Notes</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2021-05-10T00:00:00+03:00</updated><entry><title>Selection algorithm</title><link href="/selection-algorithm.html" rel="alternate"></link><published>2021-05-10T00:00:00+03:00</published><updated>2021-05-10T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-10:/selection-algorithm.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Selection algorithm is an algorithm for finding k-th smallest element in an array.&lt;/strong&gt; An inefficient implementation is to sort the array and return the k-th element, which has &lt;span class="math"&gt;\(O(n \log n)\)&lt;/span&gt; time complexity. However, there exists selection algorithms with O(n) worst-case complexity. &lt;/p&gt;
-&lt;h2&gt;Quickselect&lt;/h2&gt;
-&lt;p&gt;The best known selection algorithm …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Selection algorithm is an algorithm for finding k-th smallest element in an array.&lt;/strong&gt; An inefficient implementation is to sort the array and return the k-th element, which has &lt;span class="math"&gt;\(O(n \log n)\)&lt;/span&gt; time complexity. However, there exists selection algorithms with O(n) worst-case complexity. &lt;/p&gt;
-&lt;h2&gt;Quickselect&lt;/h2&gt;
-&lt;p&gt;The best known selection algorithm is known as &lt;strong&gt;Quickselect&lt;/strong&gt;. It works like quicksort, using divide and conquer method. Its complexity is on average linear but worst case is quadratic, which depends on the pivot selecting strategy. Good pivots are those that divide the array into approximately equal parts, such as median, however this they can not be efficiently computed. &lt;/p&gt;
-&lt;h2&gt;Median of medians&lt;/h2&gt;
-&lt;p&gt;One famous algorithm for finding &lt;em&gt;aproximate median&lt;/em&gt; is called &lt;strong&gt;median of medians&lt;/strong&gt;. It partitions the array into parts having at most 5 elements, and computes the median of each partition. It then recurses with &lt;span class="math"&gt;\(n/5\)&lt;/span&gt; medians. It has &lt;strong&gt;linear time complexity&lt;/strong&gt; as such: 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-n + n/5 + n/5^2 + \ldots = cn
-$$&lt;/div&gt;
-&lt;p&gt;
-for some constant &lt;span class="math"&gt;\(c\)&lt;/span&gt;.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
+<feed xmlns="http://www.w3.org/2005/Atom"><title>My Notes</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2023-01-28T00:00:00+03:00</updated><entry><title>Mathematics for Machine Learning</title><link href="/mathematics-for-machine-learning.html" rel="alternate"></link><published>2023-01-28T00:00:00+03:00</published><updated>2023-01-28T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2023-01-28:/mathematics-for-machine-learning.html</id><content type="html">&lt;!-- status: draft --&gt;
 
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="data structures &amp; algorithms"></category></entry><entry><title>Sorting</title><link href="/sorting.html" rel="alternate"></link><published>2021-05-10T00:00:00+03:00</published><updated>2021-05-10T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-10:/sorting.html</id><summary type="html">&lt;h2&gt;Quicksort 0&lt;/h2&gt;
-&lt;p&gt;As an inspiration, this is a very beatiful implementation of quicksort. However not so efficient.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;partition&lt;/code&gt; procedure maintains a pointer &lt;code&gt;i&lt;/code&gt; for which all elements &lt;code&gt;A[0 .. i - 1] &amp;lt; pivot&lt;/code&gt;.
-At the end, it correctly places &lt;code&gt;pivot&lt;/code&gt; in position &lt;code&gt;A[i]&lt;/code&gt; by swapping.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;algorithm quicksort(A, lo, hi …&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;Quicksort 0&lt;/h2&gt;
-&lt;p&gt;As an inspiration, this is a very beatiful implementation of quicksort. However not so efficient.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;partition&lt;/code&gt; procedure maintains a pointer &lt;code&gt;i&lt;/code&gt; for which all elements &lt;code&gt;A[0 .. i - 1] &amp;lt; pivot&lt;/code&gt;.
-At the end, it correctly places &lt;code&gt;pivot&lt;/code&gt; in position &lt;code&gt;A[i]&lt;/code&gt; by swapping.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;algorithm quicksort(A, lo, hi) is
-    if lo &amp;lt; hi then
-        p := partition(A, lo, hi)
-        quicksort(A, lo, p - 1)
-        quicksort(A, p + 1, hi)
-
-algorithm partition(A, lo, hi) is
-    pivot := A[hi]
-    i := lo
-    for j := lo to hi do
-        if A[j] &amp;lt; pivot then
-            swap A[i] with A[j]
-            i := i + 1
-    swap A[i] with A[hi]
-    return i
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2&gt;Quicksort 1&lt;/h2&gt;
-&lt;p&gt;This is the original implementation by Hoare&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;algorithm quicksort(A, lo, hi) is
-    if lo &amp;lt; hi then
-        p := partition(A, lo, hi)
-        quicksort(A, lo, p)
-        quicksort(A, p + 1, hi)
-
-algorithm partition(A, lo, hi) is
-    pivot := A[ floor((hi + lo) / 2) ]
-    i := lo - 1
-    j := hi + 1
-    loop forever
-        do
-            i := i + 1
-        while A[i] &amp;lt; pivot
-        do
-            j := j - 1
-        while A[j] &amp;gt; pivot
-        if i ≥ j then
-            return j
-        swap A[i] with A[j]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;compared to previous implementation this does less swap operations.&lt;/p&gt;
-&lt;h2&gt;Partition schemes&lt;/h2&gt;
-&lt;p&gt;As you have noticed different implementations differ by their partition schemes, that is how they partition the array into two subarrays where all elements in the first subarray are no greater than the elements in the second subarray. The algorithm proceeds recursively to sort each of the subarrays. What stands between the subarrays is &lt;em&gt;pivot&lt;/em&gt;. Some implementations choose pivot as the first or last or middle or median element of the array. &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Choices of pivot:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The best pivot is &lt;strong&gt;median&lt;/strong&gt;, but it's often inefficient to compute.&lt;/li&gt;
-&lt;li&gt;Pivot as &lt;strong&gt;first or last element&lt;/strong&gt; produces worst case &lt;span class="math"&gt;\(O(n^2)\)&lt;/span&gt; runtime when the array is already sorted. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Random pivots&lt;/strong&gt; are a good choice.&lt;/li&gt;
-&lt;li&gt;Pivot as the &lt;strong&gt;median of the first, middle and last element&lt;/strong&gt; not only eliminates worst case runtime for already sorted arrays but turns them into best cases.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Questions to consider:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;What happens when all elements are equal?&lt;/li&gt;
-&lt;li&gt;What happens when multiple elements are equal to the pivot?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="data structures &amp; algorithms"></category></entry><entry><title>Bloom filter</title><link href="/bloom-filter.html" rel="alternate"></link><published>2021-05-09T00:00:00+03:00</published><updated>2021-05-09T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-09:/bloom-filter.html</id><summary type="html">&lt;h2&gt;Idea&lt;/h2&gt;
-&lt;p&gt;How sets are implemented? They are usually implemented using hash tables with dummy values. An important function of a set is know whether an element is present or not. From computational perspective this includes comparison operation between the query element and the value stored. However, when the number of …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Idea&lt;/h2&gt;
-&lt;p&gt;How sets are implemented? They are usually implemented using hash tables with dummy values. An important function of a set is know whether an element is present or not. From computational perspective this includes comparison operation between the query element and the value stored. However, when the number of elements is too large, it may not be stored in memory, but only in disk which is costly to read. It is very beneficial if we could early on tell if an does not exist in the set, and avoid disk access. This is the idea of Bloom filters: sometimes they can tell you exactly when an element does not exist. This is a probabilistic data structure.&lt;/p&gt;
-&lt;h2&gt;Algorithm&lt;/h2&gt;
-&lt;h3&gt;Start simple, &lt;span class="math"&gt;\(k = 1\)&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;Let's start with a basic idea. What if we use a hash function maps the set element to integer indices in range &lt;span class="math"&gt;\(1..m\)&lt;/span&gt;? Then, we could maintain a bit-array of size &lt;span class="math"&gt;\(m\)&lt;/span&gt; so that for each element in the set the corresponding position in the bit-array is marked as 1. Collisions can happen: two or more elements can be mapped to the same position by the hash function. However, for values that are not elements of the set, their hashes may correspond to 0-valued positions in the bit-array, thus, letting us know early on that they don't belong to set. In other words, we would have no false negatives. False positives are still possible, when the hash of a non-element value collides with some elements in the set. In this case we have to go the usual way of set operations are done. &lt;/p&gt;
-&lt;h3&gt;Going further, &lt;span class="math"&gt;\(k &amp;gt; 1\)&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;The idea is still valid, and more powerful if we let &lt;span class="math"&gt;\(k &amp;gt; 1\)&lt;/span&gt;. In other words we use &lt;span class="math"&gt;\(k\)&lt;/span&gt; different hash functions. On one side, they increase saturation of bit-array. On the other hand, for a non-element value they can increase the probability that one of the hash values maps to 0-valued position in the bit-array, which tells us that the element does not exist in the set. &lt;/p&gt;
-&lt;p&gt;&lt;img alt="bloom filter" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Bloom_filter.svg"&gt;&lt;/p&gt;
-&lt;h3&gt;Some math and optimal &lt;span class="math"&gt;\(k\)&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;The &lt;a href="https://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives"&gt;wikipedia article&lt;/a&gt; presents the &lt;strong&gt;probability of false positives&lt;/strong&gt;:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\epsilon =\left(1-\left[1-{\frac {1}{m}}\right]^{kn}\right)^{k}
-\approx \left(1-e^{-kn/m}\right)^{k}
-$$&lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(n\)&lt;/span&gt; is the number of elements in the set.&lt;/p&gt;
-&lt;p&gt;The &lt;strong&gt;optimal number of hash functions&lt;/strong&gt;, &lt;span class="math"&gt;\(k\)&lt;/span&gt;, for fixed values of &lt;span class="math"&gt;\(n\)&lt;/span&gt; and &lt;span class="math"&gt;\(m\)&lt;/span&gt; is given as
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-k = \frac{m}{n}\ln 2
-$$&lt;/div&gt;
-&lt;h2&gt;Pros and cons:&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Space efficient. The memory it takes is constant irrespective of the number of elements in the set. However false positive rate increases with the number of elements.&lt;/li&gt;
-&lt;li&gt;It does not support removing of elements.&lt;/li&gt;
-&lt;li&gt;The union operation is fast, consists of bitwise OR operation. Also it is looseless, meaning that the filter produced will be as if it were created from scratch using all elements.&lt;/li&gt;
-&lt;li&gt;The intersection operation is also fast, and is done with bitwise AND operation. However, it is loosy, the produced filter has higher false positive rate than if were created from scratch.&lt;/li&gt;
-&lt;li&gt;Fast approximation formulas of the size of intersection or union of two sets.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="data structures &amp; algorithms"></category></entry><entry><title>Hash tables</title><link href="/hash-tables.html" rel="alternate"></link><published>2021-05-09T00:00:00+03:00</published><updated>2021-05-09T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-09:/hash-tables.html</id><summary type="html">&lt;p&gt;Hash tables are there to implement &lt;strong&gt;dictionary (map) data structure&lt;/strong&gt;, mapping keys to values.&lt;/p&gt;
-&lt;p&gt;For computers the more native structure is array. Locating elements are easy because they have integer indices that can be mapped to precise memory locations.&lt;/p&gt;
-&lt;p&gt;But in order to create artibrary mapping with any type of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Hash tables are there to implement &lt;strong&gt;dictionary (map) data structure&lt;/strong&gt;, mapping keys to values.&lt;/p&gt;
-&lt;p&gt;For computers the more native structure is array. Locating elements are easy because they have integer indices that can be mapped to precise memory locations.&lt;/p&gt;
-&lt;p&gt;But in order to create artibrary mapping with any type of key one must decide how those keys should be mapped to integer values. One has to decide the maximum size of index. A hash function is a function that maps key to integer index:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;index = f(key, array_size)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Hash functions generally output very large numbers, and their output is reduced to something no more that array_size by module operation.&lt;/p&gt;
-&lt;p&gt;Good hash functions are those that produce uniform outputs. The less uniform their outputs are, the more collisions occur.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Load factor&lt;/strong&gt; is very important metric: &lt;span class="math"&gt;\(n / k\)&lt;/span&gt;, where &lt;span class="math"&gt;\(n\)&lt;/span&gt; is the number of occupied entries and &lt;span class="math"&gt;\(k\)&lt;/span&gt; is the bucket size. The larger the bucket size, the less collisions there be, but the more space is required. Another important statistic is variance of number of entries per bucket. Of cource less variance is better, and an optimal case is where all buckets contains at most one entry. As the load factor increases, the hash tables becomes slow. &lt;/p&gt;
-&lt;p&gt;So, how &lt;strong&gt;collisions are resolved&lt;/strong&gt;? Two or more keys can be mapped to the same bucket. Therefore it is inevitable to store multiple key, value pairs in each bucket. Often a simple data structure like &lt;strong&gt;linked list&lt;/strong&gt; is used to solve this. However, there are tons of other methods that are good in particular situations depending on the number of entries and buckets, and in terms of space or performance.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Can the number of buckets be increased?&lt;/strong&gt; It's called &lt;strong&gt;dynamic resizing&lt;/strong&gt;. Yes it can be increased but it requires to move existing entries around, &lt;em&gt;rehashing&lt;/em&gt;. Resizing is sometimes triggered automatically when the load factor exceed some threshold. Shrinking is also possible for the purpose of reducing wasted space by empty buckets. &lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="data structures &amp; algorithms"></category></entry><entry><title>K-d trees</title><link href="/k-d-trees.html" rel="alternate"></link><published>2021-05-09T00:00:00+03:00</published><updated>2021-05-09T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-09:/k-d-trees.html</id><summary type="html">&lt;p&gt;Suppose we have a set of vectors. We need a data structure for querying nearest neighbor and range searches. kd-tree is a tree where at each level the points are split by a hyperplance according to a coordinate.&lt;/p&gt;
-&lt;h2&gt;Construction&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;kdtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;depth&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;None …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Suppose we have a set of vectors. We need a data structure for querying nearest neighbor and range searches. kd-tree is a tree where at each level the points are split by a hyperplance according to a coordinate.&lt;/p&gt;
-&lt;h2&gt;Construction&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;kdtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;depth&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
-
-    &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;  &lt;span class="c1"&gt;# assumes all points have the same dimension&lt;/span&gt;
-    &lt;span class="c1"&gt;# Select axis based on depth so that axis cycles through all valid values&lt;/span&gt;
-    &lt;span class="n"&gt;axis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;depth&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Sort point list by axis and choose median as pivot element&lt;/span&gt;
-    &lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;itemgetter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;  &lt;span class="c1"&gt;# can be found in O(n), see &amp;quot;Selection algorithms&amp;quot;&lt;/span&gt;
-    &lt;span class="n"&gt;median&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Create node and construct subtrees&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="n"&gt;location&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;median&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-        &lt;span class="n"&gt;left_child&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;kdtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="n"&gt;median&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;depth&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-        &lt;span class="n"&gt;right_child&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;kdtree&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point_list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;median&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;:],&lt;/span&gt; &lt;span class="n"&gt;depth&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Complexity: &lt;span class="math"&gt;\(O(n \log n)\)&lt;/span&gt; if median is found using an algorithm of &lt;span class="math"&gt;\(O(n)\)&lt;/span&gt; complexity.&lt;/p&gt;
-&lt;h2&gt;Adding elements&lt;/h2&gt;
-&lt;p&gt;To add an element, traverse the tree until you reach a leaf node. Add the point either as the left or right child node, according to how the space must be split.&lt;/p&gt;
-&lt;p&gt;Complexity: &lt;span class="math"&gt;\(O(\log n)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;h2&gt;Removing elements&lt;/h2&gt;
-&lt;p&gt;To remove a point first we locate the node containing the target point. An obvious way to remove the point is to retrieve all points in subtrees of the node and recreate that part of the tree. However this can be costly if the point to be removed is located high in the tree.&lt;/p&gt;
-&lt;p&gt;Another way is to replace the target point with another point, say p, in the tree. Then recursively remove the point p from the tree. How to find the suitable replacement point that does not invalidate the properties of the tree? The answer is to look at the right subtree and get the point with the maximum coordinate. If right subtree is empty, do similar with the left subtree, find a point with the minimum coordinate.&lt;/p&gt;
-&lt;p&gt;Complexity: &lt;span class="math"&gt;\(O(\log n)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;h2&gt;Nearest neighbor search&lt;/h2&gt;
-&lt;p&gt;To find the nearest neighbor to a given input point we traverse the tree once. As we visit nodes, we keep record of the &lt;em&gt;current best&lt;/em&gt;, that is nearest point found so far. At each node we proceed by choosing the subspace that the input point fall into. However, the nearest neighbor could be located on the other subspace. To solve this we consider a hypersphere around the input point with radius equal to the distance to the current nearest point. If the hypersphere crosses the hyperplane we recursively search both subspaces. Otherwise we only search the current subspace.&lt;/p&gt;
-&lt;p&gt;Complexity: &lt;span class="math"&gt;\(O(n \log n)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;h2&gt;Range search&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="range search with kd-tree" src="/images/kd-tree-range-search.png"&gt;&lt;/p&gt;
-&lt;p&gt;Complexity: &lt;span class="math"&gt;\(O(n^{1 - 1/k} + a)\)&lt;/span&gt; where &lt;span class="math"&gt;\(a\)&lt;/span&gt; is the result size.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="data structures &amp; algorithms"></category></entry><entry><title>Do my observations fit the model? Chi-square goodness of fit.</title><link href="/do-my-observations-fit-the-model-chi-square-goodness-of-fit.html" rel="alternate"></link><published>2021-05-07T00:00:00+03:00</published><updated>2021-05-07T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-07:/do-my-observations-fit-the-model-chi-square-goodness-of-fit.html</id><summary type="html">&lt;p&gt;Let &lt;span class="math"&gt;\(X\)&lt;/span&gt; be a categorial variable having &lt;span class="math"&gt;\(r\)&lt;/span&gt; different possible values. Let &lt;span class="math"&gt;\(p_1, p_2, \ldots, p_r\)&lt;/span&gt; be the probabilities of those categories, satisfying &lt;span class="math"&gt;\(\sum_{i=1}^{r} p_i = 1\)&lt;/span&gt;. Let &lt;span class="math"&gt;\(\xi_n = [x_1, x_2, \ldots, x_n]\)&lt;/span&gt; be a set of observations. Let's group the observations by their values: &lt;/p&gt;
-&lt;div class="math"&gt;$$O = [O_1, O_2 …&lt;/div&gt;</summary><content type="html">&lt;p&gt;Let &lt;span class="math"&gt;\(X\)&lt;/span&gt; be a categorial variable having &lt;span class="math"&gt;\(r\)&lt;/span&gt; different possible values. Let &lt;span class="math"&gt;\(p_1, p_2, \ldots, p_r\)&lt;/span&gt; be the probabilities of those categories, satisfying &lt;span class="math"&gt;\(\sum_{i=1}^{r} p_i = 1\)&lt;/span&gt;. Let &lt;span class="math"&gt;\(\xi_n = [x_1, x_2, \ldots, x_n]\)&lt;/span&gt; be a set of observations. Let's group the observations by their values: &lt;/p&gt;
-&lt;div class="math"&gt;$$O = [O_1, O_2, \ldots, O_r], \quad \text{where } \sum_{i=0}^r O_i = n.$$&lt;/div&gt;
-&lt;p&gt;For such a value of &lt;span class="math"&gt;\(n\)&lt;/span&gt;, we can compute the &lt;strong&gt;expected&lt;/strong&gt; number of observations in each category:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$E_i = n p_i \quad \text{for } i = 1..r$$&lt;/div&gt;
-&lt;p&gt;Wait, not only we can compute the expected number in each category, we know exactly what distribution it has, namely, for &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th category it is beta distribution &lt;span class="math"&gt;\(B(n, p_i)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Now consider the expressions &lt;span class="math"&gt;\(\frac{(O_i - E_i)^2}{E_i}\)&lt;/span&gt;. In a way, they measure the amount of deviations the observations have from their expected values. &lt;a href="https://en.wikipedia.org/wiki/Pearson%27s_chi-squared_test"&gt;Pearson&lt;/a&gt; has established that the following test-statistic
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\chi^2 = \sum_{i=1}^r \frac{(O_i - E_i)^2}{E_i}
-$$&lt;/div&gt;
-&lt;p&gt;
-approaches Chi-square distribution with &lt;span class="math"&gt;\(r-1\)&lt;/span&gt; degrees of freedom.&lt;/p&gt;
-&lt;p&gt;Let's manipulate the expression a little bit and gain some intuition.
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\begin{split}
-\chi^2 &amp;amp;= \sum_{i=1}^r \frac{(O_i - E_i)^2}{E_i}
- = \sum_{i=1}^r \frac{(O_i - n p_i)^2}{n p_i} \\
-&amp;amp;= \sum_{i=1}^r \left(\frac{O_i - n p_i}{\sqrt{n p_i}}\right)^2 
- = \sum_{i=1}^r \left(\sqrt{1-p_i}\frac{O_i - n p_i}{\sqrt{n p_i (1-p_i)}} \right)^2 \\
-&amp;amp;= \sum_{i=1}^r (1-p_i)\left(\frac{O_i - n p_i}{\sqrt{n p_i (1-p_i)}} \right)^2 \\
-&amp;amp;= \sum_{i=1}^r (1-p_i)\left(\frac{O_i - E_i}{\sigma_i} \right)^2 
-\end{split} \\
-$$&lt;/div&gt;
-&lt;p&gt;
-where &lt;span class="math"&gt;\(\sigma_i^2\)&lt;/span&gt; is the variance of counts in &lt;span class="math"&gt;\(i\)&lt;/span&gt;-th category (remember the formula for variance of binomial distribution). Note that the expressions under the square approximate a standard normal distribution (using the fact that binomial distribution approximates normal distribution for large enough values of &lt;span class="math"&gt;\(n\)&lt;/span&gt; and non-extreme values of &lt;span class="math"&gt;\(p\)&lt;/span&gt;). If we drop the coefficients &lt;span class="math"&gt;\((1-p_i)\)&lt;/span&gt; we would get something that &lt;strong&gt;approximates Chi-square distribution&lt;/strong&gt; with &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom (remember that chi-square random variable arises from summing a number of independent standard normal random variables). Accounting for coefficients as well, which sum up to &lt;span class="math"&gt;\(\sum(1-p_i) = r-1\)&lt;/span&gt;, it's reasonable to accept that the degrees of freedom must be &lt;span class="math"&gt;\(r-1\)&lt;/span&gt;. &lt;em&gt;This is not a proof at all, rather a helpful intuitive reasoning.&lt;/em&gt; To state it formally, once again
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\sum_{i=1}^r \frac{(O_i - E_i)^2}{E_i} \sim \chi^2(r-1)
-$$&lt;/div&gt;
-&lt;p&gt;Back to our problem, now we have at least an establish test statistic that can help us know how much our observations differ from the mean. This test is famously known as &lt;a href="https://en.wikipedia.org/wiki/Goodness_of_fit#Pearson's_chi-squared_test"&gt;Pearson's chi-squared test&lt;/a&gt;.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Gender and education, hypothesis testing.</title><link href="/gender-and-education-hypothesis-testing.html" rel="alternate"></link><published>2021-05-07T00:00:00+03:00</published><updated>2021-05-07T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-07:/gender-and-education-hypothesis-testing.html</id><summary type="html">&lt;p&gt;&lt;em&gt;The table below, taken from &lt;a href="https://online.stat.psu.edu/statprogram/reviews/statistical-concepts/chi-square-tests"&gt;here&lt;/a&gt;, represents a survey result which asked the subjects of their highest level of education.&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;+--------+-------------+------------+---------+-------+-------+
-|        | High School |  Bachelors | Masters | Ph.d. | Total |
-+--------+-------------+------------+---------+-------+-------+
-| Female |          60 |         54 |      46 |    41 |   201 |
-+--------+-------------+------------+---------+-------+-------+
-| Male   |          40 |         44 |      53 |    57 |   194 |
-+--------+-------------+------------+---------+-------+-------+
-| Total  |         100 |         98 |      99 |    98 |   395 |
-+--------+-------------+------------+---------+-------+-------+
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The question is, &lt;strong&gt;is education …&lt;/strong&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;The table below, taken from &lt;a href="https://online.stat.psu.edu/statprogram/reviews/statistical-concepts/chi-square-tests"&gt;here&lt;/a&gt;, represents a survey result which asked the subjects of their highest level of education.&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;+--------+-------------+------------+---------+-------+-------+
-|        | High School |  Bachelors | Masters | Ph.d. | Total |
-+--------+-------------+------------+---------+-------+-------+
-| Female |          60 |         54 |      46 |    41 |   201 |
-+--------+-------------+------------+---------+-------+-------+
-| Male   |          40 |         44 |      53 |    57 |   194 |
-+--------+-------------+------------+---------+-------+-------+
-| Total  |         100 |         98 |      99 |    98 |   395 |
-+--------+-------------+------------+---------+-------+-------+
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The question is, &lt;strong&gt;is education level and gender dependent&lt;/strong&gt;? &lt;/p&gt;
-&lt;p&gt;Of course in the real world, if you believe in things like butterfly effect, everything is dependent on everything else. However, statistically we want to measure how likely is it to obtain this table given when the variables are independent.&lt;/p&gt;
-&lt;p&gt;The textbook says it has to do with Chi-square test of independence. Let's assume we haven't studied that, and proceed with basic knowledge. Let's state &lt;strong&gt;the hypotheses&lt;/strong&gt;:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\begin{split}
-H_0 &amp;amp;: \text{highest level of education is same regardless of gender}. \\
-H_1 &amp;amp;: H_0 \text{ is false}.
-\end{split}
-$$&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Assuming the null hypothesis&lt;/strong&gt;, what would be the &lt;strong&gt;expected&lt;/strong&gt; table? The expected table is table where the proportions are same for each category. The formula below describes it, i.e. how to compute the expected value for each entry:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$E=\frac{\text{row total}\times\text{column total}}{\text{sample size}}$$&lt;/div&gt;
-&lt;p&gt;The following table is obtained&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;+--------+-------------+------------+---------+--------+-------+
-|        | High School |  Bachelors | Masters | Ph.d.  | Total |
-+--------+-------------+------------+---------+--------+-------+
-| Female |      50.886 |     49.868 |  50.377 | 49.868 |   201 |
-+--------+-------------+------------+---------+--------+-------+
-| Male   |      49.114 |     48.132 |  48.623 | 48.132 |   194 |
-+--------+-------------+------------+---------+--------+-------+
-| Total  |         100 |         98 |      99 |     98 |   395 |
-+--------+-------------+------------+---------+--------+-------+
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;There's something remarkable about the formula above and the table it produces. First, the formula is &lt;strong&gt;symmetric&lt;/strong&gt; in terms of table orientation. Second, the produced table has the following nice property: all row vectors are proportional the column totals vector, and all column vectors are proportional to the row totals vector.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Questions to consider:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;How much is our data deviated from the expected?  This will give us a test statistic.&lt;/li&gt;
-&lt;li&gt;What is the distribution of this deviation metric? In other words what is distribution of test statistic?&lt;/li&gt;
-&lt;li&gt;Is this deviation a coincidence or a strong evidence against the expected table?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Pearson has suggested the following test statistic to be computed over all entries in the table
-&lt;/p&gt;
-&lt;div class="math"&gt;$$\chi^2=\sum(O-E)^2/E$$&lt;/div&gt;
-&lt;p&gt;It is a measure of &lt;a href="https://en.wikipedia.org/wiki/Goodness_of_fit"&gt;goodness of fit&lt;/a&gt;. That is, how much the observation deviates from expectation.
-So, what is its distribution? Hard to make sense of it? In the previous article we have discussed an intuitive grasp of it for one categorical variable, i.e., one row. The difference is that this is a table. The &lt;strong&gt;degrees of freedom&lt;/strong&gt; in this case is said to be &lt;span class="math"&gt;\((\# rows -1)(\# columns -1)\)&lt;/span&gt; &lt;span class="math"&gt;\(= (2-1)(4-1) = 3\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;We conclude by quoting the solution directly from the &lt;a href="https://online.stat.psu.edu/statprogram/reviews/statistical-concepts/chi-square-tests"&gt;source&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;So, working this out, &lt;span class="math"&gt;\(\chi^2= \dfrac{(60−50.886)^2}{50.886} + \cdots + \dfrac{(57 − 48.132)^2}{48.132} = 8.006\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;The critical value of &lt;span class="math"&gt;\(\chi^2\)&lt;/span&gt; with 3 degree of freedom is 7.815. Since 8.006 &amp;gt; 7.815, we reject the null hypothesis and conclude that the education level depends on gender at a 5% level of significance.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I hope that from now on we able to perform test of indepence using Pearson's chi-squared test-statistic.&lt;/p&gt;
-&lt;p&gt;To learn more about Chi-squared goodness of fit tests, read &lt;a href="https://online.stat.psu.edu/stat415/"&gt;this excellent resource&lt;/a&gt;, chapters 16 and 17.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Alena's dogs</title><link href="/alenas-dogs.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/alenas-dogs.html</id><summary type="html">&lt;p&gt;&lt;em&gt;The following is a discussion of a problem in hypothesis testing, presented in Khan Academy &lt;a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations"&gt;here&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The problem description starts like this:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Alena has a pair of dogs, and she noticed they usually breed more male puppies than females. To check that, she bred them again and obtained 15 puppies …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;The following is a discussion of a problem in hypothesis testing, presented in Khan Academy &lt;a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations"&gt;here&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The problem description starts like this:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Alena has a pair of dogs, and she noticed they usually breed more male puppies than females. To check that, she bred them again and obtained 15 puppies, and 13 of them were males.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Now, is that a coincidence that her dogs breed more males than females?&lt;/p&gt;
-&lt;p&gt;Let's assume the &lt;strong&gt;null hypothesis&lt;/strong&gt;: &lt;span class="math"&gt;\(50\%\)&lt;/span&gt; of the time her dogs breed males.
-&lt;strong&gt;Alternative hypothesis&lt;/strong&gt;: more than &lt;span class="math"&gt;\(50\%\)&lt;/span&gt; of the time her dogs breed males.&lt;/p&gt;
-&lt;p&gt;More formally, let &lt;span class="math"&gt;\(p\)&lt;/span&gt; be the true probability of her dogs breeding male. Then
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\begin{align}
-H_0 &amp;amp;:  p = 0.5 \\
-H_1 &amp;amp;:  p &amp;gt; 0.5
-\end{align}
-$$&lt;/div&gt;
-&lt;p&gt;When &lt;span class="math"&gt;\(H_0\)&lt;/span&gt; assumed, the distribution of the bred male percentage follows the binomial distribution &lt;span class="math"&gt;\(B(15, 0.5)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;In fact, as you can see below &lt;span class="math"&gt;\(P(X \geq 13) = 0.0037\)&lt;/span&gt; which is very low. This is not a coincidence at all!&lt;/p&gt;
-&lt;iframe class="h_iframe" src="https://www.geogebra.org/classic/pc9kbrjc?embed" style="height:600px"  allowfullscreen frameborder="0"&gt;&lt;/iframe&gt;
-
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Binary Search once and for all</title><link href="/binary-search-once-and-for-all.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/binary-search-once-and-for-all.html</id><summary type="html">&lt;p&gt;&lt;em&gt;This is inspired by the following &lt;a href="https://youtu.be/tgVSkMA8joQ"&gt;youtube tutorial&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Binary search is so intuitive but very tricky to code. I consider two main difficulties:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Tricky to ensure termination, many times it falls into an infinite loop.&lt;/li&gt;
-&lt;li&gt;Knowing exactly &lt;em&gt;what&lt;/em&gt; to search.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The first issue is arithmetical, you have to make sure …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;This is inspired by the following &lt;a href="https://youtu.be/tgVSkMA8joQ"&gt;youtube tutorial&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Binary search is so intuitive but very tricky to code. I consider two main difficulties:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Tricky to ensure termination, many times it falls into an infinite loop.&lt;/li&gt;
-&lt;li&gt;Knowing exactly &lt;em&gt;what&lt;/em&gt; to search.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The first issue is arithmetical, you have to make sure each time the search interval is &lt;strong&gt;strictly shortening&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;The second issue has to do with the way you formulate your &lt;em&gt;search objective&lt;/em&gt;. However, all binary search problems can be converted to the following problem:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Consider a binary array with the following property: no &lt;code&gt;true&lt;/code&gt; comes before any &lt;code&gt;false&lt;/code&gt;: e.g. FFFFFFTTTT, FFFFF, TTT&lt;/p&gt;
-&lt;p&gt;Then, the binary search problem is to find the leftmost insertion location for another &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;We end with the following python psuedocode:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;bisect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;Find the leftmost insertion location of &lt;/span&gt;
-&lt;span class="sd"&gt;    another True in the sorted binary array.&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
-
-    &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-    &lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt;
-        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;  &lt;span class="c1"&gt;# arr[mid] is False&lt;/span&gt;
-            &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;bisect&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-&lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;bisect&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-&lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="n"&gt;bisect&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="data structures &amp; algorithms"></category></entry><entry><title>Can dogs detect cancer? A hypothesis testing case.</title><link href="/can-dogs-detect-cancer-a-hypothesis-testing-case.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/can-dogs-detect-cancer-a-hypothesis-testing-case.html</id><summary type="html">&lt;p&gt;&lt;em&gt;The following problem was presented in this &lt;a href="http://awarnach.mathstat.dal.ca/~joeb/Stats1060_Webcasts/screencasts/part1/P1S01/index.html"&gt;lecture&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Cancer detecting dogs.&lt;/strong&gt; Dogs were trained to detect bladder cancer according to the scent of a patients urine. After training the dogs were tested on seven urine samples, where only one was from a cancer patient. The experiment was repeated on 89 …&lt;/p&gt;&lt;/blockquote&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;The following problem was presented in this &lt;a href="http://awarnach.mathstat.dal.ca/~joeb/Stats1060_Webcasts/screencasts/part1/P1S01/index.html"&gt;lecture&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Cancer detecting dogs.&lt;/strong&gt; Dogs were trained to detect bladder cancer according to the scent of a patients urine. After training the dogs were tested on seven urine samples, where only one was from a cancer patient. The experiment was repeated on 89 different dogs. The dogs correctly identified the cancer 35 times.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Now, the question is, &lt;strong&gt;are dogs doing better than random&lt;/strong&gt;?&lt;/p&gt;
-&lt;p&gt;What is &lt;em&gt;random&lt;/em&gt;? If dogs decided randomly, then the probability of detecting the cancer would be &lt;span class="math"&gt;\(p=1/7\)&lt;/span&gt; and the expected number of correct detection would be &lt;span class="math"&gt;\(89 \cdot \frac{1}{7} = 12.714\)&lt;/span&gt;. In our case this number, which is &lt;span class="math"&gt;\(35\)&lt;/span&gt;, seems to be a little high. Randomness exists, sure, but how much? Depends on the standard deviation.&lt;/p&gt;
-&lt;p&gt;Ok, let's state the hypotheses now:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\begin{align}
-H_0 &amp;amp;: p = 1/7 \\ 
-H_1 &amp;amp;: p &amp;gt; 1/7
-\end{align}
-$$&lt;/div&gt;
-&lt;p&gt;Assuming the null hypotheses, the distribution of number of times dogs correctly detect cancer is binomial &lt;span class="math"&gt;\(B(89, 1/7)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Let's plot this and see where our sample lies:&lt;/p&gt;
-&lt;iframe class="h_iframe" src="https://www.geogebra.org/classic/dqexqb4a?embed" style="height:600px"  allowfullscreen frameborder="0"&gt;&lt;/iframe&gt;
-
-&lt;p&gt;Yes, the probability of getting 35 or more correct detections under the null hypothesis is almost zero! Dogs are great at sniffing!&lt;/p&gt;
-&lt;p&gt;Note that binomial distribution for large enough values of &lt;span class="math"&gt;\(n\)&lt;/span&gt; (&lt;span class="math"&gt;\(&amp;gt;20\)&lt;/span&gt;) is very close to normal distribution. In other words, we could use normal distribution instead.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Set estimation about the variance</title><link href="/set-estimation-about-the-variance.html" rel="alternate"></link><published>2021-05-06T00:00:00+03:00</published><updated>2021-05-06T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-06:/set-estimation-about-the-variance.html</id><summary type="html">&lt;p&gt;Using a population sample, how to provide a good estimate of the population variance in the form of an interval? Given the interval estimate, what is the probability that it contains the true variance?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Suppose there's a &lt;strong&gt;normal distribution&lt;/strong&gt; with mean &lt;span class="math"&gt;\(\mu\)&lt;/span&gt; and variance &lt;span class="math"&gt;\(\sigma^2\)&lt;/span&gt; in Wonderland. No one has seen it. But some samples have been fallen accidentally:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+&lt;p&gt;I am starting this series as I  want to work on my maths skills for machine learning.&lt;/p&gt;</content><category term="mathematics-for-ML"></category></entry><entry><title>Set estimation about the mean</title><link href="/set-estimation-about-the-mean.html" rel="alternate"></link><published>2021-05-04T00:00:00+03:00</published><updated>2021-05-04T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-04:/set-estimation-about-the-mean.html</id><summary type="html">&lt;p&gt;Suppose there's a &lt;strong&gt;normal distribution&lt;/strong&gt; with mean $\mu$ and variance $\sigma^2$ in Wonderland. No one has seen it. But some samples have been fallen accidentally:
+$$
 X_1, X_2, \ldots, X_n
-$$&lt;/div&gt;
-&lt;p&gt;Out task is to come up with a good &lt;strong&gt;interval estimate&lt;/strong&gt; for the variance &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Few things to note ahead. The &lt;strong&gt;point estimate for the mean&lt;/strong&gt; is 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$\overline{X_n} = \frac{1}{n}\sum_{i=1}^n X_i$$&lt;/div&gt;
-&lt;p&gt;The &lt;strong&gt;point estimate for the variance&lt;/strong&gt;, or the &lt;strong&gt;adjusted sample variance&lt;/strong&gt;, if needed, is 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$s_n^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \overline{X_n})^2$$&lt;/div&gt;
-&lt;p&gt;If we know true mean &lt;span class="math"&gt;\(\mu\)&lt;/span&gt;, we can use that instead and obtain &lt;strong&gt;another estimate of variance&lt;/strong&gt;:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$\hat{\sigma_n^2} = \frac{1}{n}\sum_{i=1}^n (X_i - \mu)^2$$&lt;/div&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Theorem 1:&lt;/strong&gt; The adjusted sample variance &lt;span class="math"&gt;\(s_{n}^{2}\)&lt;/span&gt; has a Gamma distribution with parameters &lt;span class="math"&gt;\(n-1\)&lt;/span&gt; and &lt;span class="math"&gt;\(\sigma^2\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Theorem 2:&lt;/strong&gt; The variance estimate &lt;span class="math"&gt;\(\hat{\sigma_n^2}\)&lt;/span&gt; has a Gamma distribution with parameters &lt;span class="math"&gt;\(n\)&lt;/span&gt; and &lt;span class="math"&gt;\(\sigma^2\)&lt;/span&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;When true mean is "known"&lt;/h2&gt;
-&lt;p&gt;Then we can use the more accurate variance estimate, which is &lt;span class="math"&gt;\(\hat{\sigma_n^2}\)&lt;/span&gt;
-Let the interval estimate be
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-T_n = \left[ \frac{n}{z_2}\hat{\sigma_n^2}, \frac{n}{z_1}\hat{\sigma_n^2} \right]
-$$&lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(0 &amp;lt; z_1 &amp;lt; z_2\)&lt;/span&gt; are constants. Then, the &lt;strong&gt;coverage probability&lt;/strong&gt; of &lt;span class="math"&gt;\(T_n\)&lt;/span&gt; is
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-C(T_n, \sigma) = P(\sigma \in T_n) = P(z_1 &amp;lt; Z_n &amp;lt; z_2)
-$$&lt;/div&gt;
-&lt;p&gt;
-where &lt;span class="math"&gt;\(Z_n\)&lt;/span&gt; is Chi-square random variable with &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom &lt;span class="math"&gt;\(\chi^2(n)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Proof:&lt;/em&gt; Can be proved using the fact in Theorem 2.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Can you find the &lt;a href="https://www.statlect.com/fundamentals-of-statistics/set-estimation#size"&gt;expected size of the interval estimator&lt;/a&gt; &lt;span class="math"&gt;\(T_{n}\)&lt;/span&gt;? In other words, the expected length of the interval given the randomness of the sample.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; Yes.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;W:&lt;/em&gt; &lt;em&gt;Wonder why in &lt;a href="/set-estimation-about-the-mean.html"&gt;set estimate of mean&lt;/a&gt;, the interval was in the form &lt;span class="math"&gt;\([x-a, x+a]\)&lt;/span&gt; but here it is in the form &lt;span class="math"&gt;\([ax, bx]\)&lt;/span&gt;?&lt;/em&gt;&lt;/p&gt;
-&lt;h2&gt;When true mean is "unknown"&lt;/h2&gt;
-&lt;p&gt;This is very similar with the above. Here we have to use the sample variance &lt;span class="math"&gt;\(s_n^2\)&lt;/span&gt; instead. Let the interval estimate be&lt;/p&gt;
-&lt;div class="math"&gt;$$
-T_n = \left[ \frac{n-1}{z_2}s_n^2, \frac{n-1}{z_1}s_n^2 \right]
-$$&lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(0 &amp;lt; z_1 &amp;lt; z_2\)&lt;/span&gt; are constants. Then, the &lt;strong&gt;coverage probability&lt;/strong&gt; of &lt;span class="math"&gt;\(T_n\)&lt;/span&gt; is
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-C(T_n, \sigma) = P(\sigma \in T_n) = P(z_1 &amp;lt; Z_{n-1} &amp;lt; z_2)
-$$&lt;/div&gt;
-&lt;p&gt;
-where &lt;span class="math"&gt;\(Z_{n-1}\)&lt;/span&gt; is Chi-square random variable with &lt;span class="math"&gt;\(n-1\)&lt;/span&gt; degrees of freedom &lt;span class="math"&gt;\(\chi^2(n-1)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Proof:&lt;/em&gt; Can be proved using the fact in Theorem 1.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Set estimation about the mean</title><link href="/set-estimation-about-the-mean.html" rel="alternate"></link><published>2021-05-04T00:00:00+03:00</published><updated>2021-05-04T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-04:/set-estimation-about-the-mean.html</id><summary type="html">&lt;p&gt;Using a population sample, how to provide a good estimate of the population mean in the form of an interval? Given the interval estimate, what is the probability that it contains the true mean?&lt;/p&gt;</summary><content type="html">&lt;p&gt;Suppose there's a &lt;strong&gt;normal distribution&lt;/strong&gt; with mean &lt;span class="math"&gt;\(\mu\)&lt;/span&gt; and variance &lt;span class="math"&gt;\(\sigma^2\)&lt;/span&gt; in Wonderland. No one has seen it. But some samples have been fallen accidentally:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$&lt;/p&gt;
+&lt;p&gt;Out task is to come up with a good &lt;strong&gt;interval estimate&lt;/strong&gt; for mean $\mu$. For variance? - Later...&lt;/p&gt;
+&lt;p&gt;Few things to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Suppose there's a &lt;strong&gt;normal distribution&lt;/strong&gt; with mean $\mu$ and variance $\sigma^2$ in Wonderland. No one has seen it. But some samples have been fallen accidentally:
+$$
 X_1, X_2, \ldots, X_n
-$$&lt;/div&gt;
-&lt;p&gt;Out task is to come up with a good &lt;strong&gt;interval estimate&lt;/strong&gt; for mean &lt;span class="math"&gt;\(\mu\)&lt;/span&gt;. For variance? - Later...&lt;/p&gt;
+$$&lt;/p&gt;
+&lt;p&gt;Out task is to come up with a good &lt;strong&gt;interval estimate&lt;/strong&gt; for mean $\mu$. For variance? - Later...&lt;/p&gt;
 &lt;p&gt;Few things to note ahead. The &lt;strong&gt;point estimate for the mean&lt;/strong&gt; is 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$\overline{X_n} = \frac{1}{n}\sum_{i=1}^n X_i$$&lt;/div&gt;
-&lt;p&gt;. &lt;/p&gt;
+$$\overline{X_n} = \frac{1}{n}\sum_{i=1}^n X_i$$. &lt;/p&gt;
 &lt;p&gt;The &lt;strong&gt;point estimate for the variance&lt;/strong&gt;, or the &lt;strong&gt;adjusted sample variance&lt;/strong&gt;, if needed, is 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$s_n^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \overline{X_n})^2$$&lt;/div&gt;
+$$s_n = \frac{1}{n-1}\sum_{i=1}^n (X_i - \overline{X_n})^2$$&lt;/p&gt;
 &lt;h2&gt;When variance is "known"&lt;/h2&gt;
 &lt;p&gt;Don't pay attention to what is known or not. It's just wording. What matters is the math that follows.&lt;/p&gt;
 &lt;p&gt;Let the interval estimate be
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
 T_n = \left[ \overline{X_n} - \sqrt{\frac{\sigma^2}{n}}z, \overline{X_n} + \sqrt{\frac{\sigma^2}{n}}z \right]
-$$&lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(z &amp;gt; 0\)&lt;/span&gt; and is a constant. Then, what is the &lt;strong&gt;coverage probability&lt;/strong&gt; of &lt;span class="math"&gt;\(T_n\)&lt;/span&gt;?
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$&lt;/p&gt;
+&lt;p&gt;where $z &amp;gt; 0$ and is a constant. Then, what is the &lt;strong&gt;coverage probability&lt;/strong&gt; of $T_n$?
+$$
 C(T_n, \mu) = P(\mu \in T_n) = P(-z &amp;lt; Z &amp;lt; z)
-$$&lt;/div&gt;
-&lt;p&gt;
-where &lt;span class="math"&gt;\(Z\)&lt;/span&gt; is standard normal random variable. We are done!&lt;/p&gt;
+$$
+where $Z$ is standard normal random variable. We are done!&lt;/p&gt;
 &lt;h2&gt;When variance is "unknown"&lt;/h2&gt;
-&lt;p&gt;The point of "knowing" is whether you can use that knowledge in constructing your estimate. So here, we use sample variance &lt;span class="math"&gt;\(s_n^2\)&lt;/span&gt; instead of &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt; (population variance).&lt;/p&gt;
+&lt;p&gt;The point of "knowing" is whether you can use that knowledge in constructing your estimate. So here, we use sample variance $s_n^2$ instead of $\sigma$ (population variance).&lt;/p&gt;
 &lt;p&gt;Let the interval estimate be
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
 T_n = \left[ \overline{X_n} - \sqrt{\frac{s_n^2}{n}}z, \overline{X_n} + \sqrt{\frac{s_n^2}{n}}z \right]
-$$&lt;/div&gt;
-&lt;p&gt;where &lt;span class="math"&gt;\(z &amp;gt; 0\)&lt;/span&gt; and is a constant. Then, what is the &lt;strong&gt;coverage probability&lt;/strong&gt; of &lt;span class="math"&gt;\(T_n\)&lt;/span&gt;?
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$&lt;/p&gt;
+&lt;p&gt;where $z &amp;gt; 0$ and is a constant. Then, what is the &lt;strong&gt;coverage probability&lt;/strong&gt; of $T_n$?
+$$
 C(T_n, \mu) = P(\mu \in T_n) = P(-z &amp;lt; Z_{n-1} &amp;lt; z)
-$$&lt;/div&gt;
-&lt;p&gt;
-where &lt;span class="math"&gt;\(Z_{n-1}\)&lt;/span&gt; is a standard Student's t random variable with &lt;span class="math"&gt;\(n-1\)&lt;/span&gt; degrees of freedom. We are done!&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Some probability distributions</title><link href="/some-probability-distributions.html" rel="alternate"></link><published>2021-05-04T00:00:00+03:00</published><updated>2021-05-04T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-04:/some-probability-distributions.html</id><summary type="html">&lt;h2&gt;Chi-square distribution&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let &lt;span class="math"&gt;\(Y_1, Y_2, \ldots, Y_n\)&lt;/span&gt; be i.i.d. standard normal random variables. What is the distribution of 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
+where $Z_{n-1}$ is a standard Student's t random variable with $n-1$ degrees of freedom. We are done!&lt;/p&gt;</content><category term="probability and statistics"></category></entry><entry><title>Some probability distributions</title><link href="/some-probability-distributions.html" rel="alternate"></link><published>2021-05-04T00:00:00+03:00</published><updated>2021-05-04T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-04:/some-probability-distributions.html</id><summary type="html">&lt;h2&gt;Chi-square distribution&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let $Y_1, Y_2, \ldots, Y_n$ be i.i.d. standard normal random variables. What is the distribution of 
+$$
 X = Y_1^2 + Y_2^2 + \ldots + Y_n^2 ?
-$$&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Chi-squared&lt;/strong&gt;. With &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom it has the following density function:&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Chi-squared&lt;/strong&gt;. With $n$ degrees of freedom it has the following density function:&lt;/p&gt;
+&lt;p&gt;$$
 f_X(x) = 
 \begin{cases}
-c x^{(n/2-1 …&lt;/div&gt;</summary><content type="html">&lt;h2&gt;Chi-square distribution&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let &lt;span class="math"&gt;\(Y_1, Y_2, \ldots, Y_n\)&lt;/span&gt; be i.i.d. standard normal random variables. What is the distribution of 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+c x^{(n/2-1 …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Chi-square distribution&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let $Y_1, Y_2, \ldots, Y_n$ be i.i.d. standard normal random variables. What is the distribution of 
+$$
 X = Y_1^2 + Y_2^2 + \ldots + Y_n^2 ?
-$$&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Chi-squared&lt;/strong&gt;. With &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom it has the following density function:&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Chi-squared&lt;/strong&gt;. With $n$ degrees of freedom it has the following density function:&lt;/p&gt;
+&lt;p&gt;$$
 f_X(x) = 
 \begin{cases}
-c x^{(n/2-1)} exp(-\frac{1}{2}x)    &amp;amp; \text{if } x \geq 0 \\
+c x^{(n/2-1)} exp(-\frac{1}{2}x)    &amp;amp; \text{if } x \geq 0 \
 0                               &amp;amp;  \text{otherwise}
 \end{cases}
-$$&lt;/div&gt;
-&lt;p&gt;
-where &lt;span class="math"&gt;\(c\)&lt;/span&gt; is a constant:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
+where $c$ is a constant:
+$$
 c = \frac{1}{2^{n/2}\Gamma(n/2)}
-$$&lt;/div&gt;
-&lt;p&gt;The &lt;strong&gt;expected value&lt;/strong&gt; and &lt;strong&gt;variance&lt;/strong&gt; of a Chi-square random variable with &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom are:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;expected value&lt;/strong&gt; and &lt;strong&gt;variance&lt;/strong&gt; of a Chi-square random variable with $n$ degrees of freedom are:
+$$
 \begin{align}
-E[X]   &amp;amp;= n     &amp;amp;\qquad \text{(proof is easy)} \\
+E[X]   &amp;amp;= n     &amp;amp;\qquad \text{(proof is easy)} \
 Var[X] &amp;amp;= 2n   &amp;amp;\qquad \text{(proof is less easy)}
 \end{align}
-$$&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; If &lt;span class="math"&gt;\(Y\)&lt;/span&gt; is a standard normal random variable, then what is the distribution of &lt;span class="math"&gt;\(Y^2\)&lt;/span&gt;?&lt;/p&gt;
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; If $Y$ is a standard normal random variable, then what is the distribution of $Y^2$?&lt;/p&gt;
 &lt;p&gt;More on Chi-square &lt;a href="https://www.statlect.com/probability-distributions/chi-square-distribution"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Gamma distribution&lt;/h2&gt;
 &lt;p&gt;Have you noticed that Chi-squared distribution is a bit restricted? It has no scaling, no freedom to choose degrees of freedom without changing the mean. Gamma distribution is a generalization of Chi-square distribution with freedom to choose degrees of freedom and arbitrary scaling.&lt;/p&gt;
-&lt;p&gt;If &lt;span class="math"&gt;\(Z\)&lt;/span&gt; is a Chi-squared distribution with &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom and &lt;span class="math"&gt;\(h\)&lt;/span&gt; is a strictly positive constant, then
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+&lt;p&gt;If $Z$ is a Chi-squared distribution with $n$ degrees of freedom and $h$ is a strictly positive constant, then
+$$
 X = \frac{h}{n}Z
-$$&lt;/div&gt;
-&lt;p&gt;
-has a Gamma distribution with parameters &lt;span class="math"&gt;\(n\)&lt;/span&gt; and &lt;span class="math"&gt;\(h\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;The &lt;strong&gt;expected value&lt;/strong&gt; and &lt;strong&gt;variance&lt;/strong&gt; of a Gamma random variable &lt;span class="math"&gt;\(X\)&lt;/span&gt; are:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
+has a Gamma distribution with parameters $n$ and $h$.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;expected value&lt;/strong&gt; and &lt;strong&gt;variance&lt;/strong&gt; of a Gamma random variable $X$ are:
+$$
 \begin{align}
-E[X]   &amp;amp;= h     &amp;amp;\qquad \text{(proof is easy)} \\
+E[X]   &amp;amp;= h     &amp;amp;\qquad \text{(proof is easy)} \
 Var[X] &amp;amp;= 2\frac{h^2}{n}   &amp;amp;\qquad \text{(proof is less easy)}
 \end{align}
-$$&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let &lt;span class="math"&gt;\(Y_1, Y_2, \ldots, Y_n\)&lt;/span&gt; be i.i.d. standard normal random variables. What is the distribution of 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let $Y_1, Y_2, \ldots, Y_n$ be i.i.d. standard normal random variables. What is the distribution of 
+$$
 X = h\cdot \frac{Y_1^2 + Y_2^2 + \ldots + Y_n^2}{n} ?
-$$&lt;/div&gt;
+$$&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Gamma&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; If &lt;span class="math"&gt;\(Y \sim \mathcal{N}(\mu, \sigma^2)\)&lt;/span&gt;, then what is the distribution of &lt;span class="math"&gt;\(Y^2\)&lt;/span&gt;?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; If $Y \sim \mathcal{N}(\mu, \sigma^2)$, then what is the distribution of $Y^2$?&lt;/p&gt;
 &lt;p&gt;More on Gamma &lt;a href="https://www.statlect.com/probability-distributions/gamma-distribution"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Student's t-distribution&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let &lt;span class="math"&gt;\(X_1, X_2, \ldots, X_n\)&lt;/span&gt; be i.i.d. normal random variables with mean &lt;span class="math"&gt;\(\mu\)&lt;/span&gt; and standard deviation &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;. What is the distribution of:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-T = \frac{ \overline{X_n} - \mu}{\sqrt{s_n^2/n}}
-$$&lt;/div&gt;
-&lt;p&gt;
-&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Standard Student's t-distribution&lt;/strong&gt; with &lt;span class="math"&gt;\(n-1\)&lt;/span&gt; degrees of freedom.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let &lt;span class="math"&gt;\(Y\)&lt;/span&gt; be a standard normal random variable, and &lt;span class="math"&gt;\(Z\)&lt;/span&gt; be Gamma random variable with parameters &lt;span class="math"&gt;\(n\)&lt;/span&gt; (shape) and &lt;span class="math"&gt;\(h\)&lt;/span&gt; = 1 (scale). What is the distribution of the ratio:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-T = \frac{Y}{\sqrt{Z}}
-$$&lt;/div&gt;
-&lt;p&gt;
-&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Standard Student's t-distribution&lt;/strong&gt; with &lt;span class="math"&gt;\(n\)&lt;/span&gt; degrees of freedom.&lt;/p&gt;
-&lt;p&gt;Standard &lt;span class="math"&gt;\(t\)&lt;/span&gt;-distribution has the following mean and variance:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\begin{align}
-E[T] &amp;amp;= 0 \\
-Var[T] &amp;amp;= \frac{n}{n-2}
-\end{align}
-$$&lt;/div&gt;
-&lt;h3&gt;Student's t-distribution: General case&lt;/h3&gt;
-&lt;p&gt;Let &lt;span class="math"&gt;\(T\)&lt;/span&gt; be standard t random variable. A linear tranformation applied to &lt;span class="math"&gt;\(T\)&lt;/span&gt;
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-X = \mu + \sigma T
-$$&lt;/div&gt;
-&lt;p&gt;
-has &lt;strong&gt;Student's t-distribution with mean &lt;span class="math"&gt;\(\mu\)&lt;/span&gt; and &lt;em&gt;scale&lt;/em&gt; &lt;span class="math"&gt;\(\sigma^2\)&lt;/span&gt;.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;And it has the following mean and variance:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\begin{align}
-E[X] &amp;amp;= 0 \\
-Var[X] &amp;amp;= \frac{n}{n-2} \sigma^2
-\end{align}
-$$&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;Note: A linear transformation to &lt;span class="math"&gt;\(t\)&lt;/span&gt;-distributed random variable always produces another &lt;span class="math"&gt;\(t\)&lt;/span&gt;-distribed random variable.&lt;/em&gt;&lt;/p&gt;
-&lt;h3&gt;Plots&lt;/h3&gt;
-&lt;p&gt;The code below show three different ways of obtaining a standard &lt;span class="math"&gt;\(t\)&lt;/span&gt;-distribution with &lt;span class="math"&gt;\(N\)&lt;/span&gt; degrees of freedom, and compares it with standard normal distribution.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let $X_1, X_2, \ldots, X_n$ be i.i.d. normal random variables with mean $\mu$ and standard deviation $\sigma$. What is the distribution of:
+$$
+\frac{ \overline{X_n} - \mu}{\sqrt{s_n^2/n}}
+$$
+&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Student's t-distribution&lt;/strong&gt; with $n-1$ degrees of freedom.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Let $Y$ be a standard normal random variable, and $Z$ be Gamma random variable with parameters $n$ (shape) and $h$ = 1 (scale). What is the distribution of :
+$$
+\frac{ \overline{X_n} - \mu}{\sqrt{s_n^2/n}}
+$$
+&lt;strong&gt;A:&lt;/strong&gt; &lt;strong&gt;Student's t-distribution&lt;/strong&gt; with $n$ degrees of freedom.&lt;/p&gt;
+&lt;p&gt;The code below show three different ways of obtaining a $t$-distribution with $N$ degrees of freedom, and compares it with standard normal distribution.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;seaborn&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;sns&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
@@ -1257,254 +148,59 @@ $$&lt;/div&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;Output:&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="student's t distribution plot" src="/images/t-plot.png"&gt;&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Remembering formula of normal distribution</title><link href="/remembering-formula-of-normal-distribution.html" rel="alternate"></link><published>2021-05-03T00:00:00+03:00</published><updated>2021-05-03T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-03:/remembering-formula-of-normal-distribution.html</id><summary type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="student's t distribution plot" src="/images/t-plot.png"&gt;&lt;/p&gt;</content><category term="probability and statistics"></category></entry><entry><title>Remembering formula of normal distribution</title><link href="/remembering-formula-of-normal-distribution.html" rel="alternate"></link><published>2021-05-03T00:00:00+03:00</published><updated>2021-05-03T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-03:/remembering-formula-of-normal-distribution.html</id><summary type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
 &lt;p align="center"&gt;
   &lt;img src="/images/normal_distribution.svg" /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.&lt;/p&gt;
 &lt;p&gt;It breaks down into two parts:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
-\frac{1}{\sigma …&lt;/div&gt;</summary><content type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
+$$
+\frac{1}{\sigma …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When googled, I got this for the normal distribution:&lt;/p&gt;
 &lt;p align="center"&gt;
   &lt;img src="/images/normal_distribution.svg" /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.&lt;/p&gt;
 &lt;p&gt;It breaks down into two parts:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
 \frac{1}{\sigma\sqrt{2\pi}}
-$$&lt;/div&gt;
-&lt;p&gt;
+$$
 and
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
 e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
-$$&lt;/div&gt;
+$$&lt;/p&gt;
 &lt;p&gt;The first part is just a &lt;strong&gt;normalizing constant&lt;/strong&gt; that is worth memorizing.&lt;/p&gt;
 &lt;p&gt;Let's break down the &lt;strong&gt;second part&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Exponent &lt;span class="math"&gt;\(e\)&lt;/span&gt;: the normal distribution converges asymptotically to 0 &lt;strong&gt;exponentially&lt;/strong&gt; on both tails, or more accurately &lt;em&gt;quadratic exponentially&lt;/em&gt; (if that's is a term).&lt;/p&gt;
+&lt;p&gt;Exponent $e$: the normal distribution converges asymptotically to 0 &lt;strong&gt;exponentially&lt;/strong&gt; on both tails, or more accurately &lt;em&gt;quadratic exponentially&lt;/em&gt; (if that's is a term).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Negative sign in the exponent: without which it would diverge on both tails.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;The fraction &lt;span class="math"&gt;\((\frac{x-\mu}{\sigma})^2\)&lt;/span&gt;: it is the part that gives it parametrization of different means and standard deviations. The numerator &lt;span class="math"&gt;\(x - \mu\)&lt;/span&gt; ensures that at it has the peak at &lt;span class="math"&gt;\(x = \mu\)&lt;/span&gt; and the denominator &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt; is used to stretch the x-axis linearly, so that desired standard deviation is obtained. Without the square the distribution wouldn't be symmetric.&lt;/p&gt;
+&lt;p&gt;The fraction $(\frac{x-\mu}{\sigma})^2$: it is the part that gives it parametrization of different means and standard deviations. The numerator $x - \mu$ ensures that at it has the peak at $x = \mu$ and the denominator $\sigma$ is used to stretch the x-axis linearly, so that desired standard deviation is obtained. Without the square the distribution wouldn't be symmetric.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;The fraction &lt;span class="math"&gt;\(\frac{1}{2}\)&lt;/span&gt;: sure, it would look cooler without this fraction, but the standard deviation would be &lt;span class="math"&gt;\(\sigma / \sqrt{2}\)&lt;/span&gt; instead of just &lt;span class="math"&gt;\(\sigma\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The fraction $\frac{1}{2}$: sure, it would look cooler without this fraction, but the standard deviation would be $\sigma / \sqrt{2}$ instead of just $\sigma$.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Set estimation</title><link href="/set-estimation.html" rel="alternate"></link><published>2021-05-03T00:00:00+03:00</published><updated>2021-05-03T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-03:/set-estimation.html</id><summary type="html">&lt;p&gt;Suppose there's a unknown distribution parametrized by &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Let &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt; be a random vector from that distribution. Suppose we have sample &lt;span class="math"&gt;\(\xi\)&lt;/span&gt; as a realization of random vector &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt;. Using this sample we want to estimate &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Suppose we have modeled the distrubution with parameter space &lt;span class="math"&gt;\(\Theta\)&lt;/span&gt;. &lt;/p&gt;
-&lt;p&gt;So is an …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Suppose there's a unknown distribution parametrized by &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Let &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt; be a random vector from that distribution. Suppose we have sample &lt;span class="math"&gt;\(\xi\)&lt;/span&gt; as a realization of random vector &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt;. Using this sample we want to estimate &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Suppose we have modeled the distrubution with parameter space &lt;span class="math"&gt;\(\Theta\)&lt;/span&gt;. &lt;/p&gt;
+&lt;/ol&gt;</content><category term="probability and statistics"></category></entry><entry><title>Set estimation</title><link href="/set-estimation.html" rel="alternate"></link><published>2021-05-03T00:00:00+03:00</published><updated>2021-05-03T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-03:/set-estimation.html</id><summary type="html">&lt;p&gt;Suppose there's a unknown distribution parametrized by $\theta_0$. Let $\Xi$ be a random vector from that distribution. Suppose we have sample $\xi$ as a realization of random vector $\Xi$. Using this sample we want to estimate $\theta_0$. Suppose we have modeled the distrubution with parameter space $\Theta$. &lt;/p&gt;
+&lt;p&gt;So is an …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Suppose there's a unknown distribution parametrized by $\theta_0$. Let $\Xi$ be a random vector from that distribution. Suppose we have sample $\xi$ as a realization of random vector $\Xi$. Using this sample we want to estimate $\theta_0$. Suppose we have modeled the distrubution with parameter space $\Theta$. &lt;/p&gt;
 &lt;p&gt;So is an estimate? An estimate is as subset of parameter space: 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$T \subseteq \Theta$$&lt;/div&gt;
-&lt;p&gt;The estimate has a probability of containing the true parameter &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;, we call it &lt;strong&gt;coverage probability&lt;/strong&gt;:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$T \subseteq \Theta$$&lt;/p&gt;
+&lt;p&gt;The estimate has a probability of containing the true parameter $\theta_0$, we call it &lt;strong&gt;coverage probability&lt;/strong&gt;:
+$$
 C(T, \theta_0) = P_{\theta_0}(\theta_0 \in T[\Xi])
-$$&lt;/div&gt;
-&lt;p&gt;
-Note that in the above equation, the random element is &lt;span class="math"&gt;\(T[\Xi]\)&lt;/span&gt; and &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt; is fixed. In other words, it is probability that the computed set estimate contains the true parameter, given the randomness of &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt;. In other words, for a fixed original distribution, if we run the experiment many times[for which we get different realizations of &lt;span class="math"&gt;\(\Xi\)&lt;/span&gt; each time], then the coverage probability measure the number of times our set estimate will contain the true parameter.&lt;/p&gt;
-&lt;p&gt;Often times, the coverage probability is not computable, because we don't know &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Therefore, another measure which is &lt;strong&gt;confidence coefficient&lt;/strong&gt; comes handy:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
+Note that in the above equation, the random element is $T[\Xi]$ and $\theta_0$ is fixed. In other words, it is probability that the computed set estimate contains the true parameter, given the randomness of $\Xi$. In other words, for a fixed original distribution, if we run the experiment many times[for which we get different realizations of $\Xi$ each time], then the coverage probability measure the number of times our set estimate will contain the true parameter.&lt;/p&gt;
+&lt;p&gt;Often times, the coverage probability is not computable, because we don't know $\theta_0$. Therefore, another measure which is &lt;strong&gt;confidence coefficient&lt;/strong&gt; comes handy:
+$$
 c(T) = \inf_{\theta \in \Theta} C(T, \theta)
-$$&lt;/div&gt;
-&lt;p&gt;
+$$
 It measures the smallest probability of coverage considering all possible values of true parameter.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt; is always unknown, that's the whole point of set estimation. So in what conditions can coverage probability be computed?&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; Sometimes, the coverage probability is same for all possible &lt;span class="math"&gt;\(\theta \in \Theta\)&lt;/span&gt;, so it will be independent of &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Example includes set estimation about the mean when original distribution is assumed to be normal.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Hypothesis Testing</title><link href="/hypothesis-testing.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/hypothesis-testing.html</id><summary type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; $\theta_0$ is always unknown, that's the whole point of set estimation. So in what conditions can coverage probability be computed?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A:&lt;/strong&gt; Sometimes, the coverage probability is same for all possible $\theta \in \Theta$, so it will be independent of $\theta_0$. Example includes set estimation about the mean when original distribution is assumed to be normal.&lt;/p&gt;</content><category term="probability and statistics"></category></entry><entry><title>Hypothesis Testing</title><link href="/hypothesis-testing.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/hypothesis-testing.html</id><summary type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
 &lt;p&gt;First we define what is a &lt;strong&gt;statistical model&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3&gt;Statistical Models&lt;/h3&gt;
 &lt;p&gt;The term didn't catch attention, as if I already knew it. Perhaps true. I know both words in isolation, and I've seen both together. But here follows …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The following are my notes when I studied &lt;a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing"&gt;this chapter&lt;/a&gt; on hypothesis testing.&lt;/p&gt;
@@ -1514,7 +210,7 @@ It measures the smallest probability of coverage considering all possible values
 &lt;p&gt;Given an unknown distribution. Assume we only have some samples from it. Of course we cannot characterize the original distribution just from a finite number of samples. We can only infer some properties of it given particular circumstances. For example we assume that it belongs to a certain class of probability distributions. If we assume it is a normal distribution, then we go further and estimate its mean and variance, or make a probabilistic statements about it. &lt;/p&gt;
 &lt;p&gt;So, the class which we assumed the unknown distributions belongs to is called our &lt;em&gt;statistical model&lt;/em&gt;. We could have modeled it correctly, in which case we say our model is &lt;strong&gt;correctly specified&lt;/strong&gt;. Otherwise, it is &lt;strong&gt;mis-specified&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3&gt;Statistical Inference&lt;/h3&gt;
-&lt;p&gt;A statistical inference is a statement about the population from a given sample. They are based on a given sample and the statistical model. A statistical inference has the form of model restriction. Let the original model be &lt;span class="math"&gt;\(\Phi\)&lt;/span&gt;. Then the statistical inference can talk about a subset of model, &lt;span class="math"&gt;\(\Phi_R\)&lt;/span&gt;, in one of the following forms: (a) the unknown distribution belongs to &lt;span class="math"&gt;\(\Phi_X\)&lt;/span&gt;, or (b) the unknown distribution does not belong to &lt;span class="math"&gt;\(\Phi_X\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;A statistical inference is a statement about the population from a given sample. They are based on a given sample and the statistical model. A statistical inference has the form of model restriction. Let the original model be $\Phi$. Then the statistical inference can talk about a subset of model, $\Phi_R$, in one of the following forms: (a) the unknown distribution belongs to $\Phi_X$, or (b) the unknown distribution does not belong to $\Phi_X$.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;In &lt;strong&gt;hypothesis testing&lt;/strong&gt;, first such a model restriction is proposed, then the choice is made whether to accept the restriction or reject it.&lt;/p&gt;
@@ -1532,12 +228,10 @@ It measures the smallest probability of coverage considering all possible values
 &lt;blockquote&gt;
 &lt;p&gt;Hypothesis testing is a method of making statistical inferences by establishing an hypothesis, called null hypothesis, and using some data to decide whether to reject or not to reject the hypothesis.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;For parametric models, let &lt;span class="math"&gt;\(\Theta \subseteq \mathbb{R}^p\)&lt;/span&gt; be the parameter space. Let the true parameter of the unknown distribution be &lt;span class="math"&gt;\(\theta_0\)&lt;/span&gt;. Let the chosen parameter restriction be &lt;span class="math"&gt;\(\Theta_R\)&lt;/span&gt;. Then the &lt;strong&gt;null hypothesis&lt;/strong&gt; is defined as
-&lt;/p&gt;
-&lt;div class="math"&gt;$$H_0: \theta_0 \in \Theta_R$$&lt;/div&gt;
+&lt;p&gt;For parametric models, let $\Theta \subseteq \mathbb{R}^p$ be the parameter space. Let the true parameter of the unknown distribution be $\theta_0$. Let the chosen parameter restriction be $\Theta_R$. Then the &lt;strong&gt;null hypothesis&lt;/strong&gt; is defined as
+$$H_0: \theta_0 \in \Theta_R$$&lt;/p&gt;
 &lt;p&gt;And the &lt;strong&gt;alternative hyptothesis&lt;/strong&gt; is defined as
-&lt;/p&gt;
-&lt;div class="math"&gt;$$H_1: \theta_0 \in \Theta_R^c$$&lt;/div&gt;
+$$H_1: \theta_0 \in \Theta_R^c$$&lt;/p&gt;
 &lt;h4&gt;Types of errors&lt;/h4&gt;
 &lt;p&gt;Whether the null hypothesis is accepted or rejected, the decision may be wrong. Two types of errors exist:
 1. Reject the null hypothesis when it is indeed true, called &lt;strong&gt;Type I error&lt;/strong&gt;.
@@ -1554,14 +248,12 @@ It measures the smallest probability of coverage considering all possible values
 &lt;p&gt;The critical region is often defined implicitly through a &lt;strong&gt;test statistic&lt;/strong&gt; and a &lt;strong&gt;critical region&lt;/strong&gt; for the test statistic. &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;Test statistic&lt;/h4&gt;
-&lt;p&gt;Is a function of sample (a quantity derived from the sample). Hence, it is a random variable. Its critical region is a subset of &lt;span class="math"&gt;\(\mathbb{R}\)&lt;/span&gt;. Once one draws its critical region, it implies a certain critical region for the sample as well. The test will be based on test statistic:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+&lt;p&gt;Is a function of sample (a quantity derived from the sample). Hence, it is a random variable. Its critical region is a subset of $\mathbb{R}$. Once one draws its critical region, it implies a certain critical region for the sample as well. The test will be based on test statistic:
+$$
 \text{test statistic is in critical region} \Rightarrow \text{sample is in critical region} \Rightarrow H_0 \text{ is rejected} 
-$$&lt;/div&gt;
-&lt;div class="math"&gt;$$
+$$$$
 \text{test statistic not in critical region} \Rightarrow \text{sample not in critical region} \Rightarrow H_0 \text{ is not rejected}
-$$&lt;/div&gt;
+$$&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Q: Why use test statistic when defining a critical region is enough?&lt;/p&gt;
 &lt;p&gt;I suppose, usually the test statistic is much easier to reason about and define a reasonable critical region. On the other hand, defining a critical region for the sample is impractical as you have multiple samples and each can be vectors.&lt;/p&gt;
@@ -1570,171 +262,39 @@ $$&lt;/div&gt;
 &lt;p&gt;Power of a test is the probability of rejecting the null hypothesis when, in fact, it is false. Power is a number between 0 and 1. Thus, the power of 1 indicates that the test is "powerful", i.e. it rejects the null hypothesis whenever it is false. In other terms, it indicates immunity from Type II error. 
 Yes, it would be great to know the power of your test. So, how? &lt;/p&gt;
 &lt;h4&gt;Power function&lt;/h4&gt;
-&lt;p&gt;This is the generalization of the notion of power of test. While power of test is just a quantity, the power function is defined on every possible parameter &lt;span class="math"&gt;\(\theta\)&lt;/span&gt;, in case of parametric tests. 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+&lt;p&gt;This is the generalization of the notion of power of test. While power of test is just a quantity, the power function is defined on every possible parameter $\theta$, in case of parametric tests. 
+$$
 \pi(\theta) = P(\text{sample falls in critical region} | \text{true distribution parameter is } \theta)
-$$&lt;/div&gt;
+$$&lt;/p&gt;
 &lt;p&gt;More on power function &lt;a href="https://www.statlect.com/glossary/power-function"&gt;here&lt;/a&gt; that has a simple example included:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Suppose you are testing the null hypothesis that the true parameter is equal to zero:
-&lt;div class="math"&gt;$$H_0: \theta = 0$$&lt;/div&gt;
-Suppose that the value of the power function at &lt;span class="math"&gt;\(\theta =1\)&lt;/span&gt; is
-&lt;div class="math"&gt;$$\pi(1) = 0.5$$&lt;/div&gt;
+$$H_0: \theta = 0$$
+Suppose that the value of the power function at $\theta =1$ is
+$$\pi(1) = 0.5$$
 What does this mean? It means that if the true parameter is equal to 1, then there is a 50% probability that the test will reject the (false) null hypothesis that the parameter is equal to 0.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Q: Knowing the power function of your test is great. But how can you derive it?&lt;/p&gt;
 &lt;h4&gt;Size of a test&lt;/h4&gt;
 &lt;p&gt;Size of a test is a measure of incorrectly rejecting the null hypothesis. It is defined in terms of the power function:
-&lt;/p&gt;
-&lt;div class="math"&gt;$$
+$$
 sup_{\theta \in \Theta_R} \pi(\theta)
-$$&lt;/div&gt;
-&lt;p&gt;
-In other words, it is the upper bound probability of incorrectly rejecting the null hypothesis. Ideally, we want the size of test to be 0.&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Some statistical terms</title><link href="/some-statistical-terms.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/some-statistical-terms.html</id><summary type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
+$$
+In other words, it is the upper bound probability of incorrectly rejecting the null hypothesis. Ideally, we want the size of test to be 0.&lt;/p&gt;</content><category term="probability and statistics"></category></entry><entry><title>Some statistical terms</title><link href="/some-statistical-terms.html" rel="alternate"></link><published>2021-05-01T00:00:00+03:00</published><updated>2021-05-01T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-05-01:/some-statistical-terms.html</id><summary type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
 &lt;p&gt;It characterizes the probability of a random vector in its domain.
-So, for a random vector &lt;span class="math"&gt;\(X \in R^n\)&lt;/span&gt;, it is a function 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$f_X: R^n \to [0, \inf) .$$&lt;/div&gt;
-&lt;p&gt;
-Computing the integral over the support region should result in &lt;span class="math"&gt;\(1\)&lt;/span&gt;.&lt;/p&gt;
+So, for a random vector $X \in R^n$, it is a function 
+$$f_X: R^n \to [0, \inf) .$$
+Computing the integral over the support region should result in $1$.&lt;/p&gt;
 &lt;p&gt;There is another term called …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Joint probability distribution function&lt;/h3&gt;
 &lt;p&gt;It characterizes the probability of a random vector in its domain.
-So, for a random vector &lt;span class="math"&gt;\(X \in R^n\)&lt;/span&gt;, it is a function 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$f_X: R^n \to [0, \inf) .$$&lt;/div&gt;
-&lt;p&gt;
-Computing the integral over the support region should result in &lt;span class="math"&gt;\(1\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;There is another term called &lt;em&gt;joint distribution function&lt;/em&gt; which is a synonym to &lt;em&gt;joint cumulative distribution function&lt;/em&gt; (also &lt;em&gt;joint cdf&lt;/em&gt;). At a given point &lt;span class="math"&gt;\(x\)&lt;/span&gt; it gives the probability that all components of &lt;span class="math"&gt;\(X\)&lt;/span&gt; are smaller than the corresponding component &lt;span class="math"&gt;\(x\)&lt;/span&gt;.&lt;/p&gt;
+So, for a random vector $X \in R^n$, it is a function 
+$$f_X: R^n \to [0, \inf) .$$
+Computing the integral over the support region should result in $1$.&lt;/p&gt;
+&lt;p&gt;There is another term called &lt;em&gt;joint distribution function&lt;/em&gt; which is a synonym to &lt;em&gt;joint cumulative distribution function&lt;/em&gt; (also &lt;em&gt;joint cdf&lt;/em&gt;). At a given point $x$ it gives the probability that all components of $X$ are smaller than the corresponding component $x$.&lt;/p&gt;
 &lt;h3&gt;Marginal distribution function&lt;/h3&gt;
 &lt;p&gt;For a random vector, it is the probability of one of its components. 
-So, for a random vector &lt;span class="math"&gt;\(X \in R^n\)&lt;/span&gt; and its component &lt;span class="math"&gt;\(X_i\)&lt;/span&gt;, it is a function 
-&lt;/p&gt;
-&lt;div class="math"&gt;$$f_{X_i}: R \to [0, \inf) .$$&lt;/div&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="probability and statistics"></category></entry><entry><title>Contour detection</title><link href="/contour-detection.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-04-30:/contour-detection.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Dictionary definition: an outline representing or bounding the shape or form of something.&lt;/em&gt;&lt;/p&gt;
+So, for a random vector $X \in R^n$ and its component $X_i$, it is a function 
+$$f_{X_i}: R \to [0, \inf) .$$&lt;/p&gt;</content><category term="probability and statistics"></category></entry><entry><title>Contour detection</title><link href="/contour-detection.html" rel="alternate"></link><published>2021-04-30T00:00:00+03:00</published><updated>2021-04-30T00:00:00+03:00</updated><author><name>Sobir Bobiev</name></author><id>tag:None,2021-04-30:/contour-detection.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Dictionary definition: an outline representing or bounding the shape or form of something.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Separate bright object from dark background. Contours are polygons. Contours are the boundaries of
 objects with the same intensity. &lt;/p&gt;
 &lt;p&gt;From OpenCV:&lt;/p&gt;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="top">
+<html lang="english">
 <head>
         <title>My Notes - Articles by Sobir Bobiev</title>
         <meta charset="utf-8" />
@@ -27,7 +27,7 @@
                 <h1><a href="/">My Notes</a></h1>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-            <li><a href="/category/data-structures-algorithms.html">data structures & algorithms</a></li>
+            <li><a href="/category/mathematics-for-ml.html">mathematics-for-ML</a></li>
             <li><a href="/category/misc.html">misc</a></li>
             <li><a href="/category/probability-and-statistics.html">probability and statistics</a></li>
         </ul></nav><!-- /#menu -->
@@ -36,126 +36,117 @@
 
 <ol id="post-list">
         <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/selection-algorithm.html" rel="bookmark" title="Permalink to Selection algorithm">Selection algorithm</a></h2> </header>
+                <header> <h2 class="entry-title"><a href="/mathematics-for-machine-learning.html" rel="bookmark" title="Permalink to Mathematics for Machine Learning">Mathematics for Machine Learning</a></h2> </header>
                 <footer class="post-info">
-                    <time class="published" datetime="2021-05-10T00:00:00+03:00"> Mon 10 May 2021 </time>
+                    <time class="published" datetime="2023-01-28T00:00:00+03:00"> Sat 28 January 2023 </time>
                 </footer><!-- /.post-info -->
-                <div class="entry-content"> <p><strong>Selection algorithm is an algorithm for finding k-th smallest element in an array.</strong> An inefficient implementation is to sort the array and return the k-th element, which has <span class="math">\(O(n \log n)\)</span> time complexity. However, there exists selection algorithms with O(n) worst-case complexity. </p>
-<h2>Quickselect</h2>
-<p>The best known selection algorithm …</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/sorting.html" rel="bookmark" title="Permalink to Sorting">Sorting</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2021-05-10T00:00:00+03:00"> Mon 10 May 2021 </time>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <h2>Quicksort 0</h2>
-<p>As an inspiration, this is a very beatiful implementation of quicksort. However not so efficient.</p>
-<p><code>partition</code> procedure maintains a pointer <code>i</code> for which all elements <code>A[0 .. i - 1] &lt; pivot</code>.
-At the end, it correctly places <code>pivot</code> in position <code>A[i]</code> by swapping.</p>
-<div class="highlight"><pre><span></span><code>algorithm quicksort(A, lo, hi …</code></pre></div> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/bloom-filter.html" rel="bookmark" title="Permalink to Bloom filter">Bloom filter</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2021-05-09T00:00:00+03:00"> Sun 09 May 2021 </time>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <h2>Idea</h2>
-<p>How sets are implemented? They are usually implemented using hash tables with dummy values. An important function of a set is know whether an element is present or not. From computational perspective this includes comparison operation between the query element and the value stored. However, when the number of …</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/hash-tables.html" rel="bookmark" title="Permalink to Hash tables">Hash tables</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2021-05-09T00:00:00+03:00"> Sun 09 May 2021 </time>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>Hash tables are there to implement <strong>dictionary (map) data structure</strong>, mapping keys to values.</p>
-<p>For computers the more native structure is array. Locating elements are easy because they have integer indices that can be mapped to precise memory locations.</p>
-<p>But in order to create artibrary mapping with any type of …</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/k-d-trees.html" rel="bookmark" title="Permalink to K-d trees">K-d trees</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2021-05-09T00:00:00+03:00"> Sun 09 May 2021 </time>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>Suppose we have a set of vectors. We need a data structure for querying nearest neighbor and range searches. kd-tree is a tree where at each level the points are split by a hyperplance according to a coordinate.</p>
-<h2>Construction</h2>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kdtree</span><span class="p">(</span><span class="n">point_list</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">point_list</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">None …</span></code></pre></div> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/do-my-observations-fit-the-model-chi-square-goodness-of-fit.html" rel="bookmark" title="Permalink to Do my observations fit the model? Chi-square goodness of fit.">Do my observations fit the model? Chi-square goodness of fit.</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2021-05-07T00:00:00+03:00"> Fri 07 May 2021 </time>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>Let <span class="math">\(X\)</span> be a categorial variable having <span class="math">\(r\)</span> different possible values. Let <span class="math">\(p_1, p_2, \ldots, p_r\)</span> be the probabilities of those categories, satisfying <span class="math">\(\sum_{i=1}^{r} p_i = 1\)</span>. Let <span class="math">\(\xi_n = [x_1, x_2, \ldots, x_n]\)</span> be a set of observations. Let's group the observations by their values: </p>
-<div class="math">$$O = [O_1, O_2 …</div> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/gender-and-education-hypothesis-testing.html" rel="bookmark" title="Permalink to Gender and education, hypothesis testing.">Gender and education, hypothesis testing.</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2021-05-07T00:00:00+03:00"> Fri 07 May 2021 </time>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p><em>The table below, taken from <a href="https://online.stat.psu.edu/statprogram/reviews/statistical-concepts/chi-square-tests">here</a>, represents a survey result which asked the subjects of their highest level of education.</em></p>
-<div class="highlight"><pre><span></span><code>+--------+-------------+------------+---------+-------+-------+
-|        | High School |  Bachelors | Masters | Ph.d. | Total |
-+--------+-------------+------------+---------+-------+-------+
-| Female |          60 |         54 |      46 |    41 |   201 |
-+--------+-------------+------------+---------+-------+-------+
-| Male   |          40 |         44 |      53 |    57 |   194 |
-+--------+-------------+------------+---------+-------+-------+
-| Total  |         100 |         98 |      99 |    98 |   395 |
-+--------+-------------+------------+---------+-------+-------+
-</code></pre></div>
+                <div class="entry-content"> <!-- status: draft -->
 
-<p>The question is, <strong>is education …</strong></p> </div><!-- /.entry-content -->
+<p>I am starting this series as I  want to work on my maths skills for machine learning.</p> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/alenas-dogs.html" rel="bookmark" title="Permalink to Alena's dogs">Alena's dogs</a></h2> </header>
+                <header> <h2 class="entry-title"><a href="/set-estimation-about-the-mean.html" rel="bookmark" title="Permalink to Set estimation about the mean">Set estimation about the mean</a></h2> </header>
                 <footer class="post-info">
-                    <time class="published" datetime="2021-05-06T00:00:00+03:00"> Thu 06 May 2021 </time>
+                    <time class="published" datetime="2021-05-04T00:00:00+03:00"> Tue 04 May 2021 </time>
                 </footer><!-- /.post-info -->
-                <div class="entry-content"> <p><em>The following is a discussion of a problem in hypothesis testing, presented in Khan Academy <a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/idea-of-significance-tests/e/hypothesis-testing-with-simulations">here</a>.</em></p>
-<p>The problem description starts like this:</p>
+                <div class="entry-content"> <p>Suppose there's a <strong>normal distribution</strong> with mean $\mu$ and variance $\sigma^2$ in Wonderland. No one has seen it. But some samples have been fallen accidentally:
+$$
+X_1, X_2, \ldots, X_n
+$$</p>
+<p>Out task is to come up with a good <strong>interval estimate</strong> for mean $\mu$. For variance? - Later...</p>
+<p>Few things to …</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/some-probability-distributions.html" rel="bookmark" title="Permalink to Some probability distributions">Some probability distributions</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-05-04T00:00:00+03:00"> Tue 04 May 2021 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <h2>Chi-square distribution</h2>
+<p><strong>Q:</strong> Let $Y_1, Y_2, \ldots, Y_n$ be i.i.d. standard normal random variables. What is the distribution of 
+$$
+X = Y_1^2 + Y_2^2 + \ldots + Y_n^2 ?
+$$</p>
+<p><strong>A:</strong> <strong>Chi-squared</strong>. With $n$ degrees of freedom it has the following density function:</p>
+<p>$$
+f_X(x) = 
+\begin{cases}
+c x^{(n/2-1 …</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/remembering-formula-of-normal-distribution.html" rel="bookmark" title="Permalink to Remembering formula of normal distribution">Remembering formula of normal distribution</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-05-03T00:00:00+03:00"> Mon 03 May 2021 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>When googled, I got this for the normal distribution:</p>
+<p align="center">
+  <img src="/images/normal_distribution.svg" />
+</p>
+
+<p>You can see it in many other different forms. I will try my best to show at best how can you remember it, or at least what you should keep in mind.</p>
+<p>It breaks down into two parts:
+$$
+\frac{1}{\sigma …</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/set-estimation.html" rel="bookmark" title="Permalink to Set estimation">Set estimation</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-05-03T00:00:00+03:00"> Mon 03 May 2021 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Suppose there's a unknown distribution parametrized by $\theta_0$. Let $\Xi$ be a random vector from that distribution. Suppose we have sample $\xi$ as a realization of random vector $\Xi$. Using this sample we want to estimate $\theta_0$. Suppose we have modeled the distrubution with parameter space $\Theta$. </p>
+<p>So is an …</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/hypothesis-testing.html" rel="bookmark" title="Permalink to Hypothesis Testing">Hypothesis Testing</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-05-01T00:00:00+03:00"> Sat 01 May 2021 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>The following are my notes when I studied <a href="https://www.statlect.com/fundamentals-of-statistics/hypothesis-testing">this chapter</a> on hypothesis testing.</p>
+<p>First we define what is a <strong>statistical model</strong>.</p>
+<h3>Statistical Models</h3>
+<p>The term didn't catch attention, as if I already knew it. Perhaps true. I know both words in isolation, and I've seen both together. But here follows …</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/some-statistical-terms.html" rel="bookmark" title="Permalink to Some statistical terms">Some statistical terms</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-05-01T00:00:00+03:00"> Sat 01 May 2021 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <h3>Joint probability distribution function</h3>
+<p>It characterizes the probability of a random vector in its domain.
+So, for a random vector $X \in R^n$, it is a function 
+$$f_X: R^n \to [0, \inf) .$$
+Computing the integral over the support region should result in $1$.</p>
+<p>There is another term called …</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/contour-detection.html" rel="bookmark" title="Permalink to Contour detection">Contour detection</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2021-04-30T00:00:00+03:00"> Fri 30 April 2021 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p><em>Dictionary definition: an outline representing or bounding the shape or form of something.</em></p>
+<p>Separate bright object from dark background. Contours are polygons. Contours are the boundaries of
+objects with the same intensity. </p>
+<p>From OpenCV:</p>
 <blockquote>
-<p>Alena has a pair of dogs, and she noticed they usually breed more male puppies than females. To check that, she bred them again and obtained 15 puppies …</p></blockquote> </div><!-- /.entry-content -->
+<p>Contours is a Python list of all the contours in the image. Each individual contour is …</p></blockquote> </div><!-- /.entry-content -->
         </article></li>
         <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/binary-search-once-and-for-all.html" rel="bookmark" title="Permalink to Binary Search once and for all">Binary Search once and for all</a></h2> </header>
+                <header> <h2 class="entry-title"><a href="/what-is-sql.html" rel="bookmark" title="Permalink to WHAT is SQL">WHAT is SQL</a></h2> </header>
                 <footer class="post-info">
-                    <time class="published" datetime="2021-05-06T00:00:00+03:00"> Thu 06 May 2021 </time>
+                    <time class="published" datetime="2021-04-30T00:00:00+03:00"> Fri 30 April 2021 </time>
                 </footer><!-- /.post-info -->
-                <div class="entry-content"> <p><em>This is inspired by the following <a href="https://youtu.be/tgVSkMA8joQ">youtube tutorial</a>.</em></p>
-<p>Binary search is so intuitive but very tricky to code. I consider two main difficulties:</p>
-<ol>
-<li>Tricky to ensure termination, many times it falls into an infinite loop.</li>
-<li>Knowing exactly <em>what</em> to search.</li>
-</ol>
-<p>The first issue is arithmetical, you have to make sure …</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="/can-dogs-detect-cancer-a-hypothesis-testing-case.html" rel="bookmark" title="Permalink to Can dogs detect cancer? A hypothesis testing case.">Can dogs detect cancer? A hypothesis testing case.</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2021-05-06T00:00:00+03:00"> Thu 06 May 2021 </time>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p><em>The following problem was presented in this <a href="http://awarnach.mathstat.dal.ca/~joeb/Stats1060_Webcasts/screencasts/part1/P1S01/index.html">lecture</a></em>.</p>
-<blockquote>
-<p><strong>Cancer detecting dogs.</strong> Dogs were trained to detect bladder cancer according to the scent of a patients urine. After training the dogs were tested on seven urine samples, where only one was from a cancer patient. The experiment was repeated on 89 …</p></blockquote> </div><!-- /.entry-content -->
+                <div class="entry-content"> <h1>The idea of SQL</h1>
+<p>Entities exist. Multiple entities of the same <em>kind</em> exist. Example, many humans.</p>
+<p>All entities of the same kind have a set of attributes. Different entities differ 
+because of attributes. Align those attributes in a <em>row</em>. All entities 
+are now represented by a row. then, A collection …</p> </div><!-- /.entry-content -->
         </article></li>
 </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 2
-        <a href="/author/sobir-bobiev2.html">&raquo;</a>
-        <a href="/author/sobir-bobiev2.html">&#8649;</a>
-</p>
 </section><!-- /#content -->
-        <a href="#top" class="js-scroll-top"> top </a> 
         <footer id="contentinfo" class="body">
-            <address id="about" class="vcard body">
-            Powered by <a href="https://getpelican.com/">Pelican</a>,
-            Theme adapted from <a href="https://github.com/matuzo/matuzoat/">matuzo</a>.
-            </address><!-- /#about -->
-            <!-- /#about -->
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
         </footer><!-- /#contentinfo -->
 </body>
 </html>
